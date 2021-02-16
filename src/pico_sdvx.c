@@ -19,8 +19,8 @@ const uint8_t ENC_SENS = 10;        // Encoder sensitivity multiplier
 const uint8_t L_ENC_GPIO[] = {0, 1};
 const uint8_t R_ENC_GPIO[] = {2, 3};
 const uint8_t SW_KEYCODE[] = {HID_KEY_RETURN, HID_KEY_A, HID_KEY_S, HID_KEY_D, HID_KEY_F, HID_KEY_Z, HID_KEY_X};    // MODIFY KEYBINDS HERE
-const uint8_t SW_GPIO[] = {4, 5, 6, 7, 8, 9, 10};                                                                   // MAKE SURE SW_KEYCODE and SW_GPIO LENGTHS MATCH
-const uint8_t LED_GPIO[] = {28, 27, 26, 22, 21, 20, 19};
+const uint8_t SW_GPIO[] = {4, 5, 6, 7, 8, 9, 10};                               // MAKE SURE SW_KEYCODE and SW_GPIO LENGTHS MATCH
+const uint8_t LED_GPIO[] = {28, 27, 26, 22, 21, 20, 19};                        // MAKE SURE SW_GPIO and LED_GPIO LENGTHS MATCH
 const size_t ENC_GPIO_SIZE = sizeof(L_ENC_GPIO)/ sizeof(L_ENC_GPIO[0]);
 const size_t SW_GPIO_SIZE = sizeof(SW_GPIO)/ sizeof(SW_GPIO[0]);
 const size_t LED_GPIO_SIZE = sizeof(LED_GPIO)/ sizeof(LED_GPIO[0]);
@@ -111,6 +111,12 @@ void init() {
         gpio_set_dir(SW_GPIO[i], GPIO_IN);
         gpio_pull_up(SW_GPIO[i]);
     }
+
+    // Setup LED GPIO
+    for (int i = 0; i < LED_GPIO_SIZE; i++) {
+        gpio_init(LED_GPIO[i]);
+        gpio_set_dir(LED_GPIO[i], GPIO_OUT);
+    }
 }
 
 /**
@@ -126,8 +132,13 @@ void key_mode() {
                 uint8_t keycode[6] = {0};
                 keycode[0] = SW_KEYCODE[i];
                 tud_hid_keyboard_report(REPORT_ID_KEYBOARD, 0, keycode);
-
                 isPressed = true;
+
+                // Reactive Lighting On
+                gpio_put(LED_GPIO[i], 1);
+            } else {
+                // Reactive Lighting Off
+                gpio_put(LED_GPIO[i], 0);
             }
         }
         // send empty key report if previously has key pressed
