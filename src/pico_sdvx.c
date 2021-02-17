@@ -15,15 +15,15 @@
 
 #include "usb_descriptors.h"
 
-const uint8_t ENC_SENS = 10;        // Encoder sensitivity multiplier
-const uint8_t L_ENC_GPIO[] = {0, 1};
-const uint8_t R_ENC_GPIO[] = {2, 3};
 const uint8_t SW_KEYCODE[] = {HID_KEY_RETURN, HID_KEY_A, HID_KEY_S, HID_KEY_D, HID_KEY_F, HID_KEY_Z, HID_KEY_X};    // MODIFY KEYBINDS HERE
 const uint8_t SW_GPIO[] = {4, 5, 6, 7, 8, 9, 10};                               // MAKE SURE SW_KEYCODE and SW_GPIO LENGTHS MATCH
 const uint8_t LED_GPIO[] = {28, 27, 26, 22, 21, 20, 19};                        // MAKE SURE SW_GPIO and LED_GPIO LENGTHS MATCH
+const uint8_t L_ENC_GPIO[] = {0, 1};
+const uint8_t R_ENC_GPIO[] = {2, 3};
+
+const uint8_t ENC_SENS = 10;        // Encoder sensitivity multiplier
 const size_t ENC_GPIO_SIZE = sizeof(L_ENC_GPIO)/ sizeof(L_ENC_GPIO[0]);
-const size_t SW_GPIO_SIZE = sizeof(SW_GPIO)/ sizeof(SW_GPIO[0]);
-const size_t LED_GPIO_SIZE = sizeof(LED_GPIO)/ sizeof(LED_GPIO[0]);
+const size_t SW_GPIO_SIZE = sizeof(SW_GPIO)/ sizeof(SW_GPIO[0]);                // Used for SW_KEYCODE, SW_GPIO, LED_GPIO
 
 static const char *gpio_irq_str[] = {
         "LEVEL_LOW",  // 0x1
@@ -113,7 +113,7 @@ void init() {
     }
 
     // Setup LED GPIO
-    for (int i = 0; i < LED_GPIO_SIZE; i++) {
+    for (int i = 0; i < SW_GPIO_SIZE; i++) {
         gpio_init(LED_GPIO[i]);
         gpio_set_dir(LED_GPIO[i], GPIO_OUT);
     }
@@ -125,14 +125,15 @@ void init() {
 void key_mode() {
     if (tud_hid_ready()) {
         /*------------- Keyboard -------------*/
-        bool isPressed = false;
+        bool is_pressed = false;
+        int keycode_idx = 0;
+        uint8_t keycode[6] = {0};   //looks like we are limited to 6kro?
         for (int i = 0; i < SW_GPIO_SIZE; i++) {
             if (!gpio_get(SW_GPIO[i])) {
                 // use to avoid send multiple consecutive zero report for keyboard
-                uint8_t keycode[6] = {0};
-                keycode[0] = SW_KEYCODE[i];
-                tud_hid_keyboard_report(REPORT_ID_KEYBOARD, 0, keycode);
-                isPressed = true;
+                keycode[keycode_idx] = SW_KEYCODE[i];
+                keycode_idx = ++keycode_idx % SW_GPIO_SIZE;
+                is_pressed = true;
 
                 // Reactive Lighting On
                 gpio_put(LED_GPIO[i], 1);
@@ -141,16 +142,24 @@ void key_mode() {
                 gpio_put(LED_GPIO[i], 0);
             }
         }
-        // send empty key report if previously has key pressed
-        if (!isPressed) tud_hid_keyboard_report(REPORT_ID_KEYBOARD, 0, NULL);
-
-        // delay a bit before attempt to send keyboard report
-        board_delay(10);
+        if (is_pressed) {
+            // send key report
+            tud_hid_keyboard_report(REPORT_ID_KEYBOARD, 0, keycode);
+        } else {
+            // send empty key report if previously has key pressed
+            tud_hid_keyboard_report(REPORT_ID_KEYBOARD, 0, NULL);
+        }
 
         /*------------- Mouse -------------*/
-        tud_hid_mouse_report(REPORT_ID_MOUSE, 0x00, l_enc * ENC_SENS, r_enc * ENC_SENS, 0, 0);
-        l_enc = 0;
-        r_enc = 0;
+        if (l_enc != 0 || r_enc != 0) {
+            // delay if needed before attempt to send mouse report
+            while (!tud_hid_ready()) {
+                board_delay(1);
+            }
+            tud_hid_mouse_report(REPORT_ID_MOUSE, 0x00, l_enc * ENC_SENS, r_enc * ENC_SENS, 0, 0);
+            l_enc = 0;
+            r_enc = 0;
+        }
     }
 }
 
