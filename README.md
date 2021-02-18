@@ -1,4 +1,4 @@
-# Pico-SDVX
+# Pico-Game-Controller
 
 WIP code for a 7 key SDVX controller for the Raspberry Pi Pico.
 
