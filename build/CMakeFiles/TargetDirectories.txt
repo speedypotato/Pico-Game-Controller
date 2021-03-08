@@ -137,7 +137,5 @@ C:/Users/ngadj/Documents/pico-sdvx-test/build/pico-sdk/docs/CMakeFiles/edit_cach
 C:/Users/ngadj/Documents/pico-sdvx-test/build/pico-sdk/docs/CMakeFiles/rebuild_cache.dir
 C:/Users/ngadj/Documents/pico-sdvx-test/build/src/CMakeFiles/edit_cache.dir
 C:/Users/ngadj/Documents/pico-sdvx-test/build/src/CMakeFiles/pico_sdvx.dir
-C:/Users/ngadj/Documents/pico-sdvx-test/build/src/CMakeFiles/PioasmBuild.dir
-C:/Users/ngadj/Documents/pico-sdvx-test/build/src/CMakeFiles/pico_sdvx_encoders_pio_h.dir
 C:/Users/ngadj/Documents/pico-sdvx-test/build/src/CMakeFiles/rebuild_cache.dir
 C:/Users/ngadj/Documents/pico-sdvx-test/build/src/CMakeFiles/ELF2UF2Build.dir

@@ -166,32 +166,6 @@ pico_sdvx\fast:
 .PHONY : pico_sdvx\fast
 
 #=============================================================================
-# Target rules for targets named PioasmBuild
-
-# Build rule for target.
-PioasmBuild: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) PioasmBuild
-.PHONY : PioasmBuild
-
-# fast build rule for target.
-PioasmBuild\fast:
-	$(MAKE) $(MAKESILENT) -f src\CMakeFiles\PioasmBuild.dir\build.make /nologo -$(MAKEFLAGS) src\CMakeFiles\PioasmBuild.dir\build
-.PHONY : PioasmBuild\fast
-
-#=============================================================================
-# Target rules for targets named pico_sdvx_encoders_pio_h
-
-# Build rule for target.
-pico_sdvx_encoders_pio_h: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) pico_sdvx_encoders_pio_h
-.PHONY : pico_sdvx_encoders_pio_h
-
-# fast build rule for target.
-pico_sdvx_encoders_pio_h\fast:
-	$(MAKE) $(MAKESILENT) -f src\CMakeFiles\pico_sdvx_encoders_pio_h.dir\build.make /nologo -$(MAKEFLAGS) src\CMakeFiles\pico_sdvx_encoders_pio_h.dir\build
-.PHONY : pico_sdvx_encoders_pio_h\fast
-
-#=============================================================================
 # Target rules for targets named ELF2UF2Build
 
 # Build rule for target.
@@ -213,10 +187,8 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... ELF2UF2Build
-	@echo ... PioasmBuild
 	@echo ... bs2_default_bin
 	@echo ... bs2_default_padded_checksummed_asm
-	@echo ... pico_sdvx_encoders_pio_h
 	@echo ... bs2_default
 	@echo ... pico_sdvx
 .PHONY : help

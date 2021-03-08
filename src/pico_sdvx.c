@@ -2,7 +2,7 @@
  * Pico SDVX
  * @author SpeedyPotato
  * 
- * Based off dev_hid_composite and mdxtinkernick/pico_encoders
+ * Based off dev_hid_composite and PaulStoffregen/Encoder
  */
 
 #include <stdlib.h>
@@ -14,9 +14,6 @@
 #include "pico/stdlib.h"
 
 #include "usb_descriptors.h"
-
-// #include "hardware/pio.h"
-// #include "encoders.pio.h"
 
 const uint8_t SW_KEYCODE[] = {HID_KEY_RETURN, HID_KEY_A, HID_KEY_S, HID_KEY_D, HID_KEY_F, HID_KEY_Z, HID_KEY_X};    // MODIFY KEYBINDS HERE
 const uint8_t SW_GPIO[] = {4, 5, 6, 7, 8, 9, 10};                               // MAKE SURE SW_KEYCODE and SW_GPIO LENGTHS MATCH

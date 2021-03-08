@@ -1104,43 +1104,9 @@ Discarded input sections
                 0x00000000       0x44 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/hw/bsp/raspberry_pi_pico/board_raspberry_pi_pico.c.obj
  .text.board_uart_write
                 0x00000000       0x70 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/hw/bsp/raspberry_pi_pico/board_raspberry_pi_pico.c.obj
- .text          0x00000000        0x0 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/dma.c.obj
- .data          0x00000000        0x0 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/dma.c.obj
- .bss           0x00000000        0x0 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/dma.c.obj
- .rodata.dma_channel_claim.str1.4
-                0x00000000       0x22 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/dma.c.obj
- .text.dma_channel_claim
-                0x00000000       0x18 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/dma.c.obj
- .text.dma_claim_mask
-                0x00000000       0x1e CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/dma.c.obj
- .text.dma_channel_unclaim
-                0x00000000       0x10 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/dma.c.obj
- .rodata.dma_claim_unused_channel.str1.4
-                0x00000000       0x1e CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/dma.c.obj
- .text.dma_claim_unused_channel
-                0x00000000       0x20 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/dma.c.obj
- .rodata.print_dma_ctrl.str1.4
-                0x00000000       0x63 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/dma.c.obj
- .text.print_dma_ctrl
-                0x00000000       0xac CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/dma.c.obj
- .text.check_dma_channel_param_impl
-                0x00000000        0x2 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/dma.c.obj
- .bss._claimed  0x00000000        0x2 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/dma.c.obj
- .debug_info    0x00000000      0x465 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/dma.c.obj
- .debug_abbrev  0x00000000      0x17a CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/dma.c.obj
- .debug_loc     0x00000000      0x13d CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/dma.c.obj
- .debug_aranges
-                0x00000000       0x48 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/dma.c.obj
- .debug_ranges  0x00000000       0x38 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/dma.c.obj
- .debug_line    0x00000000      0x418 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/dma.c.obj
- .debug_str     0x00000000      0x3ee CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/dma.c.obj
- .comment       0x00000000       0x4e CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/dma.c.obj
- .debug_frame   0x00000000       0xb0 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/dma.c.obj
- .ARM.attributes
-                0x00000000       0x2b CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/dma.c.obj
- .text          0x00000000        0x0 C:\Users\ngadj\AppData\Local\Temp\ccqStFG2.o
- .data          0x00000000        0x0 C:\Users\ngadj\AppData\Local\Temp\ccqStFG2.o
- .bss           0x00000000        0x0 C:\Users\ngadj\AppData\Local\Temp\ccqStFG2.o
+ .text          0x00000000        0x0 C:\Users\ngadj\AppData\Local\Temp\ccCS83Ki.o
+ .data          0x00000000        0x0 C:\Users\ngadj\AppData\Local\Temp\ccCS83Ki.o
+ .bss           0x00000000        0x0 C:\Users\ngadj\AppData\Local\Temp\ccCS83Ki.o
  .data          0x00000000        0x0 c:/progra~2/gnuarm~1/102020~1/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp\libgcc.a(_dvmd_tls.o)
  .bss           0x00000000        0x0 c:/progra~2/gnuarm~1/102020~1/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp\libgcc.a(_dvmd_tls.o)
  .text          0x00000000        0x0 c:/progra~2/gnuarm~1/102020~1/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libg.a(lib_a-calloc.o)
@@ -1266,7 +1232,7 @@ LOAD c:/progra~2/gnuarm~1/102020~1/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../
 .boot2          0x10000000      0x100
                 0x10000000                __boot2_start__ = .
  *(.boot2)
- .boot2         0x10000000      0x100 C:\Users\ngadj\AppData\Local\Temp\ccqStFG2.o
+ .boot2         0x10000000      0x100 C:\Users\ngadj\AppData\Local\Temp\ccCS83Ki.o
                 0x10000100                __boot2_end__ = .
                 0x00000001                ASSERT (((__boot2_end__ - __boot2_start__) == 0x100), ERROR: Pico second stage bootloader must be 256 bytes in size)
 
@@ -2766,8 +2732,7 @@ LOAD CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/
 LOAD CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
 LOAD CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c.obj
 LOAD CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/hw/bsp/raspberry_pi_pico/board_raspberry_pi_pico.c.obj
-LOAD CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/dma.c.obj
-LOAD C:\Users\ngadj\AppData\Local\Temp\ccqStFG2.o
+LOAD C:\Users\ngadj\AppData\Local\Temp\ccCS83Ki.o
 LOAD c:/progra~2/gnuarm~1/102020~1/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a
 LOAD c:/progra~2/gnuarm~1/102020~1/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libm.a
 START GROUP
@@ -2884,7 +2849,7 @@ LOAD linker stubs
  .ARM.attributes
                 0x00000786       0x2b CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/hw/bsp/raspberry_pi_pico/board_raspberry_pi_pico.c.obj
  .ARM.attributes
-                0x000007b1       0x22 C:\Users\ngadj\AppData\Local\Temp\ccqStFG2.o
+                0x000007b1       0x22 C:\Users\ngadj\AppData\Local\Temp\ccCS83Ki.o
  .ARM.attributes
                 0x000007d3       0x1e c:/progra~2/gnuarm~1/102020~1/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp\libgcc.a(_dvmd_tls.o)
  .ARM.attributes
@@ -3221,53 +3186,53 @@ LOAD linker stubs
  .debug_ranges  0x00003198       0xd0 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
  .debug_ranges  0x00003268      0x260 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/hw/bsp/raspberry_pi_pico/board_raspberry_pi_pico.c.obj
 
-.debug_line     0x00000000    0x13358
- .debug_line    0x00000000      0xcf9 CMakeFiles/pico_sdvx.dir/pico_sdvx.c.obj
- .debug_line    0x00000cf9      0x30d CMakeFiles/pico_sdvx.dir/usb_descriptors.c.obj
- .debug_line    0x00001006      0x50f CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.obj
- .debug_line    0x00001515      0x8be CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
- .debug_line    0x00001dd3      0x46d CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_claim/claim.c.obj
- .debug_line    0x00002240      0x40b CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
- .debug_line    0x0000264b      0x227 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_platform/platform.c.obj
- .debug_line    0x00002872      0x739 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_uart/uart.c.obj
- .debug_line    0x00002fab     0x16d6 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_time/time.c.obj
- .debug_line    0x00004681      0xa53 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
- .debug_line    0x000050d4      0x277 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_sync/lock_core.c.obj
- .debug_line    0x0000534b      0x7ee CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_sync/mutex.c.obj
- .debug_line    0x00005b39      0x29b CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_sync/critical_section.c.obj
- .debug_line    0x00005dd4      0x86e CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_util/pheap.c.obj
- .debug_line    0x00006642      0x819 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
- .debug_line    0x00006e5b      0xa84 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
- .debug_line    0x000078df      0x3ab CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
- .debug_line    0x00007c8a      0x2aa CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.obj
- .debug_line    0x00007f34      0x3b3 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj
- .debug_line    0x000082e7      0xda5 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
- .debug_line    0x0000908c       0x8b CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_irq/irq_handler_chain.S.obj
- .debug_line    0x00009117     0x11cf CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
- .debug_line    0x0000a2e6      0x14e CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
- .debug_line    0x0000a434      0x1c2 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
- .debug_line    0x0000a5f6      0x2cf CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_divider/divider.S.obj
- .debug_line    0x0000a8c5      0x40a CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
- .debug_line    0x0000accf      0x33a CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.obj
- .debug_line    0x0000b009      0x6a5 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
- .debug_line    0x0000b6ae       0x9e CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj
- .debug_line    0x0000b74c      0x3c8 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_float/float_aeabi.S.obj
- .debug_line    0x0000bb14      0x33c CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_float/float_init_rom.c.obj
- .debug_line    0x0000be50      0x1ce CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim.S.obj
- .debug_line    0x0000c01e      0x1c8 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_malloc/pico_malloc.c.obj
- .debug_line    0x0000c1e6       0xc8 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
- .debug_line    0x0000c2ae       0xd9 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_standard_link/crt0.S.obj
- .debug_line    0x0000c387      0x1bc CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
- .debug_line    0x0000c543      0xc99 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
- .debug_line    0x0000d1dc      0x81e CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
- .debug_line    0x0000d9fa      0xbef CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
- .debug_line    0x0000e5e9      0x75f CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
- .debug_line    0x0000ed48     0x2014 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
- .debug_line    0x00010d5c      0x584 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
- .debug_line    0x000112e0      0xa8e CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.obj
- .debug_line    0x00011d6e      0x441 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/tusb.c.obj
- .debug_line    0x000121af      0xa9e CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
- .debug_line    0x00012c4d      0x70b CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/hw/bsp/raspberry_pi_pico/board_raspberry_pi_pico.c.obj
+.debug_line     0x00000000    0x1335a
+ .debug_line    0x00000000      0xcfb CMakeFiles/pico_sdvx.dir/pico_sdvx.c.obj
+ .debug_line    0x00000cfb      0x30d CMakeFiles/pico_sdvx.dir/usb_descriptors.c.obj
+ .debug_line    0x00001008      0x50f CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.obj
+ .debug_line    0x00001517      0x8be CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
+ .debug_line    0x00001dd5      0x46d CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_claim/claim.c.obj
+ .debug_line    0x00002242      0x40b CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
+ .debug_line    0x0000264d      0x227 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_platform/platform.c.obj
+ .debug_line    0x00002874      0x739 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_uart/uart.c.obj
+ .debug_line    0x00002fad     0x16d6 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_time/time.c.obj
+ .debug_line    0x00004683      0xa53 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+ .debug_line    0x000050d6      0x277 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_sync/lock_core.c.obj
+ .debug_line    0x0000534d      0x7ee CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_sync/mutex.c.obj
+ .debug_line    0x00005b3b      0x29b CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_sync/critical_section.c.obj
+ .debug_line    0x00005dd6      0x86e CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_util/pheap.c.obj
+ .debug_line    0x00006644      0x819 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+ .debug_line    0x00006e5d      0xa84 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
+ .debug_line    0x000078e1      0x3ab CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
+ .debug_line    0x00007c8c      0x2aa CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.obj
+ .debug_line    0x00007f36      0x3b3 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj
+ .debug_line    0x000082e9      0xda5 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+ .debug_line    0x0000908e       0x8b CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_irq/irq_handler_chain.S.obj
+ .debug_line    0x00009119     0x11cf CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+ .debug_line    0x0000a2e8      0x14e CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
+ .debug_line    0x0000a436      0x1c2 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
+ .debug_line    0x0000a5f8      0x2cf CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_divider/divider.S.obj
+ .debug_line    0x0000a8c7      0x40a CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+ .debug_line    0x0000acd1      0x33a CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.obj
+ .debug_line    0x0000b00b      0x6a5 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
+ .debug_line    0x0000b6b0       0x9e CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj
+ .debug_line    0x0000b74e      0x3c8 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_float/float_aeabi.S.obj
+ .debug_line    0x0000bb16      0x33c CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_float/float_init_rom.c.obj
+ .debug_line    0x0000be52      0x1ce CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim.S.obj
+ .debug_line    0x0000c020      0x1c8 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_malloc/pico_malloc.c.obj
+ .debug_line    0x0000c1e8       0xc8 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
+ .debug_line    0x0000c2b0       0xd9 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_standard_link/crt0.S.obj
+ .debug_line    0x0000c389      0x1bc CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+ .debug_line    0x0000c545      0xc99 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+ .debug_line    0x0000d1de      0x81e CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+ .debug_line    0x0000d9fc      0xbef CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+ .debug_line    0x0000e5eb      0x75f CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+ .debug_line    0x0000ed4a     0x2014 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+ .debug_line    0x00010d5e      0x584 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+ .debug_line    0x000112e2      0xa8e CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.obj
+ .debug_line    0x00011d70      0x441 CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/tusb.c.obj
+ .debug_line    0x000121b1      0xa9e CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+ .debug_line    0x00012c4f      0x70b CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/hw/bsp/raspberry_pi_pico/board_raspberry_pi_pico.c.obj
 
 .debug_str      0x00000000     0x69a5
  .debug_str     0x00000000      0x982 CMakeFiles/pico_sdvx.dir/pico_sdvx.c.obj
