@@ -5,6 +5,9 @@ d8d8ca354f4f02ee7b6b3b82b773f593 pico-sdk/src/rp2_common/boot_stage2/CMakeFiles/
 3e43020568f8f91843c653272b77c498 pico-sdk/src/rp2_common/boot_stage2/bs2_default_padded_checksummed.S
 05689f4518c5a333c08b38297d918389 src/CMakeFiles/ELF2UF2Build
 22988636df4804a210caa7b4be7f3646 src/CMakeFiles/ELF2UF2Build-complete
+05689f4518c5a333c08b38297d918389 src/CMakeFiles/PioasmBuild
+2a0e3df64cb29164beca503c6fb4703b src/CMakeFiles/PioasmBuild-complete
+05689f4518c5a333c08b38297d918389 src/CMakeFiles/pico_sdvx_encoders_pio_h
 9e187ac86c96504c500a3d5860db6ab1 src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-build
 f743c1950b7d35c4a22569575426eef8 src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-configure
 ca3fbc907b4079991e9bcbac61f061e6 src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-download
@@ -12,3 +15,11 @@ ca3fbc907b4079991e9bcbac61f061e6 src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build
 a5dcf7ac3a393ff570d0317c1e87700e src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-mkdir
 2d63fa881698e97b6d278b5d8a2625fe src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-patch
 d238719de09dc67cff5166dacda21587 src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-update
+686b37b8c8df3b90d3d1a010ee33ed45 src/encoders.pio.h
+3d5150149c429d6fd3b01bdd26864974 src/pioasm/src/PioasmBuild-stamp/PioasmBuild-build
+64b2e281c4dff2d410538f9d9abfc30d src/pioasm/src/PioasmBuild-stamp/PioasmBuild-configure
+6b916e9c31b8d557b951c0811d46f811 src/pioasm/src/PioasmBuild-stamp/PioasmBuild-download
+a56e5f7f2b60d26322edc584c7b1add8 src/pioasm/src/PioasmBuild-stamp/PioasmBuild-install
+b8b5108acec7101e14b95ffbab5678f7 src/pioasm/src/PioasmBuild-stamp/PioasmBuild-mkdir
+cf01f813fdc4c39c67301bcaac879745 src/pioasm/src/PioasmBuild-stamp/PioasmBuild-patch
+ab4d3a76b165363dfd360af2b77ce09b src/pioasm/src/PioasmBuild-stamp/PioasmBuild-update
