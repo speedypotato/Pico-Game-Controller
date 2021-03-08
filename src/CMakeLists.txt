@@ -11,6 +11,7 @@ target_link_libraries(pico_sdvx PRIVATE
         pico_stdlib
         tinyusb_device
         tinyusb_board
+        hardware_pio
         hardware_dma
         hardware_irq)
 

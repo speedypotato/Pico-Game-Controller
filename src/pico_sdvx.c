@@ -15,68 +15,22 @@
 
 #include "usb_descriptors.h"
 
-// #include "hardware/pio.h"
-// #include "encoders.pio.h"
+#include "hardware/pio.h"
+#include "encoders.pio.h"
 
 const uint8_t SW_KEYCODE[] = {HID_KEY_RETURN, HID_KEY_A, HID_KEY_S, HID_KEY_D, HID_KEY_F, HID_KEY_Z, HID_KEY_X};    // MODIFY KEYBINDS HERE
 const uint8_t SW_GPIO[] = {4, 5, 6, 7, 8, 9, 10};                               // MAKE SURE SW_KEYCODE and SW_GPIO LENGTHS MATCH
 const uint8_t LED_GPIO[] = {28, 27, 26, 22, 21, 20, 19};                        // MAKE SURE SW_GPIO and LED_GPIO LENGTHS MATCH
-const uint8_t L_ENC_GPIO[] = {0, 1};
-const uint8_t R_ENC_GPIO[] = {2, 3};
+const uint8_t ENC_GPIO[] = {0, 2};       // ENC_L(0, 1) ENC_R(2,3)
 
 const uint8_t ENC_SENS = 10;        // Encoder sensitivity multiplier
-const size_t ENC_GPIO_SIZE = sizeof(L_ENC_GPIO)/ sizeof(L_ENC_GPIO[0]);
-const size_t SW_GPIO_SIZE = sizeof(SW_GPIO)/ sizeof(SW_GPIO[0]);                // Used for SW_KEYCODE, SW_GPIO, LED_GPIO
+const size_t ENC_GPIO_SIZE = sizeof(ENC_GPIO) / sizeof(ENC_GPIO[0]);    // Encoder always uses 2GPIO
+const size_t SW_GPIO_SIZE = sizeof(SW_GPIO) / sizeof(SW_GPIO[0]);       // Used for SW_KEYCODE, SW_GPIO, LED_GPIO
 
-static const char *gpio_irq_str[] = {
-        "LEVEL_LOW",  // 0x1
-        "LEVEL_HIGH", // 0x2
-        "EDGE_FALL",  // 0x4
-        "EDGE_RISE"   // 0x8
-};
-
-int l_enc=0, r_enc=0, l_state, r_state;
-
-/**
- * Encoder Callback
- **/
-void gpio_enc_callback(uint gpio, uint32_t events) {
-    if (gpio == L_ENC_GPIO[0] || gpio == L_ENC_GPIO[1]) {
-        uint8_t s = l_state & 3;
-        if (gpio_get(L_ENC_GPIO[0])) s |= 4;
-        if (gpio_get(L_ENC_GPIO[1])) s |= 8;
-        switch (s) {
-            case 0: case 5: case 10: case 15:
-                break;
-            case 1: case 7: case 8: case 14:
-                l_enc++; break;
-            case 2: case 4: case 11: case 13:
-                l_enc--; break;
-            case 3: case 12:
-                l_enc += 2; break;
-            default:
-                l_enc -= 2; break;
-        }
-        l_state = (s >> 2);
-    } else {
-        uint8_t s = r_state & 3;
-        if (gpio_get(R_ENC_GPIO[0])) s |= 4;
-        if (gpio_get(R_ENC_GPIO[1])) s |= 8;
-        switch (s) {
-            case 0: case 5: case 10: case 15:
-                break;
-            case 1: case 7: case 8: case 14:
-                r_enc++; break;
-            case 2: case 4: case 11: case 13:
-                r_enc--; break;
-            case 3: case 12:
-                r_enc += 2; break;
-            default:
-                r_enc -= 2; break;
-        }
-        r_state = (s >> 2);
-    }
-}
+PIO pio;
+uint32_t enc_val[] = {0, 0};    // Must match number of encoders
+uint state_machine[] = {0, 1};    // Must match number of encoders
+uint offset;
 
 /**
  * Initialize board pins
@@ -87,25 +41,15 @@ void init() {
     gpio_set_dir(25, GPIO_OUT);
     gpio_put(25, 1);
 
-    // Setup L Encoder GPIO
-    for (int i = 0; i < ENC_GPIO_SIZE; i++) {
-        gpio_init(L_ENC_GPIO[i]);
-        gpio_set_function(L_ENC_GPIO[i], GPIO_FUNC_SIO);
-        gpio_set_dir(L_ENC_GPIO[i], GPIO_IN);
-        gpio_pull_up(L_ENC_GPIO[i]);
-        gpio_set_irq_enabled_with_callback(L_ENC_GPIO[i], GPIO_IRQ_EDGE_RISE | GPIO_IRQ_EDGE_FALL, true, &gpio_enc_callback);
-    }
-    l_state = gpio_get(L_ENC_GPIO[0]);
+    // Setup Encoder PIO
+    pio = pio0;
+    offset = pio_add_program(pio, &encoders_program);
 
-    // Setup R Encoder GPIO
-    for (int i = 0; i < ENC_GPIO_SIZE; i++) {
-        gpio_init(R_ENC_GPIO[i]);
-        gpio_set_function(R_ENC_GPIO[i], GPIO_FUNC_SIO);
-        gpio_set_dir(R_ENC_GPIO[i], GPIO_IN);
-        gpio_pull_up(R_ENC_GPIO[i]);
-        gpio_set_irq_enabled_with_callback(R_ENC_GPIO[i], GPIO_IRQ_EDGE_RISE | GPIO_IRQ_EDGE_FALL, true, &gpio_enc_callback);
+    // Setup Encoder GPIO
+    for (uint i = 0; i < ENC_GPIO_SIZE; i++) {
+        encoders_program_init(pio, state_machine[i], offset, ENC_GPIO[i]);
+        enc_val[i] = pio_sm_get(pio, i);
     }
-    r_state = gpio_get(R_ENC_GPIO[0]);
 
     // Setup Button GPIO
     for (int i = 0; i < SW_GPIO_SIZE; i++) {
@@ -154,14 +98,19 @@ void key_mode() {
         }
 
         /*------------- Mouse -------------*/
-        if (l_enc != 0 || r_enc != 0) {
+        bool changed_state = pio_sm_get_rx_fifo_level(pio, state_machine[0]) > 0 ||
+                            pio_sm_get_rx_fifo_level(pio, state_machine[1]) > 0;
+        if (changed_state) {
             // delay if needed before attempt to send mouse report
             while (!tud_hid_ready()) {
                 board_delay(1);
             }
-            tud_hid_mouse_report(REPORT_ID_MOUSE, 0x00, l_enc * ENC_SENS, r_enc * ENC_SENS, 0, 0);
-            l_enc = 0;
-            r_enc = 0;
+            // 0-4294967295
+            tud_hid_mouse_report(REPORT_ID_MOUSE, 0x00, (pio_sm_get(pio, 0) - enc_val[0]) * ENC_SENS,
+                                    (pio_sm_get(pio, 1) - enc_val[1]) * ENC_SENS, 0, 0);                    
+            for (uint i = 0; i < ENC_GPIO_SIZE; i++) {
+                enc_val[i] = pio_sm_get(pio, i);
+            }
         }
     }
 }

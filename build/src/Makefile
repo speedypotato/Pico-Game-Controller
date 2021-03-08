@@ -1211,6 +1211,39 @@ C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_irq\irq_handler_chain.
 	cd C:\Users\ngadj\Documents\pico-sdvx-test\build\src
 .PHONY : C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_irq\irq_handler_chain.S.obj
 
+C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.obj: C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.obj
+
+.PHONY : C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.obj
+
+# target to build an object file
+C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.obj:
+	cd C:\Users\ngadj\Documents\pico-sdvx-test\build
+	$(MAKE) $(MAKESILENT) -f src\CMakeFiles\pico_sdvx.dir\build.make /nologo -$(MAKEFLAGS) src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.obj
+	cd C:\Users\ngadj\Documents\pico-sdvx-test\build\src
+.PHONY : C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.obj
+
+C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.i: C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.i
+
+.PHONY : C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.i
+
+# target to preprocess a source file
+C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.i:
+	cd C:\Users\ngadj\Documents\pico-sdvx-test\build
+	$(MAKE) $(MAKESILENT) -f src\CMakeFiles\pico_sdvx.dir\build.make /nologo -$(MAKEFLAGS) src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.i
+	cd C:\Users\ngadj\Documents\pico-sdvx-test\build\src
+.PHONY : C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.i
+
+C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.s: C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.s
+
+.PHONY : C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.s
+
+# target to generate assembly for a file
+C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.s:
+	cd C:\Users\ngadj\Documents\pico-sdvx-test\build
+	$(MAKE) $(MAKESILENT) -f src\CMakeFiles\pico_sdvx.dir\build.make /nologo -$(MAKEFLAGS) src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.s
+	cd C:\Users\ngadj\Documents\pico-sdvx-test\build\src
+.PHONY : C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.s
+
 C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pll\pll.obj: C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pll\pll.c.obj
 
 .PHONY : C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pll\pll.obj
@@ -2206,6 +2239,9 @@ help:
 	@echo ... C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_irq/irq.i
 	@echo ... C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_irq/irq.s
 	@echo ... C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_irq/irq_handler_chain.obj
+	@echo ... C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pio/pio.obj
+	@echo ... C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pio/pio.i
+	@echo ... C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pio/pio.s
 	@echo ... C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pll/pll.obj
 	@echo ... C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pll/pll.i
 	@echo ... C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pll/pll.s

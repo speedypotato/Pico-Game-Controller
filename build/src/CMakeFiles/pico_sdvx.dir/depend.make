@@ -1160,6 +1160,33 @@ src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\ha
 src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_irq\irq.c.obj: generated\pico_base\pico\config_autogen.h
 src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_irq\irq.c.obj: generated\pico_base\pico\version.h
 
+src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\boards\include\boards\pico.h
+src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\common\pico_base\include\pico.h
+src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\common\pico_base\include\pico\assert.h
+src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\common\pico_base\include\pico\config.h
+src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\common\pico_base\include\pico\error.h
+src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\common\pico_base\include\pico\types.h
+src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_regs\include\hardware\platform_defs.h
+src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_regs\include\hardware\regs\addressmap.h
+src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_regs\include\hardware\regs\dreq.h
+src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_regs\include\hardware\regs\pads_bank0.h
+src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_regs\include\hardware\regs\pio.h
+src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_regs\include\hardware\regs\sio.h
+src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_structs\include\hardware\structs\interp.h
+src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_structs\include\hardware\structs\padsbank0.h
+src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_structs\include\hardware\structs\pio.h
+src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_structs\include\hardware\structs\sio.h
+src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_base\include\hardware\address_mapped.h
+src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_claim\include\hardware\claim.h
+src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_gpio\include\hardware\gpio.h
+src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\include\hardware\pio.h
+src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\include\hardware\pio_instructions.h
+src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c
+src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_sync\include\hardware\sync.h
+src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2_common\pico_platform\include\pico\platform.h
+src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.obj: generated\pico_base\pico\config_autogen.h
+src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.obj: generated\pico_base\pico\version.h
+
 src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pll\pll.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\boards\include\boards\pico.h
 src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pll\pll.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\common\pico_base\include\pico.h
 src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pll\pll.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\common\pico_base\include\pico\assert.h
@@ -1643,17 +1670,22 @@ src\CMakeFiles\pico_sdvx.dir\pico_sdvx.c.obj: C:\Users\ngadj\Documents\pico-sdk\
 src\CMakeFiles\pico_sdvx.dir\pico_sdvx.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\common\pico_time\include\pico\time.h
 src\CMakeFiles\pico_sdvx.dir\pico_sdvx.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_regs\include\hardware\platform_defs.h
 src\CMakeFiles\pico_sdvx.dir\pico_sdvx.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_regs\include\hardware\regs\addressmap.h
+src\CMakeFiles\pico_sdvx.dir\pico_sdvx.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_regs\include\hardware\regs\dreq.h
 src\CMakeFiles\pico_sdvx.dir\pico_sdvx.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_regs\include\hardware\regs\pads_bank0.h
+src\CMakeFiles\pico_sdvx.dir\pico_sdvx.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_regs\include\hardware\regs\pio.h
 src\CMakeFiles\pico_sdvx.dir\pico_sdvx.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_regs\include\hardware\regs\sio.h
 src\CMakeFiles\pico_sdvx.dir\pico_sdvx.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_regs\include\hardware\regs\timer.h
 src\CMakeFiles\pico_sdvx.dir\pico_sdvx.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_regs\include\hardware\regs\uart.h
 src\CMakeFiles\pico_sdvx.dir\pico_sdvx.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_structs\include\hardware\structs\interp.h
 src\CMakeFiles\pico_sdvx.dir\pico_sdvx.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_structs\include\hardware\structs\padsbank0.h
+src\CMakeFiles\pico_sdvx.dir\pico_sdvx.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_structs\include\hardware\structs\pio.h
 src\CMakeFiles\pico_sdvx.dir\pico_sdvx.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_structs\include\hardware\structs\sio.h
 src\CMakeFiles\pico_sdvx.dir\pico_sdvx.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_structs\include\hardware\structs\timer.h
 src\CMakeFiles\pico_sdvx.dir\pico_sdvx.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_structs\include\hardware\structs\uart.h
 src\CMakeFiles\pico_sdvx.dir\pico_sdvx.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_base\include\hardware\address_mapped.h
 src\CMakeFiles\pico_sdvx.dir\pico_sdvx.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_gpio\include\hardware\gpio.h
+src\CMakeFiles\pico_sdvx.dir\pico_sdvx.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\include\hardware\pio.h
+src\CMakeFiles\pico_sdvx.dir\pico_sdvx.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\include\hardware\pio_instructions.h
 src\CMakeFiles\pico_sdvx.dir\pico_sdvx.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_sync\include\hardware\sync.h
 src\CMakeFiles\pico_sdvx.dir\pico_sdvx.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_timer\include\hardware\timer.h
 src\CMakeFiles\pico_sdvx.dir\pico_sdvx.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_uart\include\hardware\uart.h
@@ -1664,6 +1696,7 @@ src\CMakeFiles\pico_sdvx.dir\pico_sdvx.c.obj: ..\src\pico_sdvx.c
 src\CMakeFiles\pico_sdvx.dir\pico_sdvx.c.obj: ..\src\usb_descriptors.h
 src\CMakeFiles\pico_sdvx.dir\pico_sdvx.c.obj: generated\pico_base\pico\config_autogen.h
 src\CMakeFiles\pico_sdvx.dir\pico_sdvx.c.obj: generated\pico_base\pico\version.h
+src\CMakeFiles\pico_sdvx.dir\pico_sdvx.c.obj: src\encoders.pio.h
 
 src\CMakeFiles\pico_sdvx.dir\usb_descriptors.c.obj: ..\src\tusb_config.h
 src\CMakeFiles\pico_sdvx.dir\usb_descriptors.c.obj: C:\Users\ngadj\Documents\pico-sdk\lib\tinyusb\src\class\audio\audio.h

@@ -90,6 +90,7 @@ set(CMAKE_ASM_TARGET_INCLUDE_PATH
   "C:/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/common"
   "C:/Users/ngadj/Documents/pico-sdk/lib/tinyusb/hw"
   "C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/include"
+  "C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pio/include"
   "C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/include"
   )
 set(CMAKE_DEPENDS_CHECK_C
@@ -123,6 +124,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/dma.c" "C:/Users/ngadj/Documents/pico-sdvx-test/build/src/CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/dma.c.obj"
   "C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_gpio/gpio.c" "C:/Users/ngadj/Documents/pico-sdvx-test/build/src/CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj"
   "C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_irq/irq.c" "C:/Users/ngadj/Documents/pico-sdvx-test/build/src/CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj"
+  "C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pio/pio.c" "C:/Users/ngadj/Documents/pico-sdvx-test/build/src/CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pio/pio.c.obj"
   "C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pll/pll.c" "C:/Users/ngadj/Documents/pico-sdvx-test/build/src/CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj"
   "C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_sync/sync.c" "C:/Users/ngadj/Documents/pico-sdvx-test/build/src/CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj"
   "C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_timer/timer.c" "C:/Users/ngadj/Documents/pico-sdvx-test/build/src/CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj"
@@ -219,6 +221,7 @@ set(CMAKE_C_TARGET_INCLUDE_PATH
   "C:/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/common"
   "C:/Users/ngadj/Documents/pico-sdk/lib/tinyusb/hw"
   "C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/include"
+  "C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pio/include"
   "C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/include"
   )
 set(CMAKE_DEPENDS_CHECK_CXX
@@ -296,6 +299,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "C:/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/common"
   "C:/Users/ngadj/Documents/pico-sdk/lib/tinyusb/hw"
   "C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/include"
+  "C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pio/include"
   "C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/include"
   )
 
