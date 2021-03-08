@@ -1,0 +1,53 @@
+ .program encoders
+
+.wrap_target
+    in pins, 2           ; read the two pins to get value
+    mov y, isr           ; put it in y to make comparison later
+checking:
+    set x, 0
+    mov isr, x           ; clear values ready for next reading
+    in pins, 2           ; read latest value
+    mov x, isr           ; mov to x to make comparison
+    jmp x!=y on_change   ; compare
+    jmp checking         ; check again if same
+on_change:
+    mov x, osr           ; move contents of osr to x - this is the count
+    mov osr, y           ; move previous value in osr in order get the single bit
+    out y, 1             ; get the individual bit
+    jmp y-- was_zero        ; if its now zeronon zero then it was zero before
+    jmp pin inc          ; it was 1 so if other pins 1 then inc
+    jmp dec              ; otherwise dec
+was_zero:
+    jmp pin dec         ; different so dec, otherwise fall through and inc
+inc:
+    mov x, !x
+    jmp x-- fake          ; just need to dec and fall through
+fake:
+    mov x, !x             ; inc complete
+    jmp send
+dec:
+    jmp x-- send          ; jump to send, or fall through to send - really just dec      
+send:
+    mov isr, x            ; move count to isr
+    push                  ; send it out (also clears isr ready for next read)
+    mov osr, x            ; move count to osr so can use x and y for comparison again
+.wrap
+
+% c-sdk {
+static inline void encoders_program_init(PIO pio, uint sm, uint offset, uint pin) {
+    pio_sm_set_consecutive_pindirs(pio, sm, pin, 2, false);
+    pio_gpio_init(pio, pin);
+    pio_gpio_init(pio, pin+1);
+    gpio_pull_up(pin);
+    gpio_pull_up(pin+1);
+
+    pio_sm_config c = encoders_program_get_default_config(offset);
+    sm_config_set_in_pins(&c, pin);
+    sm_config_set_jmp_pin(&c, pin +1);
+    // Shift to left, autopull disabled
+    sm_config_set_in_shift(&c, false, false, 2);
+
+    pio_sm_init(pio, sm, offset, &c);
+    pio_sm_set_enabled(pio, sm, true);
+}
+%}
