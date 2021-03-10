@@ -14,10 +14,10 @@
 			"target_link_libraries",
 			"add_dependencies",
 			"pico_define_boot_stage2",
-			"pico_generate_pio_header",
 			"find_package",
 			"pico_add_uf2_output",
 			"pico_add_extra_outputs",
+			"pico_generate_pio_header",
 			"target_compile_definitions",
 			"target_include_directories"
 		],
@@ -25,8 +25,8 @@
 		[
 			"src/CMakeLists.txt",
 			"C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/boot_stage2/CMakeLists.txt",
-			"C:/Users/ngadj/Documents/pico-sdk/tools/CMakeLists.txt",
 			"C:/Users/ngadj/Documents/pico-sdk/tools/FindELF2UF2.cmake",
+			"C:/Users/ngadj/Documents/pico-sdk/tools/CMakeLists.txt",
 			"C:/Users/ngadj/Documents/pico-sdk/src/rp2_common.cmake"
 		],
 		"nodes" : 
@@ -62,50 +62,50 @@
 				"parent" : 4
 			},
 			{
+				"command" : 6,
+				"file" : 0,
+				"line" : 18,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 4,
+				"line" : 45,
+				"parent" : 6
+			},
+			{
 				"command" : 4,
+				"file" : 3,
+				"line" : 40,
+				"parent" : 7
+			},
+			{
+				"file" : 2,
+				"parent" : 8
+			},
+			{
+				"command" : 2,
+				"file" : 2,
+				"line" : 41,
+				"parent" : 9
+			},
+			{
+				"command" : 7,
 				"file" : 0,
 				"line" : 7,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
-				"file" : 2,
+				"file" : 3,
 				"line" : 28,
-				"parent" : 6
-			},
-			{
-				"command" : 7,
-				"file" : 0,
-				"line" : 18,
-				"parent" : 0
-			},
-			{
-				"command" : 6,
-				"file" : 4,
-				"line" : 45,
-				"parent" : 8
-			},
-			{
-				"command" : 5,
-				"file" : 2,
-				"line" : 40,
-				"parent" : 9
-			},
-			{
-				"file" : 3,
-				"parent" : 10
-			},
-			{
-				"command" : 2,
-				"file" : 3,
-				"line" : 41,
 				"parent" : 11
 			},
 			{
 				"command" : 8,
 				"file" : 4,
 				"line" : 28,
-				"parent" : 8
+				"parent" : 6
 			},
 			{
 				"command" : 9,
@@ -115,9 +115,9 @@
 			},
 			{
 				"command" : 9,
-				"file" : 2,
+				"file" : 3,
 				"line" : 31,
-				"parent" : 6
+				"parent" : 11
 			}
 		]
 	},
@@ -1105,12 +1105,12 @@
 			"id" : "bs2_default_padded_checksummed_asm::@bc554eaed616d198a22d"
 		},
 		{
-			"backtrace" : 7,
-			"id" : "pico_sdvx_encoders_pio_h::@145eef247bfb46b6828c"
+			"backtrace" : 10,
+			"id" : "ELF2UF2Build::@145eef247bfb46b6828c"
 		},
 		{
 			"backtrace" : 12,
-			"id" : "ELF2UF2Build::@145eef247bfb46b6828c"
+			"id" : "pico_sdvx_encoders_pio_h::@145eef247bfb46b6828c"
 		}
 	],
 	"id" : "pico_sdvx::@145eef247bfb46b6828c",

@@ -1671,12 +1671,16 @@ src/CMakeFiles/pico_sdvx.dir/pico_sdvx.c.obj
  C:/Users/ngadj/Documents/pico-sdk/src/common/pico_time/include/pico/time.h
  C:/Users/ngadj/Documents/pico-sdk/src/rp2040/hardware_regs/include/hardware/platform_defs.h
  C:/Users/ngadj/Documents/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/addressmap.h
+ C:/Users/ngadj/Documents/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/dma.h
  C:/Users/ngadj/Documents/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/dreq.h
+ C:/Users/ngadj/Documents/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/intctrl.h
+ C:/Users/ngadj/Documents/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/m0plus.h
  C:/Users/ngadj/Documents/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/pads_bank0.h
  C:/Users/ngadj/Documents/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/pio.h
  C:/Users/ngadj/Documents/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/sio.h
  C:/Users/ngadj/Documents/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/timer.h
  C:/Users/ngadj/Documents/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/uart.h
+ C:/Users/ngadj/Documents/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/dma.h
  C:/Users/ngadj/Documents/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/interp.h
  C:/Users/ngadj/Documents/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/padsbank0.h
  C:/Users/ngadj/Documents/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/pio.h
@@ -1684,7 +1688,9 @@ src/CMakeFiles/pico_sdvx.dir/pico_sdvx.c.obj
  C:/Users/ngadj/Documents/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/timer.h
  C:/Users/ngadj/Documents/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/uart.h
  C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_base/include/hardware/address_mapped.h
+ C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/include/hardware/dma.h
  C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_gpio/include/hardware/gpio.h
+ C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_irq/include/hardware/irq.h
  C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pio/include/hardware/pio.h
  C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pio/include/hardware/pio_instructions.h
  C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_sync/include/hardware/sync.h

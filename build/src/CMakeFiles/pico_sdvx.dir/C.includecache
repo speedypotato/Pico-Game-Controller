@@ -400,7 +400,13 @@ C:/Users/ngadj/Documents/pico-sdk/src/rp2040/hardware_regs/include/hardware/hard
 
 C:/Users/ngadj/Documents/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/addressmap.h
 
+C:/Users/ngadj/Documents/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/dma.h
+
 C:/Users/ngadj/Documents/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/dreq.h
+
+C:/Users/ngadj/Documents/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/intctrl.h
+
+C:/Users/ngadj/Documents/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/m0plus.h
 
 C:/Users/ngadj/Documents/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/pads_bank0.h
 
@@ -411,6 +417,14 @@ C:/Users/ngadj/Documents/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs
 C:/Users/ngadj/Documents/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/timer.h
 
 C:/Users/ngadj/Documents/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/uart.h
+
+C:/Users/ngadj/Documents/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/dma.h
+hardware/address_mapped.h
+C:/Users/ngadj/Documents/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/hardware/address_mapped.h
+hardware/platform_defs.h
+C:/Users/ngadj/Documents/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/hardware/platform_defs.h
+hardware/regs/dma.h
+C:/Users/ngadj/Documents/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/hardware/regs/dma.h
 
 C:/Users/ngadj/Documents/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/interp.h
 hardware/address_mapped.h
@@ -464,6 +478,16 @@ C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_base/include/hardware/
 hardware/regs/addressmap.h
 C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_base/include/hardware/hardware/regs/addressmap.h
 
+C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/include/hardware/dma.h
+pico.h
+C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/include/hardware/pico.h
+hardware/structs/dma.h
+C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/include/hardware/hardware/structs/dma.h
+hardware/regs/dreq.h
+C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/include/hardware/hardware/regs/dreq.h
+pico/assert.h
+C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/include/hardware/pico/assert.h
+
 C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_gpio/include/hardware/gpio.h
 pico.h
 C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_gpio/include/hardware/pico.h
@@ -471,6 +495,14 @@ hardware/structs/sio.h
 C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_gpio/include/hardware/hardware/structs/sio.h
 hardware/structs/padsbank0.h
 C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_gpio/include/hardware/hardware/structs/padsbank0.h
+
+C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_irq/include/hardware/irq.h
+pico.h
+C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_irq/include/hardware/pico.h
+hardware/regs/intctrl.h
+C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_irq/include/hardware/hardware/regs/intctrl.h
+hardware/regs/m0plus.h
+C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_irq/include/hardware/hardware/regs/m0plus.h
 
 C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pio/include/hardware/pio.h
 pico.h
@@ -545,6 +577,10 @@ usb_descriptors.h
 C:/Users/ngadj/Documents/pico-sdvx-test/src/usb_descriptors.h
 hardware/pio.h
 C:/Users/ngadj/Documents/pico-sdvx-test/src/hardware/pio.h
+hardware/dma.h
+C:/Users/ngadj/Documents/pico-sdvx-test/src/hardware/dma.h
+hardware/irq.h
+C:/Users/ngadj/Documents/pico-sdvx-test/src/hardware/irq.h
 encoders.pio.h
 C:/Users/ngadj/Documents/pico-sdvx-test/src/encoders.pio.h
 
