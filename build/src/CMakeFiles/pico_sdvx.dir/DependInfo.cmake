@@ -50,6 +50,7 @@ set(CMAKE_TARGET_DEFINITIONS_ASM
 # The include file search paths:
 set(CMAKE_ASM_TARGET_INCLUDE_PATH
   "../src"
+  "src"
   "C:/Users/ngadj/Documents/pico-sdk/src/common/pico_stdlib/include"
   "C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_gpio/include"
   "C:/Users/ngadj/Documents/pico-sdk/src/common/pico_base/include"
@@ -89,6 +90,8 @@ set(CMAKE_ASM_TARGET_INCLUDE_PATH
   "C:/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/common"
   "C:/Users/ngadj/Documents/pico-sdk/lib/tinyusb/hw"
   "C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/include"
+  "C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pio/include"
+  "C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/include"
   )
 set(CMAKE_DEPENDS_CHECK_C
   "C:/Users/ngadj/Documents/pico-sdk/lib/tinyusb/hw/bsp/raspberry_pi_pico/board_raspberry_pi_pico.c" "C:/Users/ngadj/Documents/pico-sdvx-test/build/src/CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/hw/bsp/raspberry_pi_pico/board_raspberry_pi_pico.c.obj"
@@ -118,8 +121,10 @@ set(CMAKE_DEPENDS_CHECK_C
   "C:/Users/ngadj/Documents/pico-sdk/src/common/pico_util/queue.c" "C:/Users/ngadj/Documents/pico-sdvx-test/build/src/CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_util/queue.c.obj"
   "C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_claim/claim.c" "C:/Users/ngadj/Documents/pico-sdvx-test/build/src/CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_claim/claim.c.obj"
   "C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_clocks/clocks.c" "C:/Users/ngadj/Documents/pico-sdvx-test/build/src/CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj"
+  "C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/dma.c" "C:/Users/ngadj/Documents/pico-sdvx-test/build/src/CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/dma.c.obj"
   "C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_gpio/gpio.c" "C:/Users/ngadj/Documents/pico-sdvx-test/build/src/CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj"
   "C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_irq/irq.c" "C:/Users/ngadj/Documents/pico-sdvx-test/build/src/CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj"
+  "C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pio/pio.c" "C:/Users/ngadj/Documents/pico-sdvx-test/build/src/CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pio/pio.c.obj"
   "C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pll/pll.c" "C:/Users/ngadj/Documents/pico-sdvx-test/build/src/CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj"
   "C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_sync/sync.c" "C:/Users/ngadj/Documents/pico-sdvx-test/build/src/CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj"
   "C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_timer/timer.c" "C:/Users/ngadj/Documents/pico-sdvx-test/build/src/CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj"
@@ -176,6 +181,7 @@ set(CMAKE_TARGET_DEFINITIONS_C
 # The include file search paths:
 set(CMAKE_C_TARGET_INCLUDE_PATH
   "../src"
+  "src"
   "C:/Users/ngadj/Documents/pico-sdk/src/common/pico_stdlib/include"
   "C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_gpio/include"
   "C:/Users/ngadj/Documents/pico-sdk/src/common/pico_base/include"
@@ -215,6 +221,8 @@ set(CMAKE_C_TARGET_INCLUDE_PATH
   "C:/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/common"
   "C:/Users/ngadj/Documents/pico-sdk/lib/tinyusb/hw"
   "C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/include"
+  "C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pio/include"
+  "C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/include"
   )
 set(CMAKE_DEPENDS_CHECK_CXX
   "C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_standard_link/new_delete.cpp" "C:/Users/ngadj/Documents/pico-sdvx-test/build/src/CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_standard_link/new_delete.cpp.obj"
@@ -251,6 +259,7 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../src"
+  "src"
   "C:/Users/ngadj/Documents/pico-sdk/src/common/pico_stdlib/include"
   "C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_gpio/include"
   "C:/Users/ngadj/Documents/pico-sdk/src/common/pico_base/include"
@@ -290,6 +299,8 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "C:/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/common"
   "C:/Users/ngadj/Documents/pico-sdk/lib/tinyusb/hw"
   "C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/include"
+  "C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pio/include"
+  "C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/include"
   )
 
 # Targets to which this target links.

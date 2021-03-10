@@ -143,6 +143,44 @@ pico_sdvx\fast:
 .PHONY : pico_sdvx\fast
 
 # Convenience name for target.
+src\CMakeFiles\PioasmBuild.dir\rule:
+	cd C:\Users\ngadj\Documents\pico-sdvx-test\build
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) src\CMakeFiles\PioasmBuild.dir\rule
+	cd C:\Users\ngadj\Documents\pico-sdvx-test\build\src
+.PHONY : src\CMakeFiles\PioasmBuild.dir\rule
+
+# Convenience name for target.
+PioasmBuild: src\CMakeFiles\PioasmBuild.dir\rule
+
+.PHONY : PioasmBuild
+
+# fast build rule for target.
+PioasmBuild\fast:
+	cd C:\Users\ngadj\Documents\pico-sdvx-test\build
+	$(MAKE) $(MAKESILENT) -f src\CMakeFiles\PioasmBuild.dir\build.make /nologo -$(MAKEFLAGS) src\CMakeFiles\PioasmBuild.dir\build
+	cd C:\Users\ngadj\Documents\pico-sdvx-test\build\src
+.PHONY : PioasmBuild\fast
+
+# Convenience name for target.
+src\CMakeFiles\pico_sdvx_encoders_pio_h.dir\rule:
+	cd C:\Users\ngadj\Documents\pico-sdvx-test\build
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) src\CMakeFiles\pico_sdvx_encoders_pio_h.dir\rule
+	cd C:\Users\ngadj\Documents\pico-sdvx-test\build\src
+.PHONY : src\CMakeFiles\pico_sdvx_encoders_pio_h.dir\rule
+
+# Convenience name for target.
+pico_sdvx_encoders_pio_h: src\CMakeFiles\pico_sdvx_encoders_pio_h.dir\rule
+
+.PHONY : pico_sdvx_encoders_pio_h
+
+# fast build rule for target.
+pico_sdvx_encoders_pio_h\fast:
+	cd C:\Users\ngadj\Documents\pico-sdvx-test\build
+	$(MAKE) $(MAKESILENT) -f src\CMakeFiles\pico_sdvx_encoders_pio_h.dir\build.make /nologo -$(MAKEFLAGS) src\CMakeFiles\pico_sdvx_encoders_pio_h.dir\build
+	cd C:\Users\ngadj\Documents\pico-sdvx-test\build\src
+.PHONY : pico_sdvx_encoders_pio_h\fast
+
+# Convenience name for target.
 src\CMakeFiles\ELF2UF2Build.dir\rule:
 	cd C:\Users\ngadj\Documents\pico-sdvx-test\build
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) src\CMakeFiles\ELF2UF2Build.dir\rule
@@ -1063,6 +1101,39 @@ C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_divider\divider.S.obj:
 	cd C:\Users\ngadj\Documents\pico-sdvx-test\build\src
 .PHONY : C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_divider\divider.S.obj
 
+C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_dma\dma.obj: C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_dma\dma.c.obj
+
+.PHONY : C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_dma\dma.obj
+
+# target to build an object file
+C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_dma\dma.c.obj:
+	cd C:\Users\ngadj\Documents\pico-sdvx-test\build
+	$(MAKE) $(MAKESILENT) -f src\CMakeFiles\pico_sdvx.dir\build.make /nologo -$(MAKEFLAGS) src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_dma\dma.c.obj
+	cd C:\Users\ngadj\Documents\pico-sdvx-test\build\src
+.PHONY : C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_dma\dma.c.obj
+
+C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_dma\dma.i: C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_dma\dma.c.i
+
+.PHONY : C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_dma\dma.i
+
+# target to preprocess a source file
+C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_dma\dma.c.i:
+	cd C:\Users\ngadj\Documents\pico-sdvx-test\build
+	$(MAKE) $(MAKESILENT) -f src\CMakeFiles\pico_sdvx.dir\build.make /nologo -$(MAKEFLAGS) src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_dma\dma.c.i
+	cd C:\Users\ngadj\Documents\pico-sdvx-test\build\src
+.PHONY : C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_dma\dma.c.i
+
+C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_dma\dma.s: C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_dma\dma.c.s
+
+.PHONY : C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_dma\dma.s
+
+# target to generate assembly for a file
+C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_dma\dma.c.s:
+	cd C:\Users\ngadj\Documents\pico-sdvx-test\build
+	$(MAKE) $(MAKESILENT) -f src\CMakeFiles\pico_sdvx.dir\build.make /nologo -$(MAKEFLAGS) src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_dma\dma.c.s
+	cd C:\Users\ngadj\Documents\pico-sdvx-test\build\src
+.PHONY : C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_dma\dma.c.s
+
 C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_gpio\gpio.obj: C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_gpio\gpio.c.obj
 
 .PHONY : C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_gpio\gpio.obj
@@ -1139,6 +1210,39 @@ C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_irq\irq_handler_chain.
 	$(MAKE) $(MAKESILENT) -f src\CMakeFiles\pico_sdvx.dir\build.make /nologo -$(MAKEFLAGS) src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_irq\irq_handler_chain.S.obj
 	cd C:\Users\ngadj\Documents\pico-sdvx-test\build\src
 .PHONY : C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_irq\irq_handler_chain.S.obj
+
+C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.obj: C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.obj
+
+.PHONY : C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.obj
+
+# target to build an object file
+C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.obj:
+	cd C:\Users\ngadj\Documents\pico-sdvx-test\build
+	$(MAKE) $(MAKESILENT) -f src\CMakeFiles\pico_sdvx.dir\build.make /nologo -$(MAKEFLAGS) src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.obj
+	cd C:\Users\ngadj\Documents\pico-sdvx-test\build\src
+.PHONY : C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.obj
+
+C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.i: C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.i
+
+.PHONY : C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.i
+
+# target to preprocess a source file
+C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.i:
+	cd C:\Users\ngadj\Documents\pico-sdvx-test\build
+	$(MAKE) $(MAKESILENT) -f src\CMakeFiles\pico_sdvx.dir\build.make /nologo -$(MAKEFLAGS) src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.i
+	cd C:\Users\ngadj\Documents\pico-sdvx-test\build\src
+.PHONY : C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.i
+
+C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.s: C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.s
+
+.PHONY : C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.s
+
+# target to generate assembly for a file
+C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.s:
+	cd C:\Users\ngadj\Documents\pico-sdvx-test\build
+	$(MAKE) $(MAKESILENT) -f src\CMakeFiles\pico_sdvx.dir\build.make /nologo -$(MAKEFLAGS) src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.s
+	cd C:\Users\ngadj\Documents\pico-sdvx-test\build\src
+.PHONY : C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.s
 
 C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pll\pll.obj: C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pll\pll.c.obj
 
@@ -2040,6 +2144,8 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... ELF2UF2Build
+	@echo ... PioasmBuild
+	@echo ... pico_sdvx_encoders_pio_h
 	@echo ... pico_sdvx
 	@echo ... C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/hw/bsp/raspberry_pi_pico/board_raspberry_pi_pico.obj
 	@echo ... C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/hw/bsp/raspberry_pi_pico/board_raspberry_pi_pico.i
@@ -2123,6 +2229,9 @@ help:
 	@echo ... C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_clocks/clocks.i
 	@echo ... C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_clocks/clocks.s
 	@echo ... C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_divider/divider.obj
+	@echo ... C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/dma.obj
+	@echo ... C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/dma.i
+	@echo ... C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/dma.s
 	@echo ... C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_gpio/gpio.obj
 	@echo ... C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_gpio/gpio.i
 	@echo ... C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_gpio/gpio.s
@@ -2130,6 +2239,9 @@ help:
 	@echo ... C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_irq/irq.i
 	@echo ... C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_irq/irq.s
 	@echo ... C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_irq/irq_handler_chain.obj
+	@echo ... C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pio/pio.obj
+	@echo ... C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pio/pio.i
+	@echo ... C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pio/pio.s
 	@echo ... C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pll/pll.obj
 	@echo ... C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pll/pll.i
 	@echo ... C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pll/pll.s
