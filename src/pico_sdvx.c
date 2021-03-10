@@ -2,7 +2,7 @@
  * Pico SDVX
  * @author SpeedyPotato
  * 
- * Based off dev_hid_composite and PaulStoffregen/Encoder
+ * Based off dev_hid_composite and mdxtinkernick/pico_encoders
  */
 
 #include <stdlib.h>
@@ -15,68 +15,48 @@
 
 #include "usb_descriptors.h"
 
-const uint8_t SW_KEYCODE[] = {HID_KEY_RETURN, HID_KEY_A, HID_KEY_S, HID_KEY_D, HID_KEY_F, HID_KEY_Z, HID_KEY_X};    // MODIFY KEYBINDS HERE
-const uint8_t SW_GPIO[] = {4, 5, 6, 7, 8, 9, 10};                               // MAKE SURE SW_KEYCODE and SW_GPIO LENGTHS MATCH
-const uint8_t LED_GPIO[] = {28, 27, 26, 22, 21, 20, 19};                        // MAKE SURE SW_GPIO and LED_GPIO LENGTHS MATCH
-const uint8_t L_ENC_GPIO[] = {0, 1};
-const uint8_t R_ENC_GPIO[] = {2, 3};
+#include "hardware/pio.h"
+#include "hardware/dma.h"
+#include "hardware/irq.h"
+#include "encoders.pio.h"
 
-const uint8_t ENC_SENS = 10;        // Encoder sensitivity multiplier
-const size_t ENC_GPIO_SIZE = sizeof(L_ENC_GPIO)/ sizeof(L_ENC_GPIO[0]);
-const size_t SW_GPIO_SIZE = sizeof(SW_GPIO)/ sizeof(SW_GPIO[0]);                // Used for SW_KEYCODE, SW_GPIO, LED_GPIO
+#define SW_GPIO_SIZE 7  // Number of switches
+#define ENC_GPIO_SIZE 2 // Number of encoders
 
-static const char *gpio_irq_str[] = {
-        "LEVEL_LOW",  // 0x1
-        "LEVEL_HIGH", // 0x2
-        "EDGE_FALL",  // 0x4
-        "EDGE_RISE"   // 0x8
-};
+// MODIFY KEYBINDS HERE, MAKE SURE LENGTH MATCHES SW_GPIO_SIZE
+const uint8_t SW_KEYCODE[] =
+    {HID_KEY_RETURN, HID_KEY_A, HID_KEY_S, HID_KEY_D, HID_KEY_F, HID_KEY_Z, HID_KEY_X};
+const uint8_t SW_GPIO[] = {4, 5, 6, 7, 8, 9, 10};           // MAKE SURE LENGTH MATCHES SW_GPIO_SIZE
+const uint8_t LED_GPIO[] = {28, 27, 26, 22, 21, 20, 19};    // MAKE SURE LENGTH MATCHES SW_GPIO_SIZE
+const uint8_t ENC_GPIO[] = {0, 2};      // L_ENC(0, 1); R_ENC(2, 3)
+const uint8_t ENC_SENS = 1;        // Encoder sensitivity multiplier
 
-int l_enc=0, r_enc=0, l_state, r_state;
+PIO pio;
+uint32_t enc_val[2];
+uint32_t prev_enc_val[2];
+bool enc_changed;
+bool sw_val[SW_GPIO_SIZE];
+bool prev_sw_val[SW_GPIO_SIZE];
+bool sw_changed;
 
 /**
- * Encoder Callback
+ * DMA Encoder Logic
  **/
-void gpio_enc_callback(uint gpio, uint32_t events) {
-    if (gpio == L_ENC_GPIO[0] || gpio == L_ENC_GPIO[1]) {
-        uint8_t s = l_state & 3;
-        if (gpio_get(L_ENC_GPIO[0])) s |= 4;
-        if (gpio_get(L_ENC_GPIO[1])) s |= 8;
-        switch (s) {
-            case 0: case 5: case 10: case 15:
-                break;
-            case 1: case 7: case 8: case 14:
-                l_enc++; break;
-            case 2: case 4: case 11: case 13:
-                l_enc--; break;
-            case 3: case 12:
-                l_enc += 2; break;
-            default:
-                l_enc -= 2; break;
-        }
-        l_state = (s >> 2);
-    } else {
-        uint8_t s = r_state & 3;
-        if (gpio_get(R_ENC_GPIO[0])) s |= 4;
-        if (gpio_get(R_ENC_GPIO[1])) s |= 8;
-        switch (s) {
-            case 0: case 5: case 10: case 15:
-                break;
-            case 1: case 7: case 8: case 14:
-                r_enc++; break;
-            case 2: case 4: case 11: case 13:
-                r_enc--; break;
-            case 3: case 12:
-                r_enc += 2; break;
-            default:
-                r_enc -= 2; break;
-        }
-        r_state = (s >> 2);
+void dma_handler() {
+    uint i = 1;
+    int interrupt_channel = 0; 
+    while ((i & dma_hw->ints0) == 0) {  
+        i = i << 1; 
+        ++interrupt_channel; 
+    }  
+    dma_hw->ints0 = 1u << interrupt_channel;
+    if (interrupt_channel < 4) {
+        dma_channel_set_read_addr(interrupt_channel, &pio->rxf[interrupt_channel], true);
     }
 }
 
 /**
- * Initialize board pins
+ * Initialize Board Pins
  **/
 void init() {
     // LED Pin on when connected
@@ -84,28 +64,35 @@ void init() {
     gpio_set_dir(25, GPIO_OUT);
     gpio_put(25, 1);
 
-    // Setup L Encoder GPIO
-    for (int i = 0; i < ENC_GPIO_SIZE; i++) {
-        gpio_init(L_ENC_GPIO[i]);
-        gpio_set_function(L_ENC_GPIO[i], GPIO_FUNC_SIO);
-        gpio_set_dir(L_ENC_GPIO[i], GPIO_IN);
-        gpio_pull_up(L_ENC_GPIO[i]);
-        gpio_set_irq_enabled_with_callback(L_ENC_GPIO[i], GPIO_IRQ_EDGE_RISE | GPIO_IRQ_EDGE_FALL, true, &gpio_enc_callback);
+    // Set up the state machine for encoders
+    pio = pio0;
+    uint offset = pio_add_program(pio, &encoders_program);
+    // Setup Encoders
+    for (int i = 0; i < ENC_GPIO_SIZE; i++){
+        enc_val[i] = 0;
+        prev_enc_val[i] = 0;
+        encoders_program_init(pio, i, offset, ENC_GPIO[i]);
+        
+        dma_channel_config c = dma_channel_get_default_config(i);
+        channel_config_set_read_increment(&c, false);
+        channel_config_set_write_increment(&c, false);
+        channel_config_set_dreq(&c, pio_get_dreq(pio, i, false));
+        
+        dma_channel_configure(i, &c,
+            &enc_val[i],        // Destinatinon pointer
+            &pio->rxf[i],      // Source pointer
+            0x10, // Number of transfers
+            true                // Start immediately
+        );
+        irq_set_exclusive_handler(DMA_IRQ_0, dma_handler);
+        irq_set_enabled(DMA_IRQ_0, true);
+        dma_channel_set_irq0_enabled(i, true);
     }
-    l_state = gpio_get(L_ENC_GPIO[0]);
-
-    // Setup R Encoder GPIO
-    for (int i = 0; i < ENC_GPIO_SIZE; i++) {
-        gpio_init(R_ENC_GPIO[i]);
-        gpio_set_function(R_ENC_GPIO[i], GPIO_FUNC_SIO);
-        gpio_set_dir(R_ENC_GPIO[i], GPIO_IN);
-        gpio_pull_up(R_ENC_GPIO[i]);
-        gpio_set_irq_enabled_with_callback(R_ENC_GPIO[i], GPIO_IRQ_EDGE_RISE | GPIO_IRQ_EDGE_FALL, true, &gpio_enc_callback);
-    }
-    r_state = gpio_get(R_ENC_GPIO[0]);
 
     // Setup Button GPIO
     for (int i = 0; i < SW_GPIO_SIZE; i++) {
+        sw_val[i] = false;
+        prev_sw_val[i] = false;
         gpio_init(SW_GPIO[i]);
         gpio_set_function(SW_GPIO[i], GPIO_FUNC_SIO);
         gpio_set_dir(SW_GPIO[i], GPIO_IN);
@@ -117,6 +104,34 @@ void init() {
         gpio_init(LED_GPIO[i]);
         gpio_set_dir(LED_GPIO[i], GPIO_OUT);
     }
+
+    // Set listener bools
+    enc_changed = false;
+    sw_changed = false;
+}
+
+/**
+ * Update Class Vars
+ **/
+void update_inputs() {
+    // Encoder Flag
+    for (int i = 0; i < ENC_GPIO_SIZE; i++) {
+        if (enc_val[i] != prev_enc_val[i]) {
+            enc_changed = true;
+            break;
+        }
+    }
+    // Switch Update & Flag
+    for (int i = 0; i < SW_GPIO_SIZE; i++) {
+        if (!gpio_get(SW_GPIO[i])) {
+            sw_val[i] = true;
+        } else {
+            sw_val[i] = false;
+        }
+        if (!sw_changed && sw_val[i] != prev_sw_val[i]) {
+            sw_changed = true;
+        }
+    }
 }
 
 /**
@@ -125,40 +140,47 @@ void init() {
 void key_mode() {
     if (tud_hid_ready()) {
         /*------------- Keyboard -------------*/
-        bool is_pressed = false;
-        int keycode_idx = 0;
-        uint8_t keycode[6] = {0};   //looks like we are limited to 6kro?
-        for (int i = 0; i < SW_GPIO_SIZE; i++) {
-            if (!gpio_get(SW_GPIO[i])) {
-                // use to avoid send multiple consecutive zero report for keyboard
-                keycode[keycode_idx] = SW_KEYCODE[i];
-                keycode_idx = ++keycode_idx % SW_GPIO_SIZE;
-                is_pressed = true;
+        if (sw_changed) {
+            bool is_pressed = false;
+            int keycode_idx = 0;
+            uint8_t keycode[6] = {0};   //looks like we are limited to 6kro?
+            for (int i = 0; i < SW_GPIO_SIZE; i++) {
+                if (sw_val[i]) {
+                    // use to avoid send multiple consecutive zero report for keyboard
+                    keycode[keycode_idx] = SW_KEYCODE[i];
+                    keycode_idx = ++keycode_idx % SW_GPIO_SIZE;
+                    is_pressed = true;
 
-                // Reactive Lighting On
-                gpio_put(LED_GPIO[i], 1);
-            } else {
-                // Reactive Lighting Off
-                gpio_put(LED_GPIO[i], 0);
+                    prev_sw_val[i] = sw_val[i];
+                    // Reactive Lighting On
+                    gpio_put(LED_GPIO[i], 1);
+                } else {
+                    // Reactive Lighting Off
+                    gpio_put(LED_GPIO[i], 0);
+                }
             }
-        }
-        if (is_pressed) {
-            // send key report
-            tud_hid_keyboard_report(REPORT_ID_KEYBOARD, 0, keycode);
-        } else {
-            // send empty key report if previously has key pressed
-            tud_hid_keyboard_report(REPORT_ID_KEYBOARD, 0, NULL);
+            if (is_pressed) {
+                // Send key report
+                tud_hid_keyboard_report(REPORT_ID_KEYBOARD, 0, keycode);
+            } else {
+                // Send empty key report if previously has key pressed
+                tud_hid_keyboard_report(REPORT_ID_KEYBOARD, 0, NULL);
+            }
+            sw_changed = false;
         }
 
         /*------------- Mouse -------------*/
-        if (l_enc != 0 || r_enc != 0) {
-            // delay if needed before attempt to send mouse report
+        if (enc_changed) {
+            // Delay if needed before attempt to send mouse report
             while (!tud_hid_ready()) {
                 board_delay(1);
             }
-            tud_hid_mouse_report(REPORT_ID_MOUSE, 0x00, l_enc * ENC_SENS, r_enc * ENC_SENS, 0, 0);
-            l_enc = 0;
-            r_enc = 0;
+            tud_hid_mouse_report(REPORT_ID_MOUSE, 0x00, (enc_val[0] - prev_enc_val[0]) * ENC_SENS,
+                                                        (enc_val[1] - prev_enc_val[1]) * ENC_SENS, 0, 0);
+            for (int i = 0; i < ENC_GPIO_SIZE; i++) {
+                prev_enc_val[i] = enc_val[i];
+            }
+            enc_changed = false;
         }
     }
 }
@@ -173,6 +195,7 @@ int main(void) {
 
     while (1) {
         tud_task(); // tinyusb device task
+        update_inputs();
         key_mode();
     }
 
