@@ -1144,44 +1144,6 @@ src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\lib\tinyusb\hw\bs
 	C:\PROGRA~2\GNUARM~1\102020~1\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\ngadj\Documents\pico-sdk\lib\tinyusb\hw\bsp\raspberry_pi_pico\board_raspberry_pi_pico.c -o CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\lib\tinyusb\hw\bsp\raspberry_pi_pico\board_raspberry_pi_pico.c.s
 	cd C:\Users\ngadj\Documents\pico-sdvx-test\build
 
-src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.obj: src\CMakeFiles\pico_sdvx.dir\flags.make
-src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\ngadj\Documents\pico-sdvx-test\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_65) "Building C object src/CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pio/pio.c.obj"
-	cd C:\Users\ngadj\Documents\pico-sdvx-test\build\src
-	C:\PROGRA~2\GNUARM~1\102020~1\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.obj -c C:\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c
-	cd C:\Users\ngadj\Documents\pico-sdvx-test\build
-
-src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pio/pio.c.i"
-	cd C:\Users\ngadj\Documents\pico-sdvx-test\build\src
-	C:\PROGRA~2\GNUARM~1\102020~1\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c > CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.i
-	cd C:\Users\ngadj\Documents\pico-sdvx-test\build
-
-src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pio/pio.c.s"
-	cd C:\Users\ngadj\Documents\pico-sdvx-test\build\src
-	C:\PROGRA~2\GNUARM~1\102020~1\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c -o CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.s
-	cd C:\Users\ngadj\Documents\pico-sdvx-test\build
-
-src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_dma\dma.c.obj: src\CMakeFiles\pico_sdvx.dir\flags.make
-src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_dma\dma.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_dma\dma.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\ngadj\Documents\pico-sdvx-test\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_66) "Building C object src/CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/dma.c.obj"
-	cd C:\Users\ngadj\Documents\pico-sdvx-test\build\src
-	C:\PROGRA~2\GNUARM~1\102020~1\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_dma\dma.c.obj -c C:\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_dma\dma.c
-	cd C:\Users\ngadj\Documents\pico-sdvx-test\build
-
-src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_dma\dma.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/dma.c.i"
-	cd C:\Users\ngadj\Documents\pico-sdvx-test\build\src
-	C:\PROGRA~2\GNUARM~1\102020~1\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_dma\dma.c > CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_dma\dma.c.i
-	cd C:\Users\ngadj\Documents\pico-sdvx-test\build
-
-src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_dma\dma.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/pico_sdvx.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/dma.c.s"
-	cd C:\Users\ngadj\Documents\pico-sdvx-test\build\src
-	C:\PROGRA~2\GNUARM~1\102020~1\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_dma\dma.c -o CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_dma\dma.c.s
-	cd C:\Users\ngadj\Documents\pico-sdvx-test\build
-
 # Object files for target pico_sdvx
 pico_sdvx_OBJECTS = \
 "CMakeFiles\pico_sdvx.dir\pico_sdvx.c.obj" \
@@ -1247,9 +1209,7 @@ pico_sdvx_OBJECTS = \
 "CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\lib\tinyusb\src\tusb.c.obj" \
 "CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\lib\tinyusb\src\common\tusb_fifo.c.obj" \
 "CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\pico_fix\rp2040_usb_device_enumeration\rp2040_usb_device_enumeration.c.obj" \
-"CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\lib\tinyusb\hw\bsp\raspberry_pi_pico\board_raspberry_pi_pico.c.obj" \
-"CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.obj" \
-"CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_dma\dma.c.obj"
+"CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\lib\tinyusb\hw\bsp\raspberry_pi_pico\board_raspberry_pi_pico.c.obj"
 
 # External object files for target pico_sdvx
 pico_sdvx_EXTERNAL_OBJECTS =
@@ -1318,12 +1278,10 @@ src\pico_sdvx.elf: src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sd
 src\pico_sdvx.elf: src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\lib\tinyusb\src\common\tusb_fifo.c.obj
 src\pico_sdvx.elf: src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\pico_fix\rp2040_usb_device_enumeration\rp2040_usb_device_enumeration.c.obj
 src\pico_sdvx.elf: src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\lib\tinyusb\hw\bsp\raspberry_pi_pico\board_raspberry_pi_pico.c.obj
-src\pico_sdvx.elf: src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\pio.c.obj
-src\pico_sdvx.elf: src\CMakeFiles\pico_sdvx.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_dma\dma.c.obj
 src\pico_sdvx.elf: src\CMakeFiles\pico_sdvx.dir\build.make
 src\pico_sdvx.elf: pico-sdk\src\rp2_common\boot_stage2\bs2_default_padded_checksummed.S
 src\pico_sdvx.elf: src\CMakeFiles\pico_sdvx.dir\objects1.rsp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\ngadj\Documents\pico-sdvx-test\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_67) "Linking CXX executable pico_sdvx.elf"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\ngadj\Documents\pico-sdvx-test\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_65) "Linking CXX executable pico_sdvx.elf"
 	cd C:\Users\ngadj\Documents\pico-sdvx-test\build\src
 	C:\PROGRA~2\GNUARM~1\102020~1\bin\AR10B2~1.EXE -march=armv6-m -mcpu=cortex-m0plus -mthumb -Og -g -Wl,--build-id=none --specs=nosys.specs -Wl,--wrap=sprintf -Wl,--wrap=snprintf -Wl,--wrap=vsnprintf -Wl,--wrap=__clzsi2 -Wl,--wrap=__clzdi2 -Wl,--wrap=__ctzsi2 -Wl,--wrap=__ctzdi2 -Wl,--wrap=__popcountsi2 -Wl,--wrap=__popcountdi2 -Wl,--wrap=__clz -Wl,--wrap=__clzl -Wl,--wrap=__clzll -Wl,--wrap=__aeabi_idiv -Wl,--wrap=__aeabi_idivmod -Wl,--wrap=__aeabi_ldivmod -Wl,--wrap=__aeabi_uidiv -Wl,--wrap=__aeabi_uidivmod -Wl,--wrap=__aeabi_uldivmod -Wl,--wrap=__aeabi_dadd -Wl,--wrap=__aeabi_ddiv -Wl,--wrap=__aeabi_dmul -Wl,--wrap=__aeabi_drsub -Wl,--wrap=__aeabi_dsub -Wl,--wrap=__aeabi_cdcmpeq -Wl,--wrap=__aeabi_cdrcmple -Wl,--wrap=__aeabi_cdcmple -Wl,--wrap=__aeabi_dcmpeq -Wl,--wrap=__aeabi_dcmplt -Wl,--wrap=__aeabi_dcmple -Wl,--wrap=__aeabi_dcmpge -Wl,--wrap=__aeabi_dcmpgt -Wl,--wrap=__aeabi_dcmpun -Wl,--wrap=__aeabi_i2d -Wl,--wrap=__aeabi_l2d -Wl,--wrap=__aeabi_ui2d -Wl,--wrap=__aeabi_ul2d -Wl,--wrap=__aeabi_d2iz -Wl,--wrap=__aeabi_d2lz -Wl,--wrap=__aeabi_d2uiz -Wl,--wrap=__aeabi_d2ulz -Wl,--wrap=__aeabi_d2f -Wl,--wrap=sqrt -Wl,--wrap=cos -Wl,--wrap=sin -Wl,--wrap=tan -Wl,--wrap=atan2 -Wl,--wrap=exp -Wl,--wrap=log -Wl,--wrap=ldexp -Wl,--wrap=copysign -Wl,--wrap=trunc -Wl,--wrap=floor -Wl,--wrap=ceil -Wl,--wrap=round -Wl,--wrap=sincos -Wl,--wrap=asin -Wl,--wrap=acos -Wl,--wrap=atan -Wl,--wrap=sinh -Wl,--wrap=cosh -Wl,--wrap=tanh -Wl,--wrap=asinh -Wl,--wrap=acosh -Wl,--wrap=atanh -Wl,--wrap=exp2 -Wl,--wrap=log2 -Wl,--wrap=exp10 -Wl,--wrap=log10 -Wl,--wrap=pow -Wl,--wrap=powint -Wl,--wrap=hypot -Wl,--wrap=cbrt -Wl,--wrap=fmod -Wl,--wrap=drem -Wl,--wrap=remainder -Wl,--wrap=remquo -Wl,--wrap=expm1 -Wl,--wrap=log1p -Wl,--wrap=fma -Wl,--wrap=__aeabi_lmul -Wl,--wrap=__aeabi_fadd -Wl,--wrap=__aeabi_fdiv -Wl,--wrap=__aeabi_fmul -Wl,--wrap=__aeabi_frsub -Wl,--wrap=__aeabi_fsub -Wl,--wrap=__aeabi_cfcmpeq -Wl,--wrap=__aeabi_cfrcmple -Wl,--wrap=__aeabi_cfcmple -Wl,--wrap=__aeabi_fcmpeq -Wl,--wrap=__aeabi_fcmplt -Wl,--wrap=__aeabi_fcmple -Wl,--wrap=__aeabi_fcmpge -Wl,--wrap=__aeabi_fcmpgt -Wl,--wrap=__aeabi_fcmpun -Wl,--wrap=__aeabi_i2f -Wl,--wrap=__aeabi_l2f -Wl,--wrap=__aeabi_ui2f -Wl,--wrap=__aeabi_ul2f -Wl,--wrap=__aeabi_f2iz -Wl,--wrap=__aeabi_f2lz -Wl,--wrap=__aeabi_f2uiz -Wl,--wrap=__aeabi_f2ulz -Wl,--wrap=__aeabi_f2d -Wl,--wrap=sqrtf -Wl,--wrap=cosf -Wl,--wrap=sinf -Wl,--wrap=tanf -Wl,--wrap=atan2f -Wl,--wrap=expf -Wl,--wrap=logf -Wl,--wrap=ldexpf -Wl,--wrap=copysignf -Wl,--wrap=truncf -Wl,--wrap=floorf -Wl,--wrap=ceilf -Wl,--wrap=roundf -Wl,--wrap=sincosf -Wl,--wrap=asinf -Wl,--wrap=acosf -Wl,--wrap=atanf -Wl,--wrap=sinhf -Wl,--wrap=coshf -Wl,--wrap=tanhf -Wl,--wrap=asinhf -Wl,--wrap=acoshf -Wl,--wrap=atanhf -Wl,--wrap=exp2f -Wl,--wrap=log2f -Wl,--wrap=exp10f -Wl,--wrap=log10f -Wl,--wrap=powf -Wl,--wrap=powintf -Wl,--wrap=hypotf -Wl,--wrap=cbrtf -Wl,--wrap=fmodf -Wl,--wrap=dremf -Wl,--wrap=remainderf -Wl,--wrap=remquof -Wl,--wrap=expm1f -Wl,--wrap=log1pf -Wl,--wrap=fmaf -Wl,--wrap=malloc -Wl,--wrap=calloc -Wl,--wrap=free -Wl,--wrap=memcpy -Wl,--wrap=memset -Wl,--wrap=__aeabi_memcpy -Wl,--wrap=__aeabi_memset -Wl,--wrap=__aeabi_memcpy4 -Wl,--wrap=__aeabi_memset4 -Wl,--wrap=__aeabi_memcpy8 -Wl,--wrap=__aeabi_memset8 -Wl,-Map=pico_sdvx.elf.map -Wl,--script=C:/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_standard_link/memmap_default.ld -Wl,--gc-sections -Wl,--wrap=printf -Wl,--wrap=vprintf -Wl,--wrap=puts -Wl,--wrap=putchar @CMakeFiles\pico_sdvx.dir\objects1.rsp -o pico_sdvx.elf  ..\pico-sdk\src\rp2_common\boot_stage2\bs2_default_padded_checksummed.S 
 	cd C:\Users\ngadj\Documents\pico-sdvx-test\build
