@@ -1,4 +1,4 @@
-// Padded and checksummed version of: C:/Users/ngadj/Documents/pico-sdvx-test/build/pico-sdk/src/rp2_common/boot_stage2/bs2_default.bin
+// Padded and checksummed version of: C:/Users/ngadj/Documents/Pico-Game-Controller/build/pico-sdk/src/rp2_common/boot_stage2/bs2_default.bin
 
 .cpu cortex-m0plus
 .thumb

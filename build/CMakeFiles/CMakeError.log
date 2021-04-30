@@ -1,6 +1,6 @@
 Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
 Compiler: C:/Program Files (x86)/GNU Arm Embedded Toolchain/10 2020-q4-major/bin/arm-none-eabi-gcc.exe 
-Build flags: ;-march=armv6-m;-mcpu=cortex-m0plus;-mthumb
+Build flags: ;-mcpu=cortex-m0plus;-mthumb
 Id flags:  
 
 The output was:
@@ -12,7 +12,7 @@ collect2.exe: error: ld returned 1 exit status
 
 Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
 Compiler: C:/Program Files (x86)/GNU Arm Embedded Toolchain/10 2020-q4-major/bin/arm-none-eabi-g++.exe 
-Build flags: ;-march=armv6-m;-mcpu=cortex-m0plus;-mthumb
+Build flags: ;-mcpu=cortex-m0plus;-mthumb
 Id flags:  
 
 The output was:

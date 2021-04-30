@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/ngadj/Documents/pico-sdvx-test/build/pioasm/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/ngadj/Documents/Pico-Game-Controller/build/pioasm/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

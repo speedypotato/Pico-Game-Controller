@@ -1,13 +1,13 @@
-add_executable(pico_sdvx
-        pico_sdvx.c
+add_executable(Pico_Game_Controller
+        pico_game_controller.c
         usb_descriptors.c)
 
-target_include_directories(pico_sdvx PRIVATE ${CMAKE_CURRENT_LIST_DIR})
+target_include_directories(Pico_Game_Controller PRIVATE ${CMAKE_CURRENT_LIST_DIR})
 
-pico_generate_pio_header(pico_sdvx ${CMAKE_CURRENT_LIST_DIR}/encoders.pio)
-target_sources(pico_sdvx PRIVATE pico_sdvx.c)
+pico_generate_pio_header(Pico_Game_Controller ${CMAKE_CURRENT_LIST_DIR}/encoders.pio)
+target_sources(Pico_Game_Controller PRIVATE pico_game_controller.c)
 
-target_link_libraries(pico_sdvx PRIVATE
+target_link_libraries(Pico_Game_Controller PRIVATE
         pico_stdlib
         tinyusb_device
         tinyusb_board
@@ -15,4 +15,4 @@ target_link_libraries(pico_sdvx PRIVATE
         hardware_dma
         hardware_irq)
 
-pico_add_extra_outputs(pico_sdvx)
+pico_add_extra_outputs(Pico_Game_Controller)

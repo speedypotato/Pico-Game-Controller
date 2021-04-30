@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/elf2uf2.dir/main.cpp.obj"
+  "CMakeFiles/elf2uf2.dir/main.cpp.obj.d"
   "elf2uf2.exe"
   "elf2uf2.exe.manifest"
   "elf2uf2.lib"

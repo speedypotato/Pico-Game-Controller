@@ -1,8 +1,8 @@
 The target system is: PICO -  - cortex-m0plus
-The host system is: Windows - 10.0.19042 - AMD64
+The host system is: Windows - 10.0.19041 - AMD64
 Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
 Compiler: C:/Program Files (x86)/GNU Arm Embedded Toolchain/10 2020-q4-major/bin/arm-none-eabi-gcc.exe 
-Build flags: ;-march=armv6-m;-mcpu=cortex-m0plus;-mthumb
+Build flags: ;-mcpu=cortex-m0plus;-mthumb
 Id flags: -c 
 
 The output was:
@@ -11,11 +11,11 @@ The output was:
 
 Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.o"
 
-The C compiler identification is GNU, found in "C:/Users/ngadj/Documents/pico-sdvx-test/build/CMakeFiles/3.19.4/CompilerIdC/CMakeCCompilerId.o"
+The C compiler identification is GNU, found in "C:/Users/ngadj/Documents/Pico-Game-Controller/build/CMakeFiles/3.20.1/CompilerIdC/CMakeCCompilerId.o"
 
 Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
 Compiler: C:/Program Files (x86)/GNU Arm Embedded Toolchain/10 2020-q4-major/bin/arm-none-eabi-g++.exe 
-Build flags: ;-march=armv6-m;-mcpu=cortex-m0plus;-mthumb
+Build flags: ;-mcpu=cortex-m0plus;-mthumb
 Id flags: -c 
 
 The output was:
@@ -24,7 +24,7 @@ The output was:
 
 Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.o"
 
-The CXX compiler identification is GNU, found in "C:/Users/ngadj/Documents/pico-sdvx-test/build/CMakeFiles/3.19.4/CompilerIdCXX/CMakeCXXCompilerId.o"
+The CXX compiler identification is GNU, found in "C:/Users/ngadj/Documents/Pico-Game-Controller/build/CMakeFiles/3.20.1/CompilerIdCXX/CMakeCXXCompilerId.o"
 
 Checking whether the ASM compiler is GNU using "--version" matched "(GNU assembler)|(GCC)|(Free Software Foundation)":
 arm-none-eabi-gcc.exe (GNU Arm Embedded Toolchain 10-2020-q4-major) 10.2.1 20201103 (release)

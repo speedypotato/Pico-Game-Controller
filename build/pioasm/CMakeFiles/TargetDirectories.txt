@@ -1,3 +1,3 @@
-C:/Users/ngadj/Documents/pico-sdvx-test/build/pioasm/CMakeFiles/pioasm.dir
-C:/Users/ngadj/Documents/pico-sdvx-test/build/pioasm/CMakeFiles/edit_cache.dir
-C:/Users/ngadj/Documents/pico-sdvx-test/build/pioasm/CMakeFiles/rebuild_cache.dir
+C:/Users/ngadj/Documents/Pico-Game-Controller/build/pioasm/CMakeFiles/pioasm.dir
+C:/Users/ngadj/Documents/Pico-Game-Controller/build/pioasm/CMakeFiles/edit_cache.dir
+C:/Users/ngadj/Documents/Pico-Game-Controller/build/pioasm/CMakeFiles/rebuild_cache.dir

@@ -2,34 +2,34 @@
 	"sources" : 
 	[
 		{
-			"file" : "C:/Users/ngadj/Documents/pico-sdvx-test/build/src/CMakeFiles/PioasmBuild"
+			"file" : "C:/Users/ngadj/Documents/Pico-Game-Controller/build/src/CMakeFiles/PioasmBuild"
 		},
 		{
-			"file" : "C:/Users/ngadj/Documents/pico-sdvx-test/build/src/CMakeFiles/PioasmBuild.rule"
+			"file" : "C:/Users/ngadj/Documents/Pico-Game-Controller/build/src/CMakeFiles/PioasmBuild.rule"
 		},
 		{
-			"file" : "C:/Users/ngadj/Documents/pico-sdvx-test/build/src/CMakeFiles/PioasmBuild-complete.rule"
+			"file" : "C:/Users/ngadj/Documents/Pico-Game-Controller/build/src/CMakeFiles/PioasmBuild-complete.rule"
 		},
 		{
-			"file" : "C:/Users/ngadj/Documents/pico-sdvx-test/build/src/pioasm/src/PioasmBuild-stamp/PioasmBuild-install.rule"
+			"file" : "C:/Users/ngadj/Documents/Pico-Game-Controller/build/src/pioasm/src/PioasmBuild-stamp/PioasmBuild-build.rule"
 		},
 		{
-			"file" : "C:/Users/ngadj/Documents/pico-sdvx-test/build/src/pioasm/src/PioasmBuild-stamp/PioasmBuild-mkdir.rule"
+			"file" : "C:/Users/ngadj/Documents/Pico-Game-Controller/build/src/pioasm/src/PioasmBuild-stamp/PioasmBuild-configure.rule"
 		},
 		{
-			"file" : "C:/Users/ngadj/Documents/pico-sdvx-test/build/src/pioasm/src/PioasmBuild-stamp/PioasmBuild-download.rule"
+			"file" : "C:/Users/ngadj/Documents/Pico-Game-Controller/build/src/pioasm/src/PioasmBuild-stamp/PioasmBuild-download.rule"
 		},
 		{
-			"file" : "C:/Users/ngadj/Documents/pico-sdvx-test/build/src/pioasm/src/PioasmBuild-stamp/PioasmBuild-update.rule"
+			"file" : "C:/Users/ngadj/Documents/Pico-Game-Controller/build/src/pioasm/src/PioasmBuild-stamp/PioasmBuild-install.rule"
 		},
 		{
-			"file" : "C:/Users/ngadj/Documents/pico-sdvx-test/build/src/pioasm/src/PioasmBuild-stamp/PioasmBuild-patch.rule"
+			"file" : "C:/Users/ngadj/Documents/Pico-Game-Controller/build/src/pioasm/src/PioasmBuild-stamp/PioasmBuild-mkdir.rule"
 		},
 		{
-			"file" : "C:/Users/ngadj/Documents/pico-sdvx-test/build/src/pioasm/src/PioasmBuild-stamp/PioasmBuild-configure.rule"
+			"file" : "C:/Users/ngadj/Documents/Pico-Game-Controller/build/src/pioasm/src/PioasmBuild-stamp/PioasmBuild-patch.rule"
 		},
 		{
-			"file" : "C:/Users/ngadj/Documents/pico-sdvx-test/build/src/pioasm/src/PioasmBuild-stamp/PioasmBuild-build.rule"
+			"file" : "C:/Users/ngadj/Documents/Pico-Game-Controller/build/src/pioasm/src/PioasmBuild-stamp/PioasmBuild-update.rule"
 		}
 	],
 	"target" : 
