@@ -1229,9 +1229,9 @@ Discarded input sections
  .debug_frame   0x00000000       0xa0 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/dma.c.obj
  .ARM.attributes
                 0x00000000       0x2c CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/dma.c.obj
- .text          0x00000000        0x0 C:\Users\ngadj\AppData\Local\Temp\ccdcDqkk.o
- .data          0x00000000        0x0 C:\Users\ngadj\AppData\Local\Temp\ccdcDqkk.o
- .bss           0x00000000        0x0 C:\Users\ngadj\AppData\Local\Temp\ccdcDqkk.o
+ .text          0x00000000        0x0 C:\Users\ngadj\AppData\Local\Temp\ccwGiYJx.o
+ .data          0x00000000        0x0 C:\Users\ngadj\AppData\Local\Temp\ccwGiYJx.o
+ .bss           0x00000000        0x0 C:\Users\ngadj\AppData\Local\Temp\ccwGiYJx.o
  .data          0x00000000        0x0 c:/progra~2/gnuarm~1/102020~1/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp\libgcc.a(_dvmd_tls.o)
  .bss           0x00000000        0x0 c:/progra~2/gnuarm~1/102020~1/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp\libgcc.a(_dvmd_tls.o)
  .text          0x00000000        0x0 c:/progra~2/gnuarm~1/102020~1/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libg.a(lib_a-calloc.o)
@@ -1425,7 +1425,7 @@ LOAD c:/progra~2/gnuarm~1/102020~1/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../
 .boot2          0x10000000      0x100
                 0x10000000                __boot2_start__ = .
  *(.boot2)
- .boot2         0x10000000      0x100 C:\Users\ngadj\AppData\Local\Temp\ccdcDqkk.o
+ .boot2         0x10000000      0x100 C:\Users\ngadj\AppData\Local\Temp\ccwGiYJx.o
                 0x10000100                __boot2_end__ = .
                 0x00000001                ASSERT (((__boot2_end__ - __boot2_start__) == 0x100), ERROR: Pico second stage bootloader must be 256 bytes in size)
 
@@ -2179,7 +2179,7 @@ LOAD c:/progra~2/gnuarm~1/102020~1/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../
 .iplt           0x10006b78        0x0
  .iplt          0x10006b78        0x0 c:/progra~2/gnuarm~1/102020~1/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp/crtbegin.o
 
-.rodata         0x10006b78     0x16a8
+.rodata         0x10006b78     0x16b8
  *(EXCLUDE_FILE(*libm.a: *libc.a:*lib_a-mem*.o *libgcc.a:) .rodata*)
  .rodata.init.str1.4
                 0x10006b78       0x8b CMakeFiles/Pico_Game_Controller.dir/pico_game_controller.c.obj
@@ -2216,388 +2216,387 @@ LOAD c:/progra~2/gnuarm~1/102020~1/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../
                 0x10006cdc       0x2e CMakeFiles/Pico_Game_Controller.dir/pico_game_controller.c.obj
  *fill*         0x10006d0a        0x2 
  .rodata.str1.4
-                0x10006d0c       0x1f CMakeFiles/Pico_Game_Controller.dir/usb_descriptors.c.obj
- *fill*         0x10006d2b        0x1 
+                0x10006d0c       0x33 CMakeFiles/Pico_Game_Controller.dir/usb_descriptors.c.obj
+ *fill*         0x10006d3f        0x1 
  .rodata.__compound_literal.0
-                0x10006d2c        0x2 CMakeFiles/Pico_Game_Controller.dir/usb_descriptors.c.obj
- *fill*         0x10006d2e        0x2 
+                0x10006d40        0x2 CMakeFiles/Pico_Game_Controller.dir/usb_descriptors.c.obj
+ *fill*         0x10006d42        0x2 
  .rodata.desc_configuration
-                0x10006d30       0x22 CMakeFiles/Pico_Game_Controller.dir/usb_descriptors.c.obj
-                0x10006d30                desc_configuration
- *fill*         0x10006d52        0x2 
- .rodata.desc_device
-                0x10006d54       0x12 CMakeFiles/Pico_Game_Controller.dir/usb_descriptors.c.obj
-                0x10006d54                desc_device
+                0x10006d44       0x22 CMakeFiles/Pico_Game_Controller.dir/usb_descriptors.c.obj
+                0x10006d44                desc_configuration
  *fill*         0x10006d66        0x2 
+ .rodata.desc_device
+                0x10006d68       0x12 CMakeFiles/Pico_Game_Controller.dir/usb_descriptors.c.obj
+                0x10006d68                desc_device
+ *fill*         0x10006d7a        0x2 
  .rodata.desc_hid_report
-                0x10006d68       0x90 CMakeFiles/Pico_Game_Controller.dir/usb_descriptors.c.obj
-                0x10006d68                desc_hid_report
+                0x10006d7c       0x90 CMakeFiles/Pico_Game_Controller.dir/usb_descriptors.c.obj
+                0x10006d7c                desc_hid_report
  .rodata.spin_lock_claim_unused.str1.4
-                0x10006df8       0x1b CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
- *fill*         0x10006e13        0x1 
+                0x10006e0c       0x1b CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
+ *fill*         0x10006e27        0x1 
  .rodata.repeating_timer_callback.str1.4
-                0x10006e14       0x52 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_time/time.c.obj
- *fill*         0x10006e66        0x2 
+                0x10006e28       0x52 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_time/time.c.obj
+ *fill*         0x10006e7a        0x2 
  .rodata.alarm_pool_dump_key.str1.4
-                0x10006e68       0x33 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_time/time.c.obj
- *fill*         0x10006e9b        0x1 
+                0x10006e7c       0x33 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_time/time.c.obj
+ *fill*         0x10006eaf        0x1 
  .rodata.ph_add_child_node.str1.4
-                0x10006e9c       0x9e CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_time/time.c.obj
- *fill*         0x10006f3a        0x2 
+                0x10006eb0       0x9e CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_time/time.c.obj
+ *fill*         0x10006f4e        0x2 
  .rodata.add_alarm_under_lock.str1.4
-                0x10006f3c       0x28 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_time/time.c.obj
+                0x10006f50       0x28 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_time/time.c.obj
                                  0x2b (size before relaxing)
  .rodata.alarm_pool_alarm_callback.str1.4
-                0x10006f64       0x82 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_time/time.c.obj
+                0x10006f78       0x82 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_time/time.c.obj
                                  0xea (size before relaxing)
- *fill*         0x10006fe6        0x2 
+ *fill*         0x10006ffa        0x2 
  .rodata.alarm_pool_get_default.str1.4
-                0x10006fe8       0x21 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_time/time.c.obj
- *fill*         0x10007009        0x3 
+                0x10006ffc       0x21 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_time/time.c.obj
+ *fill*         0x1000701d        0x3 
  .rodata.alarm_pool_cancel_alarm.str1.4
-                0x1000700c       0x27 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_time/time.c.obj
- *fill*         0x10007033        0x1 
+                0x10007020       0x27 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_time/time.c.obj
+ *fill*         0x10007047        0x1 
  .rodata.__func__.1
-                0x10007034       0x18 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_time/time.c.obj
+                0x10007048       0x18 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_time/time.c.obj
  .rodata.__func__.10
-                0x1000704c       0x15 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_time/time.c.obj
- *fill*         0x10007061        0x3 
+                0x10007060       0x15 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_time/time.c.obj
+ *fill*         0x10007075        0x3 
  .rodata.__func__.11
-                0x10007064       0x1a CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_time/time.c.obj
- *fill*         0x1000707e        0x2 
+                0x10007078       0x1a CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_time/time.c.obj
+ *fill*         0x10007092        0x2 
  .rodata.__func__.12
-                0x10007080        0xa CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_time/time.c.obj
- *fill*         0x1000708a        0x2 
+                0x10007094        0xa CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_time/time.c.obj
+ *fill*         0x1000709e        0x2 
  .rodata.__func__.3
-                0x1000708c       0x17 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_time/time.c.obj
- *fill*         0x100070a3        0x1 
+                0x100070a0       0x17 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_time/time.c.obj
+ *fill*         0x100070b7        0x1 
  .rodata.__func__.4
-                0x100070a4       0x12 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_time/time.c.obj
- *fill*         0x100070b6        0x2 
+                0x100070b8       0x12 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_time/time.c.obj
+ *fill*         0x100070ca        0x2 
  .rodata.__func__.5
-                0x100070b8        0xd CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_time/time.c.obj
- *fill*         0x100070c5        0x3 
+                0x100070cc        0xd CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_time/time.c.obj
+ *fill*         0x100070d9        0x3 
  .rodata.__func__.6
-                0x100070c8       0x12 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_time/time.c.obj
- *fill*         0x100070da        0x2 
+                0x100070dc       0x12 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_time/time.c.obj
+ *fill*         0x100070ee        0x2 
  .rodata.__func__.7
-                0x100070dc        0xf CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_time/time.c.obj
- *fill*         0x100070eb        0x1 
+                0x100070f0        0xf CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_time/time.c.obj
+ *fill*         0x100070ff        0x1 
  .rodata.__func__.8
-                0x100070ec        0xc CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_time/time.c.obj
+                0x10007100        0xc CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_time/time.c.obj
  .rodata.__func__.9
-                0x100070f8       0x15 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_time/time.c.obj
- *fill*         0x1000710d        0x3 
+                0x1000710c       0x15 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_time/time.c.obj
+ *fill*         0x10007121        0x3 
  .rodata.hardware_alarm_claim.str1.4
-                0x10007110       0x22 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
- *fill*         0x10007132        0x2 
+                0x10007124       0x22 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+ *fill*         0x10007146        0x2 
  .rodata.hardware_alarm_set_target.str1.4
-                0x10007134       0x6c CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x10007148       0x6c CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
  .rodata.__func__.0
-                0x100071a0       0x1a CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
- *fill*         0x100071ba        0x2 
+                0x100071b4       0x1a CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+ *fill*         0x100071ce        0x2 
  .rodata.str1.4
-                0x100071bc       0x64 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_sync/mutex.c.obj
+                0x100071d0       0x64 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_sync/mutex.c.obj
                                  0xcc (size before relaxing)
  .rodata.__func__.0
-                0x10007220        0xb CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_sync/mutex.c.obj
- *fill*         0x1000722b        0x1 
+                0x10007234        0xb CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_sync/mutex.c.obj
+ *fill*         0x1000723f        0x1 
  .rodata.__func__.1
-                0x1000722c       0x18 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_sync/mutex.c.obj
+                0x10007240       0x18 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_sync/mutex.c.obj
  .rodata.__func__.2
-                0x10007244       0x15 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_sync/mutex.c.obj
- *fill*         0x10007259        0x3 
+                0x10007258       0x15 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_sync/mutex.c.obj
+ *fill*         0x1000726d        0x3 
  .rodata.__func__.3
-                0x1000725c       0x15 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_sync/mutex.c.obj
+                0x10007270       0x15 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_sync/mutex.c.obj
  .rodata.ph_add_child_node.str1.4
-                0x10007271       0x9e CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_util/pheap.c.obj
- *fill*         0x10007271        0x3 
+                0x10007285       0x9e CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_util/pheap.c.obj
+ *fill*         0x10007285        0x3 
  .rodata.ph_remove_any_head.str1.4
-                0x10007274       0x94 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_util/pheap.c.obj
+                0x10007288       0x94 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_util/pheap.c.obj
  .rodata.ph_remove_and_free_node.str1.4
-                0x10007308       0x26 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_util/pheap.c.obj
- *fill*         0x1000732e        0x2 
+                0x1000731c       0x26 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_util/pheap.c.obj
+ *fill*         0x10007342        0x2 
  .rodata.__func__.0
-                0x10007330       0x18 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_util/pheap.c.obj
+                0x10007344       0x18 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_util/pheap.c.obj
  .rodata.__func__.1
-                0x10007348       0x13 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_util/pheap.c.obj
- *fill*         0x1000735b        0x1 
+                0x1000735c       0x13 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_util/pheap.c.obj
+ *fill*         0x1000736f        0x1 
  .rodata.__func__.2
-                0x1000735c       0x12 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_util/pheap.c.obj
- *fill*         0x1000736e        0x2 
+                0x10007370       0x12 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_util/pheap.c.obj
+ *fill*         0x10007382        0x2 
  .rodata.__func__.3
-                0x10007370        0xc CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_util/pheap.c.obj
+                0x10007384        0xc CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/common/pico_util/pheap.c.obj
  .rodata.__assert_func.str1.4
-                0x1000737c       0x3f CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x10007390       0x3f CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
                                  0x43 (size before relaxing)
- *fill*         0x100073bb        0x1 
+ *fill*         0x100073cf        0x1 
  .rodata.panic.str1.4
-                0x100073bc       0x12 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
- *fill*         0x100073ce        0x2 
+                0x100073d0       0x12 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+ *fill*         0x100073e2        0x2 
  .rodata.clock_configure.str1.4
-                0x100073d0       0x5e CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
- *fill*         0x1000742e        0x2 
+                0x100073e4       0x5e CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
+ *fill*         0x10007442        0x2 
  .rodata.__func__.1
-                0x10007430       0x10 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
+                0x10007444       0x10 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
  .rodata.pll_init.str1.4
-                0x10007440       0xdf CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj
- *fill*         0x1000751f        0x1 
+                0x10007454       0xdf CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj
+ *fill*         0x10007533        0x1 
  .rodata.__func__.0
-                0x10007520        0x9 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj
- *fill*         0x10007529        0x3 
+                0x10007534        0x9 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj
+ *fill*         0x1000753d        0x3 
  .rodata.make_branch.str1.4
-                0x1000752c       0x54 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x10007540       0x54 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
  .rodata.irq_set_exclusive_handler.str1.4
-                0x10007580       0x36 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
- *fill*         0x100075b6        0x2 
+                0x10007594       0x36 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+ *fill*         0x100075ca        0x2 
  .rodata.irq_add_shared_handler.str1.4
-                0x100075b8       0xd9 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
- *fill*         0x10007691        0x3 
+                0x100075cc       0xd9 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+ *fill*         0x100076a5        0x3 
  .rodata.irq_remove_handler.str1.4
-                0x10007694       0x2a CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
- *fill*         0x100076be        0x2 
+                0x100076a8       0x2a CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+ *fill*         0x100076d2        0x2 
  .rodata.irq_add_tail_to_free_list.str1.4
-                0x100076c0       0x32 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x100076d4       0x32 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
                                  0x3a (size before relaxing)
- *fill*         0x100076f2        0x2 
+ *fill*         0x10007706        0x2 
  .rodata.__func__.0
-                0x100076f4       0x1a CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
- *fill*         0x1000770e        0x2 
+                0x10007708       0x1a CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+ *fill*         0x10007722        0x2 
  .rodata.__func__.1
-                0x10007710       0x17 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
- *fill*         0x10007727        0x1 
- .rodata.__func__.2
-                0x10007728       0x13 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x10007724       0x17 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
  *fill*         0x1000773b        0x1 
- .rodata.__func__.3
-                0x1000773c        0xc CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
- .rodata.__func__.4
-                0x10007748        0xf CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
- *fill*         0x10007757        0x1 
- .rodata.__func__.6
-                0x10007758       0x1a CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
- *fill*         0x10007772        0x2 
- .rodata._ftoa.str1.4
-                0x10007774       0x15 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
- *fill*         0x10007789        0x3 
- .rodata._vsnprintf
-                0x1000778c      0x1e0 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
- *fill*         0x1000796c        0x4 
- .rodata.pow10.0
-                0x10007970       0x50 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
- .rodata.__aeabi_double_init.str1.4
-                0x100079c0       0xaf CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.obj
- *fill*         0x10007a6f        0x1 
- .rodata.__func__.0
-                0x10007a70       0x14 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.obj
- .rodata.__aeabi_float_init.str1.4
-                0x10007a84       0x81 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_float/float_init_rom.c.obj
-                                 0x85 (size before relaxing)
- *fill*         0x10007b05        0x3 
- .rodata.__func__.0
-                0x10007b08       0x13 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_float/float_init_rom.c.obj
- *fill*         0x10007b1b        0x1 
- .rodata.str1.4
-                0x10007b1c       0x4c CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
- .rodata.__bi_44
-                0x10007b68        0xc CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
- .rodata.__bi_75
-                0x10007b74        0xc CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
- .rodata.__bi_81
-                0x10007b80        0xc CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
- .rodata.crlf_str.2
-                0x10007b8c        0x2 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
- *fill*         0x10007b8e        0x2 
- .rodata.str1.4
-                0x10007b90       0x2c CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
- .rodata.__bi_28.4
-                0x10007bbc        0xc CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
- .rodata.__bi_29.5
-                0x10007bc8        0x8 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
- .rodata._hw_endpoint_alloc.str1.4
-                0x10007bd0       0xbd CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
- *fill*         0x10007c8d        0x3 
- .rodata._hw_endpoint_init.str1.4
-                0x10007c90       0x28 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
- .rodata.hw_handle_buff_status.str1.4
-                0x10007cb8        0xb CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
- *fill*         0x10007cc3        0x1 
- .rodata.dcd_rp2040_irq.str1.4
-                0x10007cc4       0x14 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
- .rodata._hw_endpoint_stall.str1.4
-                0x10007cd8        0xd CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
- *fill*         0x10007ce5        0x3 
- .rodata.dcd_int_enable.str1.4
-                0x10007ce8        0xc CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
- .rodata.__func__.0
-                0x10007cf4       0x15 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
- *fill*         0x10007d09        0x3 
- .rodata.__func__.1
-                0x10007d0c       0x13 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
- *fill*         0x10007d1f        0x1 
- .rodata.__func__.10
-                0x10007d20        0xf CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
- *fill*         0x10007d2f        0x1 
- .rodata.__func__.11
-                0x10007d30       0x13 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
- *fill*         0x10007d43        0x1 
- .rodata.__func__.12
-                0x10007d44       0x16 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
- *fill*         0x10007d5a        0x2 
- .rodata.__func__.13
-                0x10007d5c        0x9 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
- *fill*         0x10007d65        0x3 
  .rodata.__func__.2
-                0x10007d68        0xf CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
- *fill*         0x10007d77        0x1 
+                0x1000773c       0x13 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+ *fill*         0x1000774f        0x1 
  .rodata.__func__.3
-                0x10007d78        0xe CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
- *fill*         0x10007d86        0x2 
+                0x10007750        0xc CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
  .rodata.__func__.4
+                0x1000775c        0xf CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+ *fill*         0x1000776b        0x1 
+ .rodata.__func__.6
+                0x1000776c       0x1a CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+ *fill*         0x10007786        0x2 
+ .rodata._ftoa.str1.4
+                0x10007788       0x15 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+ *fill*         0x1000779d        0x3 
+ .rodata._vsnprintf
+                0x100077a0      0x1e0 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+ .rodata.pow10.0
+                0x10007980       0x50 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+ .rodata.__aeabi_double_init.str1.4
+                0x100079d0       0xaf CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.obj
+ *fill*         0x10007a7f        0x1 
+ .rodata.__func__.0
+                0x10007a80       0x14 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.obj
+ .rodata.__aeabi_float_init.str1.4
+                0x10007a94       0x81 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_float/float_init_rom.c.obj
+                                 0x85 (size before relaxing)
+ *fill*         0x10007b15        0x3 
+ .rodata.__func__.0
+                0x10007b18       0x13 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_float/float_init_rom.c.obj
+ *fill*         0x10007b2b        0x1 
+ .rodata.str1.4
+                0x10007b2c       0x4c CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+ .rodata.__bi_44
+                0x10007b78        0xc CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+ .rodata.__bi_75
+                0x10007b84        0xc CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+ .rodata.__bi_81
+                0x10007b90        0xc CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+ .rodata.crlf_str.2
+                0x10007b9c        0x2 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+ *fill*         0x10007b9e        0x2 
+ .rodata.str1.4
+                0x10007ba0       0x2c CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+ .rodata.__bi_28.4
+                0x10007bcc        0xc CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+ .rodata.__bi_29.5
+                0x10007bd8        0x8 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+ .rodata._hw_endpoint_alloc.str1.4
+                0x10007be0       0xbd CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+ *fill*         0x10007c9d        0x3 
+ .rodata._hw_endpoint_init.str1.4
+                0x10007ca0       0x28 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+ .rodata.hw_handle_buff_status.str1.4
+                0x10007cc8        0xb CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+ *fill*         0x10007cd3        0x1 
+ .rodata.dcd_rp2040_irq.str1.4
+                0x10007cd4       0x14 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+ .rodata._hw_endpoint_stall.str1.4
+                0x10007ce8        0xd CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+ *fill*         0x10007cf5        0x3 
+ .rodata.dcd_int_enable.str1.4
+                0x10007cf8        0xc CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+ .rodata.__func__.0
+                0x10007d04       0x15 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+ *fill*         0x10007d19        0x3 
+ .rodata.__func__.1
+                0x10007d1c       0x13 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+ *fill*         0x10007d2f        0x1 
+ .rodata.__func__.10
+                0x10007d30        0xf CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+ *fill*         0x10007d3f        0x1 
+ .rodata.__func__.11
+                0x10007d40       0x13 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+ *fill*         0x10007d53        0x1 
+ .rodata.__func__.12
+                0x10007d54       0x16 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+ *fill*         0x10007d6a        0x2 
+ .rodata.__func__.13
+                0x10007d6c        0x9 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+ *fill*         0x10007d75        0x3 
+ .rodata.__func__.2
+                0x10007d78        0xf CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+ *fill*         0x10007d87        0x1 
+ .rodata.__func__.3
                 0x10007d88        0xe CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
  *fill*         0x10007d96        0x2 
- .rodata.__func__.5
-                0x10007d98       0x1a CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
- *fill*         0x10007db2        0x2 
- .rodata.__func__.6
-                0x10007db4        0xc CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
- .rodata.__func__.8
-                0x10007dc0       0x10 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
- .rodata._hw_endpoint_buffer_control_update32.str1.4
-                0x10007dd0       0x1f CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
- *fill*         0x10007def        0x1 
- .rodata._hw_endpoint_xfer_sync.str1.4
-                0x10007df0       0x99 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
- *fill*         0x10007e89        0x3 
- .rodata._hw_endpoint_xfer_continue.str1.4
-                0x10007e8c       0x50 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
- .rodata._hw_endpoint_xfer.str1.4
-                0x10007edc        0xf CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
- .rodata.str1.4
-                0x10007eeb        0xf CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
-                                  0x7 (size before relaxing)
- *fill*         0x10007eeb        0x1 
- .rodata.__func__.0
-                0x10007eec       0x12 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
- *fill*         0x10007efe        0x2 
- .rodata.__func__.1
-                0x10007f00       0x17 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
- *fill*         0x10007f17        0x1 
- .rodata.process_set_config.str1.4
-                0x10007f18       0x17 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
- *fill*         0x10007f2f        0x1 
- .rodata.process_get_descriptor
-                0x10007f30       0x40 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
- .rodata.dcd_event_handler.str1.4
-                0x10007f70       0x53 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
- *fill*         0x10007fc3        0x1 
- .rodata.process_control_request
-                0x10007fc4       0x28 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
- .rodata.tud_task
-                0x10007fec       0x24 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
- .rodata.__func__.1
-                0x10008010        0xf CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
- *fill*         0x1000801f        0x1 
- .rodata.__func__.2
-                0x10008020       0x14 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
- .rodata.__func__.3
-                0x10008034       0x10 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
  .rodata.__func__.4
-                0x10008044       0x17 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
- *fill*         0x1000805b        0x1 
+                0x10007d98        0xe CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+ *fill*         0x10007da6        0x2 
  .rodata.__func__.5
-                0x1000805c       0x13 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
- *fill*         0x1000806f        0x1 
+                0x10007da8       0x1a CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+ *fill*         0x10007dc2        0x2 
  .rodata.__func__.6
-                0x10008070       0x18 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
- .rodata.__func__.7
-                0x10008088       0x13 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
- *fill*         0x1000809b        0x1 
+                0x10007dc4        0xc CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
  .rodata.__func__.8
-                0x1000809c        0x9 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
- *fill*         0x100080a5        0x3 
- .rodata._usbd_driver
-                0x100080a8       0x1c CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
- .rodata.tud_control_xfer.str1.4
-                0x100080c4       0x17 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+                0x10007dd0       0x10 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+ .rodata._hw_endpoint_buffer_control_update32.str1.4
+                0x10007de0       0x1f CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+ *fill*         0x10007dff        0x1 
+ .rodata._hw_endpoint_xfer_sync.str1.4
+                0x10007e00       0x99 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+ *fill*         0x10007e99        0x3 
+ .rodata._hw_endpoint_xfer_continue.str1.4
+                0x10007e9c       0x50 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+ .rodata._hw_endpoint_xfer.str1.4
+                0x10007eec        0xf CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+ .rodata.str1.4
+                0x10007efb        0xf CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+                                  0x7 (size before relaxing)
+ *fill*         0x10007efb        0x1 
  .rodata.__func__.0
-                0x100080c4       0x15 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
- *fill*         0x100080d9        0x3 
+                0x10007efc       0x12 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+ *fill*         0x10007f0e        0x2 
  .rodata.__func__.1
-                0x100080dc       0x11 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
- *fill*         0x100080ed        0x3 
- .rodata.hidd_open.str1.4
-                0x100080f0       0x11 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.obj
-                                 0x29 (size before relaxing)
- *fill*         0x10008101        0x3 
- .rodata.hidd_control_request
-                0x10008104       0x30 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.obj
- .rodata.__PRETTY_FUNCTION__.2
-                0x10008134        0xa CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.obj
- *fill*         0x1000813e        0x2 
- .rodata.__func__.0
-                0x10008140        0xd CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.obj
- *fill*         0x1000814d        0x3 
+                0x10007f10       0x17 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+ *fill*         0x10007f27        0x1 
+ .rodata.process_set_config.str1.4
+                0x10007f28       0x17 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+ *fill*         0x10007f3f        0x1 
+ .rodata.process_get_descriptor
+                0x10007f40       0x40 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+ .rodata.dcd_event_handler.str1.4
+                0x10007f80       0x53 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+ *fill*         0x10007fd3        0x1 
+ .rodata.process_control_request
+                0x10007fd4       0x28 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+ .rodata.tud_task
+                0x10007ffc       0x24 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
  .rodata.__func__.1
-                0x10008150       0x15 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.obj
- *fill*         0x10008165        0x3 
+                0x10008020        0xf CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+ *fill*         0x1000802f        0x1 
+ .rodata.__func__.2
+                0x10008030       0x14 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
  .rodata.__func__.3
-                0x10008168        0xa CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.obj
- .rodata.tusb_init.str1.4
-                0x10008172       0x17 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/tusb.c.obj
- *fill*         0x10008172        0x2 
+                0x10008044       0x10 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+ .rodata.__func__.4
+                0x10008054       0x17 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+ *fill*         0x1000806b        0x1 
+ .rodata.__func__.5
+                0x1000806c       0x13 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+ *fill*         0x1000807f        0x1 
+ .rodata.__func__.6
+                0x10008080       0x18 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+ .rodata.__func__.7
+                0x10008098       0x13 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+ *fill*         0x100080ab        0x1 
+ .rodata.__func__.8
+                0x100080ac        0x9 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+ *fill*         0x100080b5        0x3 
+ .rodata._usbd_driver
+                0x100080b8       0x1c CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+ .rodata.tud_control_xfer.str1.4
+                0x100080d4       0x17 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
  .rodata.__func__.0
-                0x10008174        0xa CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/tusb.c.obj
- *fill*         0x1000817e        0x2 
- .rodata._pio_find_offset_for_program.str1.4
-                0x10008180       0x6c CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pio/pio.c.obj
- .rodata._pio_add_program_at_offset.str1.4
-                0x100081ec       0x11 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pio/pio.c.obj
- *fill*         0x100081fd        0x3 
+                0x100080d4       0x15 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+ *fill*         0x100080e9        0x3 
  .rodata.__func__.1
-                0x10008200       0x1d CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pio/pio.c.obj
-                0x10008220                . = ALIGN (0x4)
- *fill*         0x1000821d        0x3 
+                0x100080ec       0x11 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+ *fill*         0x100080fd        0x3 
+ .rodata.hidd_open.str1.4
+                0x10008100       0x11 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.obj
+                                 0x29 (size before relaxing)
+ *fill*         0x10008111        0x3 
+ .rodata.hidd_control_request
+                0x10008114       0x30 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.obj
+ .rodata.__PRETTY_FUNCTION__.2
+                0x10008144        0xa CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.obj
+ *fill*         0x1000814e        0x2 
+ .rodata.__func__.0
+                0x10008150        0xd CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.obj
+ *fill*         0x1000815d        0x3 
+ .rodata.__func__.1
+                0x10008160       0x15 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.obj
+ *fill*         0x10008175        0x3 
+ .rodata.__func__.3
+                0x10008178        0xa CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/class/hid/hid_device.c.obj
+ .rodata.tusb_init.str1.4
+                0x10008182       0x17 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/tusb.c.obj
+ *fill*         0x10008182        0x2 
+ .rodata.__func__.0
+                0x10008184        0xa CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/src/tusb.c.obj
+ *fill*         0x1000818e        0x2 
+ .rodata._pio_find_offset_for_program.str1.4
+                0x10008190       0x6c CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pio/pio.c.obj
+ .rodata._pio_add_program_at_offset.str1.4
+                0x100081fc       0x11 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pio/pio.c.obj
+ *fill*         0x1000820d        0x3 
+ .rodata.__func__.1
+                0x10008210       0x1d CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pio/pio.c.obj
+                0x10008230                . = ALIGN (0x4)
+ *fill*         0x1000822d        0x3 
  *(SORT_BY_ALIGNMENT(SORT_BY_NAME(.flashdata*)))
-                0x10008220                . = ALIGN (0x4)
+                0x10008230                . = ALIGN (0x4)
 
-.rel.dyn        0x10008220        0x0
- .rel.iplt      0x10008220        0x0 c:/progra~2/gnuarm~1/102020~1/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp/crtbegin.o
+.rel.dyn        0x10008230        0x0
+ .rel.iplt      0x10008230        0x0 c:/progra~2/gnuarm~1/102020~1/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp/crtbegin.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x10008220                __exidx_start = .
+                0x10008230                __exidx_start = .
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x10008220                __exidx_end = .
-                0x10008220                . = ALIGN (0x4)
-                0x10008220                __binary_info_start = .
+                0x10008230                __exidx_end = .
+                0x10008230                . = ALIGN (0x4)
+                0x10008230                __binary_info_start = .
 
-.binary_info    0x10008220       0x24
+.binary_info    0x10008230       0x24
  *(.binary_info.keep.*)
  .binary_info.keep.__bi_ptr22
-                0x10008220        0x4 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
- .binary_info.keep.__bi_ptr30
-                0x10008224        0x4 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
- .binary_info.keep.__bi_ptr38
-                0x10008228        0x4 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
- .binary_info.keep.__bi_ptr44
-                0x1000822c        0x4 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
- .binary_info.keep.__bi_ptr50
                 0x10008230        0x4 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
- .binary_info.keep.__bi_ptr75
+ .binary_info.keep.__bi_ptr30
                 0x10008234        0x4 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
- .binary_info.keep.__bi_ptr81
+ .binary_info.keep.__bi_ptr38
                 0x10008238        0x4 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+ .binary_info.keep.__bi_ptr44
+                0x1000823c        0x4 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+ .binary_info.keep.__bi_ptr50
+                0x10008240        0x4 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+ .binary_info.keep.__bi_ptr75
+                0x10008244        0x4 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+ .binary_info.keep.__bi_ptr81
+                0x10008248        0x4 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  *(.binary_info.*)
  .binary_info.__bi_ptr28
-                0x1000823c        0x4 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+                0x1000824c        0x4 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
  .binary_info.__bi_ptr29
-                0x10008240        0x4 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
-                0x10008244                __binary_info_end = .
-                0x10008244                . = ALIGN (0x4)
-                0x10008244                __etext = .
+                0x10008250        0x4 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+                0x10008254                __binary_info_end = .
+                0x10008254                . = ALIGN (0x4)
+                0x10008254                __etext = .
 
 .ram_vector_table
                 0x20000000       0xc0
@@ -2606,7 +2605,7 @@ LOAD c:/progra~2/gnuarm~1/102020~1/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../
                 0x20000000       0xc0 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
                 0x20000000                ram_vector_table
 
-.data           0x200000c0      0x338 load address 0x10008244
+.data           0x200000c0      0x338 load address 0x10008254
                 0x200000c0                __data_start__ = .
  *(vtable)
  *(.time_critical*)
@@ -2704,27 +2703,27 @@ LOAD c:/progra~2/gnuarm~1/102020~1/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../
                 0x200003f8                . = ALIGN (0x4)
                 0x200003f8                __data_end__ = .
 
-.igot.plt       0x200003f8        0x0 load address 0x1000857c
+.igot.plt       0x200003f8        0x0 load address 0x1000858c
  .igot.plt      0x200003f8        0x0 c:/progra~2/gnuarm~1/102020~1/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp/crtbegin.o
 
 .uninitialized_data
-                0x200003f8        0x0 load address 0x1000857c
+                0x200003f8        0x0 load address 0x1000858c
                 0x200003f8                . = ALIGN (0x4)
  *(.uninitialized_data*)
 
-.scratch_x      0x20040000        0x0 load address 0x1000857c
+.scratch_x      0x20040000        0x0 load address 0x1000858c
                 0x20040000                __scratch_x_start__ = .
  *(.scratch_x.*)
                 0x20040000                . = ALIGN (0x4)
                 0x20040000                __scratch_x_end__ = .
-                0x1000857c                __scratch_x_source__ = LOADADDR (.scratch_x)
+                0x1000858c                __scratch_x_source__ = LOADADDR (.scratch_x)
 
-.scratch_y      0x20041000        0x0 load address 0x1000857c
+.scratch_y      0x20041000        0x0 load address 0x1000858c
                 0x20041000                __scratch_y_start__ = .
  *(.scratch_y.*)
                 0x20041000                . = ALIGN (0x4)
                 0x20041000                __scratch_y_end__ = .
-                0x1000857c                __scratch_y_source__ = LOADADDR (.scratch_y)
+                0x1000858c                __scratch_y_source__ = LOADADDR (.scratch_y)
 
 .bss            0x200003f8      0xc50
                 0x200003f8                . = ALIGN (0x4)
@@ -2835,8 +2834,8 @@ LOAD c:/progra~2/gnuarm~1/102020~1/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../
  *(.stack*)
  .stack         0x20041000      0x800 CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/pico_standard_link/crt0.S.obj
 
-.flash_end      0x1000857c        0x0
-                0x1000857c                __flash_binary_end = .
+.flash_end      0x1000858c        0x0
+                0x1000858c                __flash_binary_end = .
                 0x20040000                __StackLimit = (ORIGIN (RAM) + LENGTH (RAM))
                 0x20041000                __StackOneTop = (ORIGIN (SCRATCH_X) + LENGTH (SCRATCH_X))
                 0x20042000                __StackTop = (ORIGIN (SCRATCH_Y) + LENGTH (SCRATCH_Y))
@@ -2911,7 +2910,7 @@ LOAD CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/r
 LOAD CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/lib/tinyusb/hw/bsp/raspberry_pi_pico/board_raspberry_pi_pico.c.obj
 LOAD CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pio/pio.c.obj
 LOAD CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_dma/dma.c.obj
-LOAD C:\Users\ngadj\AppData\Local\Temp\ccdcDqkk.o
+LOAD C:\Users\ngadj\AppData\Local\Temp\ccwGiYJx.o
 LOAD c:/progra~2/gnuarm~1/102020~1/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a
 LOAD c:/progra~2/gnuarm~1/102020~1/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libm.a
 START GROUP
@@ -3028,7 +3027,7 @@ LOAD linker stubs
  .ARM.attributes
                 0x000007a8       0x2c CMakeFiles/Pico_Game_Controller.dir/C_/Users/ngadj/Documents/pico-sdk/src/rp2_common/hardware_pio/pio.c.obj
  .ARM.attributes
-                0x000007d4       0x22 C:\Users\ngadj\AppData\Local\Temp\ccdcDqkk.o
+                0x000007d4       0x22 C:\Users\ngadj\AppData\Local\Temp\ccwGiYJx.o
  .ARM.attributes
                 0x000007f6       0x1e c:/progra~2/gnuarm~1/102020~1/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v6-m/nofp\libgcc.a(_dvmd_tls.o)
  .ARM.attributes

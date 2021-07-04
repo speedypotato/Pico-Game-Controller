@@ -295,10 +295,10 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "CXX compiler"
+					"value" : "No help, variable specified on the command line."
 				}
 			],
-			"type" : "STRING",
+			"type" : "FILEPATH",
 			"value" : "C:/Program Files (x86)/GNU Arm Embedded Toolchain/10 2020-q4-major/bin/arm-none-eabi-g++.exe"
 		},
 		{
@@ -423,10 +423,10 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "C compiler"
+					"value" : "No help, variable specified on the command line."
 				}
 			],
-			"type" : "STRING",
+			"type" : "FILEPATH",
 			"value" : "C:/Program Files (x86)/GNU Arm Embedded Toolchain/10 2020-q4-major/bin/arm-none-eabi-gcc.exe"
 		},
 		{
@@ -1455,7 +1455,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : " C:/Users/ngadj/Documents/pico-sdk/src/rp2040/hardware_regs"
+			"value" : " C:/Users/ngadj/Documents/pico-sdk/src/rp2040/hardware_regs C:/Users/ngadj/Documents/pico-sdk/src/rp2040/hardware_regs C:/Users/ngadj/Documents/pico-sdk/src/rp2040/hardware_regs C:/Users/ngadj/Documents/pico-sdk/src/rp2040/hardware_regs"
 		},
 		{
 			"name" : "PICO_DOXYGEN_PATHS",

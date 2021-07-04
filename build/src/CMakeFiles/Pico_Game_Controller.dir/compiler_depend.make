@@ -2315,25 +2315,22 @@ src\CMakeFiles\Pico_Game_Controller.dir\C_\Users\ngadj\Documents\pico-sdk\src\rp
 
 
 src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: ..\src\pico_game_controller.c
-src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2020-q4-major\arm-none-eabi\include\stdlib.h"
-src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2020-q4-major\arm-none-eabi\include\machine\ieeefp.h"
+src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2020-q4-major\arm-none-eabi\include\stdio.h"
 src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2020-q4-major\arm-none-eabi\include\_ansi.h"
 src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2020-q4-major\arm-none-eabi\include\newlib.h"
 src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2020-q4-major\arm-none-eabi\include\_newlib_version.h"
 src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2020-q4-major\arm-none-eabi\include\sys\config.h"
+src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2020-q4-major\arm-none-eabi\include\machine\ieeefp.h"
 src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2020-q4-major\arm-none-eabi\include\sys\features.h"
+src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2020-q4-major\arm-none-eabi\include\sys\cdefs.h"
+src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2020-q4-major\arm-none-eabi\include\machine\_default_types.h"
 src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2020-q4-major\lib\gcc\arm-none-eabi\10.2.1\include\stddef.h"
+src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2020-q4-major\lib\gcc\arm-none-eabi\10.2.1\include\stdarg.h"
 src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2020-q4-major\arm-none-eabi\include\sys\reent.h"
 src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2020-q4-major\arm-none-eabi\include\_ansi.h"
 src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2020-q4-major\arm-none-eabi\include\sys\_types.h"
 src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2020-q4-major\arm-none-eabi\include\machine\_types.h"
-src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2020-q4-major\arm-none-eabi\include\machine\_default_types.h"
 src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2020-q4-major\arm-none-eabi\include\sys\lock.h"
-src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2020-q4-major\arm-none-eabi\include\sys\cdefs.h"
-src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2020-q4-major\arm-none-eabi\include\machine\stdlib.h"
-src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2020-q4-major\arm-none-eabi\include\alloca.h"
-src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2020-q4-major\arm-none-eabi\include\stdio.h"
-src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2020-q4-major\lib\gcc\arm-none-eabi\10.2.1\include\stdarg.h"
 src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2020-q4-major\arm-none-eabi\include\sys\types.h"
 src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2020-q4-major\arm-none-eabi\include\sys\_stdint.h"
 src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2020-q4-major\arm-none-eabi\include\machine\endian.h"
@@ -2347,6 +2344,9 @@ src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: "C:\Program 
 src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2020-q4-major\arm-none-eabi\include\sys\sched.h"
 src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2020-q4-major\arm-none-eabi\include\machine\types.h"
 src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2020-q4-major\arm-none-eabi\include\sys\stdio.h"
+src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2020-q4-major\arm-none-eabi\include\stdlib.h"
+src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2020-q4-major\arm-none-eabi\include\machine\stdlib.h"
+src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2020-q4-major\arm-none-eabi\include\alloca.h"
 src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2020-q4-major\arm-none-eabi\include\string.h"
 src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2020-q4-major\arm-none-eabi\include\sys\_locale.h"
 src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2020-q4-major\arm-none-eabi\include\strings.h"
@@ -2399,21 +2399,15 @@ src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: C:\Users\nga
 src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: C:\Users\ngadj\Documents\pico-sdk\lib\tinyusb\src\class\hid\hid_device.h
 src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: C:\Users\ngadj\Documents\pico-sdk\lib\tinyusb\src\device\usbd.h
 src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: C:\Users\ngadj\Documents\pico-sdk\lib\tinyusb\src\class\hid\hid.h
-src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\common\pico_stdlib\include\pico\stdlib.h
-src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2_common\pico_stdio\include\pico\stdio.h
+src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: src\encoders.pio.h
+src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\include\hardware\pio.h
+src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_structs\include\hardware\structs\pio.h
+src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_regs\include\hardware\regs\pio.h
 src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_gpio\include\hardware\gpio.h
 src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_structs\include\hardware\structs\sio.h
 src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_structs\include\hardware\structs\interp.h
 src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_structs\include\hardware\structs\padsbank0.h
 src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_regs\include\hardware\regs\pads_bank0.h
-src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_uart\include\hardware\uart.h
-src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_structs\include\hardware\structs\uart.h
-src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_regs\include\hardware\regs\uart.h
-src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2_common\pico_stdio_uart\include\pico\stdio_uart.h
-src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: ..\src\usb_descriptors.h
-src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\include\hardware\pio.h
-src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_structs\include\hardware\structs\pio.h
-src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_regs\include\hardware\regs\pio.h
 src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_regs\include\hardware\regs\dreq.h
 src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\include\hardware\pio_instructions.h
 src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_dma\include\hardware\dma.h
@@ -2422,10 +2416,17 @@ src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: C:\Users\nga
 src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_irq\include\hardware\irq.h
 src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_regs\include\hardware\regs\intctrl.h
 src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_regs\include\hardware\regs\m0plus.h
-src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: src\encoders.pio.h
+src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\common\pico_stdlib\include\pico\stdlib.h
+src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2_common\pico_stdio\include\pico\stdio.h
+src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_uart\include\hardware\uart.h
+src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_structs\include\hardware\structs\uart.h
+src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_regs\include\hardware\regs\uart.h
+src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: C:\Users\ngadj\Documents\pico-sdk\src\rp2_common\pico_stdio_uart\include\pico\stdio_uart.h
+src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: ..\src\usb_descriptors.h
 
 
 src\CMakeFiles\Pico_Game_Controller.dir\usb_descriptors.c.obj: ..\src\usb_descriptors.c
+src\CMakeFiles\Pico_Game_Controller.dir\usb_descriptors.c.obj: ..\src\usb_descriptors.h
 src\CMakeFiles\Pico_Game_Controller.dir\usb_descriptors.c.obj: C:\Users\ngadj\Documents\pico-sdk\lib\tinyusb\src\tusb.h
 src\CMakeFiles\Pico_Game_Controller.dir\usb_descriptors.c.obj: C:\Users\ngadj\Documents\pico-sdk\lib\tinyusb\src\common\tusb_common.h
 src\CMakeFiles\Pico_Game_Controller.dir\usb_descriptors.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2020-q4-major\lib\gcc\arm-none-eabi\10.2.1\include\stdbool.h"
@@ -2505,7 +2506,6 @@ src\CMakeFiles\Pico_Game_Controller.dir\usb_descriptors.c.obj: C:\Users\ngadj\Do
 src\CMakeFiles\Pico_Game_Controller.dir\usb_descriptors.c.obj: C:\Users\ngadj\Documents\pico-sdk\lib\tinyusb\src\class\hid\hid_device.h
 src\CMakeFiles\Pico_Game_Controller.dir\usb_descriptors.c.obj: C:\Users\ngadj\Documents\pico-sdk\lib\tinyusb\src\device\usbd.h
 src\CMakeFiles\Pico_Game_Controller.dir\usb_descriptors.c.obj: C:\Users\ngadj\Documents\pico-sdk\lib\tinyusb\src\class\hid\hid.h
-src\CMakeFiles\Pico_Game_Controller.dir\usb_descriptors.c.obj: ..\src\usb_descriptors.h
 
 
 

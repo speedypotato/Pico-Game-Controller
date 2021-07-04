@@ -1,24 +1,21 @@
 src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: \
  C\:\Users\ngadj\Documents\Pico-Game-Controller\src\pico_game_controller.c \
- c\:\progra~2\gnuarm~1\102020~1\arm-none-eabi\include\stdlib.h \
- c\:\progra~2\gnuarm~1\102020~1\arm-none-eabi\include\machine\ieeefp.h \
+ c\:\progra~2\gnuarm~1\102020~1\arm-none-eabi\include\stdio.h \
  c\:\progra~2\gnuarm~1\102020~1\arm-none-eabi\include\_ansi.h \
  c\:\progra~2\gnuarm~1\102020~1\arm-none-eabi\include\newlib.h \
  c\:\progra~2\gnuarm~1\102020~1\arm-none-eabi\include\_newlib_version.h \
  c\:\progra~2\gnuarm~1\102020~1\arm-none-eabi\include\sys\config.h \
+ c\:\progra~2\gnuarm~1\102020~1\arm-none-eabi\include\machine\ieeefp.h \
  c\:\progra~2\gnuarm~1\102020~1\arm-none-eabi\include\sys\features.h \
+ c\:\progra~2\gnuarm~1\102020~1\arm-none-eabi\include\sys\cdefs.h \
+ c\:\progra~2\gnuarm~1\102020~1\arm-none-eabi\include\machine\_default_types.h \
  c\:\progra~2\gnuarm~1\102020~1\lib\gcc\arm-none-eabi\10.2.1\include\stddef.h \
+ c\:\progra~2\gnuarm~1\102020~1\lib\gcc\arm-none-eabi\10.2.1\include\stdarg.h \
  c\:\progra~2\gnuarm~1\102020~1\arm-none-eabi\include\sys\reent.h \
  c\:\progra~2\gnuarm~1\102020~1\arm-none-eabi\include\_ansi.h \
  c\:\progra~2\gnuarm~1\102020~1\arm-none-eabi\include\sys\_types.h \
  c\:\progra~2\gnuarm~1\102020~1\arm-none-eabi\include\machine\_types.h \
- c\:\progra~2\gnuarm~1\102020~1\arm-none-eabi\include\machine\_default_types.h \
  c\:\progra~2\gnuarm~1\102020~1\arm-none-eabi\include\sys\lock.h \
- c\:\progra~2\gnuarm~1\102020~1\arm-none-eabi\include\sys\cdefs.h \
- c\:\progra~2\gnuarm~1\102020~1\arm-none-eabi\include\machine\stdlib.h \
- c\:\progra~2\gnuarm~1\102020~1\arm-none-eabi\include\alloca.h \
- c\:\progra~2\gnuarm~1\102020~1\arm-none-eabi\include\stdio.h \
- c\:\progra~2\gnuarm~1\102020~1\lib\gcc\arm-none-eabi\10.2.1\include\stdarg.h \
  c\:\progra~2\gnuarm~1\102020~1\arm-none-eabi\include\sys\types.h \
  c\:\progra~2\gnuarm~1\102020~1\arm-none-eabi\include\sys\_stdint.h \
  c\:\progra~2\gnuarm~1\102020~1\arm-none-eabi\include\machine\endian.h \
@@ -32,6 +29,9 @@ src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: \
  c\:\progra~2\gnuarm~1\102020~1\arm-none-eabi\include\sys\sched.h \
  c\:\progra~2\gnuarm~1\102020~1\arm-none-eabi\include\machine\types.h \
  c\:\progra~2\gnuarm~1\102020~1\arm-none-eabi\include\sys\stdio.h \
+ c\:\progra~2\gnuarm~1\102020~1\arm-none-eabi\include\stdlib.h \
+ c\:\progra~2\gnuarm~1\102020~1\arm-none-eabi\include\machine\stdlib.h \
+ c\:\progra~2\gnuarm~1\102020~1\arm-none-eabi\include\alloca.h \
  c\:\progra~2\gnuarm~1\102020~1\arm-none-eabi\include\string.h \
  c\:\progra~2\gnuarm~1\102020~1\arm-none-eabi\include\sys\_locale.h \
  c\:\progra~2\gnuarm~1\102020~1\arm-none-eabi\include\strings.h \
@@ -84,21 +84,15 @@ src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: \
  C\:\Users\ngadj\Documents\pico-sdk\lib\tinyusb\src/class/hid/hid_device.h \
  C\:\Users\ngadj\Documents\pico-sdk\lib\tinyusb\src/device/usbd.h \
  C\:\Users\ngadj\Documents\pico-sdk\lib\tinyusb\src/class/hid/hid.h \
- C\:\Users\ngadj\Documents\pico-sdk\src\common\pico_stdlib\include/pico/stdlib.h \
- C\:\Users\ngadj\Documents\pico-sdk\src\rp2_common\pico_stdio\include/pico/stdio.h \
+ C\:\Users\ngadj\Documents\Pico-Game-Controller\build\src/encoders.pio.h \
+ C\:\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\include/hardware/pio.h \
+ C\:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_structs\include/hardware/structs/pio.h \
+ C\:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_regs\include/hardware/regs/pio.h \
  C\:\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_gpio\include/hardware/gpio.h \
  C\:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_structs\include/hardware/structs/sio.h \
  C\:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_structs\include/hardware/structs/interp.h \
  C\:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_structs\include/hardware/structs/padsbank0.h \
  C\:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_regs\include/hardware/regs/pads_bank0.h \
- C\:\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_uart\include/hardware/uart.h \
- C\:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_structs\include/hardware/structs/uart.h \
- C\:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_regs\include/hardware/regs/uart.h \
- C\:\Users\ngadj\Documents\pico-sdk\src\rp2_common\pico_stdio_uart\include/pico/stdio_uart.h \
- C\:\Users\ngadj\Documents\Pico-Game-Controller\src\usb_descriptors.h \
- C\:\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\include/hardware/pio.h \
- C\:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_structs\include/hardware/structs/pio.h \
- C\:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_regs\include/hardware/regs/pio.h \
  C\:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_regs\include/hardware/regs/dreq.h \
  C\:\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_pio\include/hardware/pio_instructions.h \
  C\:\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_dma\include/hardware/dma.h \
@@ -107,4 +101,10 @@ src\CMakeFiles\Pico_Game_Controller.dir\pico_game_controller.c.obj: \
  C\:\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_irq\include/hardware/irq.h \
  C\:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_regs\include/hardware/regs/intctrl.h \
  C\:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_regs\include/hardware/regs/m0plus.h \
- C\:\Users\ngadj\Documents\Pico-Game-Controller\build\src/encoders.pio.h
+ C\:\Users\ngadj\Documents\pico-sdk\src\common\pico_stdlib\include/pico/stdlib.h \
+ C\:\Users\ngadj\Documents\pico-sdk\src\rp2_common\pico_stdio\include/pico/stdio.h \
+ C\:\Users\ngadj\Documents\pico-sdk\src\rp2_common\hardware_uart\include/hardware/uart.h \
+ C\:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_structs\include/hardware/structs/uart.h \
+ C\:\Users\ngadj\Documents\pico-sdk\src\rp2040\hardware_regs\include/hardware/regs/uart.h \
+ C\:\Users\ngadj\Documents\pico-sdk\src\rp2_common\pico_stdio_uart\include/pico/stdio_uart.h \
+ C\:\Users\ngadj\Documents\Pico-Game-Controller\src\usb_descriptors.h

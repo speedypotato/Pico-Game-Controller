@@ -1,5 +1,6 @@
 src\CMakeFiles\Pico_Game_Controller.dir\usb_descriptors.c.obj: \
  C\:\Users\ngadj\Documents\Pico-Game-Controller\src\usb_descriptors.c \
+ C\:\Users\ngadj\Documents\Pico-Game-Controller\src\usb_descriptors.h \
  C\:\Users\ngadj\Documents\pico-sdk\lib\tinyusb\src/tusb.h \
  C\:\Users\ngadj\Documents\pico-sdk\lib\tinyusb\src/common/tusb_common.h \
  c\:\progra~2\gnuarm~1\102020~1\lib\gcc\arm-none-eabi\10.2.1\include\stdbool.h \
@@ -78,5 +79,4 @@ src\CMakeFiles\Pico_Game_Controller.dir\usb_descriptors.c.obj: \
  C\:\Users\ngadj\Documents\pico-sdk\lib\tinyusb\src/device/usbd.h \
  C\:\Users\ngadj\Documents\pico-sdk\lib\tinyusb\src/class/hid/hid_device.h \
  C\:\Users\ngadj\Documents\pico-sdk\lib\tinyusb\src/device/usbd.h \
- C\:\Users\ngadj\Documents\pico-sdk\lib\tinyusb\src/class/hid/hid.h \
- C\:\Users\ngadj\Documents\Pico-Game-Controller\src\usb_descriptors.h
+ C\:\Users\ngadj\Documents\pico-sdk\lib\tinyusb\src/class/hid/hid.h
