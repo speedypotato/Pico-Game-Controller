@@ -39,7 +39,11 @@
 #define con_mode 0
 #define sdvx_pid 0x101c
 #define iidx_pid 0x8048
+// todo figure out why above no worky on line 61-62
 #define _PID_MAP(itf, n) ((CFG_TUD_##itf) << (n))
+#define USB_PID                                                      \
+  (0x4000 | _PID_MAP(CDC, 0) | _PID_MAP(MSC, 1) | _PID_MAP(HID, 2) | \
+   _PID_MAP(MIDI, 3) | _PID_MAP(VENDOR, 4))
 
 //--------------------------------------------------------------------+
 // Device Descriptors
@@ -54,8 +58,8 @@ tusb_desc_device_t const desc_device = {
     .bDeviceProtocol = 0x00,
     .bMaxPacketSize0 = CFG_TUD_ENDPOINT0_SIZE,
 
-    .idVendor = 0x1ccf,
-    .idProduct = con_mode ? iidx_pid : sdvx_pid,
+    .idVendor = 0xCafe,
+    .idProduct = USB_PID,
     .bcdDevice = 0x0100,
 
     .iManufacturer = 0x01,
@@ -75,6 +79,8 @@ uint8_t const *tud_descriptor_device_cb(void) {
 //--------------------------------------------------------------------+
 
 uint8_t const desc_hid_report[] = {
+    GAMECON_REPORT_DESC_GAMEPAD(HID_REPORT_ID(REPORT_ID_GAMEPAD)),
+    GAMECON_REPORT_DESC_LIGHTS(HID_REPORT_ID(REPORT_ID_LIGHTS)),
     TUD_HID_REPORT_DESC_KEYBOARD(HID_REPORT_ID(REPORT_ID_KEYBOARD)),
     TUD_HID_REPORT_DESC_MOUSE(HID_REPORT_ID(REPORT_ID_MOUSE))};
 
