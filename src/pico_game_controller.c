@@ -24,14 +24,17 @@
 #define ENC_PPR 600                   // Encoder PPR
 #define ENC_PULSE (ENC_PPR * 4)       // 4 pulses per PPR
 #define ENC_ROLLOVER (ENC_PULSE * 2)  // Delta Rollover threshold
+#define REACTIVE_TIMEOUT_MAX 1000  // Cycles before HID falls back to reactive
 
 // MODIFY KEYBINDS HERE, MAKE SURE LENGTHS MATCH SW_GPIO_SIZE
 const uint8_t SW_KEYCODE[] = {HID_KEY_D, HID_KEY_F, HID_KEY_J, HID_KEY_K,
                               HID_KEY_C, HID_KEY_M, HID_KEY_A, HID_KEY_B,
                               HID_KEY_1, HID_KEY_C, HID_KEY_D};
-const uint8_t SW_GPIO[] = {4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
+const uint8_t SW_GPIO[] = {
+    4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 27,
+};
 const uint8_t LED_GPIO[] = {
-    15, 16, 17, 18, 19, 20, 21, 22, 26, 27, 28,
+    5, 7, 9, 11, 13, 15, 17, 19, 21, 26, 28,
 };
 const uint8_t ENC_GPIO[] = {0, 2};  // L_ENC(0, 1); R_ENC(2, 3)
 
@@ -45,20 +48,44 @@ bool sw_val[SW_GPIO_SIZE];
 bool prev_sw_val[SW_GPIO_SIZE];
 bool sw_changed;
 
+bool leds_changed;
+unsigned long reactive_timeout_count = REACTIVE_TIMEOUT_MAX;
+
+void (*loop_mode)();
+
+struct lights_report {
+  uint8_t buttons[11];
+} lights_report;
+
+/**
+ * HID/Reactive Lights
+ **/
+void update_lights() {
+  if (leds_changed) {
+    for (int i = 0; i < SW_GPIO_SIZE; i++) {
+      if (reactive_timeout_count >= REACTIVE_TIMEOUT_MAX) {
+        if (sw_val[i]) {
+          gpio_put(LED_GPIO[i], 1);
+        } else {
+          gpio_put(LED_GPIO[i], 0);
+        }
+      } else {
+        if (lights_report.buttons[i] == 0) {
+          gpio_put(LED_GPIO[i], 0);
+        } else {
+          gpio_put(LED_GPIO[i], 1);
+        }
+      }
+    }
+    leds_changed = false;
+  }
+}
+
 struct report {
   uint16_t buttons;
   uint8_t joy0;
   uint8_t joy1;
 } report;
-
-union {
-  struct {
-    uint8_t buttons[16];
-  } lights;
-  uint8_t raw[16];
-} light_data;
-
-void (*loop_mode)();
 
 /**
  * Gamepad Mode
@@ -83,8 +110,8 @@ void joy_mode() {
       for (int i = 0; i < ENC_GPIO_SIZE; i++) {
         int delta;
         int changeType;                      // -1 for negative 1 for positive
-        if (enc_val[i] > prev_enc_val[i]) {  // if the new value is bigger its a
-                                             // positive change
+        if (enc_val[i] > prev_enc_val[i]) {  // if the new value is bigger its
+                                             // a positive change
           delta = enc_val[i] - prev_enc_val[i];
           changeType = 1;
         } else {  // otherwise its a negative change
@@ -94,10 +121,9 @@ void joy_mode() {
         // Overflow / Underflow
         if (delta > ENC_ROLLOVER) {
           // Reverse the change type due to overflow / underflow
-          changeType = changeType * -1;
-          delta =
-              UINT32_MAX - delta +
-              1;  // this should give us how much we overflowed / underflowed by
+          changeType *= -1;
+          delta = UINT32_MAX - delta + 1;  // this should give us how much we
+                                           // overflowed / underflowed by
         }
 
         cur_enc_val[i] = cur_enc_val[i] + (delta * changeType);
@@ -164,8 +190,8 @@ void key_mode() {
       int delta[ENC_GPIO_SIZE] = {0};
       for (int i = 0; i < ENC_GPIO_SIZE; i++) {
         int changeType;                      // -1 for negative 1 for positive
-        if (enc_val[i] > prev_enc_val[i]) {  // if the new value is bigger its a
-                                             // positive change
+        if (enc_val[i] > prev_enc_val[i]) {  // if the new value is bigger its
+                                             // a positive change
           delta[i] = enc_val[i] - prev_enc_val[i];
           changeType = 1;
         } else {  // otherwise its a negative change
@@ -175,7 +201,7 @@ void key_mode() {
         // Overflow / Underflow
         if (delta[i] > ENC_ROLLOVER) {
           // Reverse the change type due to overflow / underflow
-          changeType = changeType * -1;
+          changeType *= -1;
           delta[i] =
               UINT32_MAX - delta[i] + 1;  // this should give us how much we
                                           // overflowed / underflowed by
@@ -211,6 +237,8 @@ void update_inputs() {
       sw_changed = true;
     }
   }
+  // Update LEDs if in reactive mode
+  if (reactive_timeout_count >= REACTIVE_TIMEOUT_MAX) leds_changed = true;
 }
 
 /**
@@ -284,6 +312,7 @@ void init() {
   // Set listener bools
   enc_changed = false;
   sw_changed = false;
+  leds_changed = false;
 
   // Joy/KB Mode Switching
   if (gpio_get(SW_GPIO[0])) {
@@ -305,6 +334,7 @@ int main(void) {
     tud_task();  // tinyusb device task
     update_inputs();
     loop_mode();
+    update_lights();
   }
 
   return 0;
@@ -328,15 +358,14 @@ uint16_t tud_hid_get_report_cb(uint8_t report_id, hid_report_type_t report_type,
 // received data on OUT endpoint ( Report ID = 0, Type = 0 )
 void tud_hid_set_report_cb(uint8_t report_id, hid_report_type_t report_type,
                            uint8_t const *buffer, uint16_t bufsize) {
-  if (report_id == REPORT_ID_LIGHTS && report_type == HID_REPORT_TYPE_OUTPUT &&
-      buffer[0] == 2 && bufsize >= sizeof(light_data))  // light data
+  if (report_id == 2 && report_type == HID_REPORT_TYPE_OUTPUT &&
+      buffer[0] == 2 && bufsize >= sizeof(lights_report))  // light data
   {
     size_t i = 0;
-    for (i; i < sizeof(light_data); i++) {
-      light_data.raw[i] = buffer[i + 1];
+    for (i; i < sizeof(lights_report); i++) {
+      lights_report.buttons[i] = buffer[i + 1];
     }
+    reactive_timeout_count = 0;
+    leds_changed = true;
   }
-
-  // echo back anything we received from host
-  tud_hid_report(0, buffer, bufsize);
 }
