@@ -1,8 +1,8 @@
 /*
- * Pico SDVX
+ * Pico Game Controller
  * @author SpeedyPotato
  *
- * Based off dev_hid_composite, mdxtinkernick/pico_encoders, and
+ * Based off tinyusb's hid_composite, mdxtinkernick/pico_encoders, and
  * Drewol/rp2040-gamecon
  */
 
@@ -343,9 +343,11 @@ int main(void) {
 // Invoked when received GET_REPORT control request
 // Application must fill buffer report's content and return its length.
 // Return zero will cause the stack to STALL request
-uint16_t tud_hid_get_report_cb(uint8_t report_id, hid_report_type_t report_type,
-                               uint8_t *buffer, uint16_t reqlen) {
+uint16_t tud_hid_get_report_cb(uint8_t itf, uint8_t report_id,
+                               hid_report_type_t report_type, uint8_t* buffer,
+                               uint16_t reqlen) {
   // TODO not Implemented
+  (void)itf;
   (void)report_id;
   (void)report_type;
   (void)buffer;
@@ -356,8 +358,10 @@ uint16_t tud_hid_get_report_cb(uint8_t report_id, hid_report_type_t report_type,
 
 // Invoked when received SET_REPORT control request or
 // received data on OUT endpoint ( Report ID = 0, Type = 0 )
-void tud_hid_set_report_cb(uint8_t report_id, hid_report_type_t report_type,
-                           uint8_t const *buffer, uint16_t bufsize) {
+void tud_hid_set_report_cb(uint8_t itf, uint8_t report_id,
+                           hid_report_type_t report_type, uint8_t const* buffer,
+                           uint16_t bufsize) {
+  (void)itf;
   if (report_id == 2 && report_type == HID_REPORT_TYPE_OUTPUT &&
       buffer[0] == 2 && bufsize >= sizeof(lights_report))  // light data
   {
