@@ -5,16 +5,14 @@ WIP code for a rhythm game controller using a Raspberry Pi Pico.  Intended for S
 Currently working/fixed:
 - Gamepad mode - untested on EAC - default boot mode
 - Keyboard & Mouse Mode - limited to 6KRO - hold btn-a to enter kb mode
-- Reactive LEDs (KB/Mouse Mode)
+- HID LEDs with Reactive LED fallback - untested
 - sdvx/iidx spoof - untested on EAC
 - 1000hz polling
 - Fix 0-~71% encoder rollover in gamepad mode, uint32 max val isn't divisible evenly by ppr*4 for joystick - thanks friends
+- Switch and LED pins are now staggered for easier wiring
 
 TODO:
-- HID leds - create led func to use incoming light data
-- Reactive LED fallback if no HID info
 - Store last mode in flash memory https://www.raspberrypi.org/forums/viewtopic.php?t=305570
-- debounce
 - nkro
-
-Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+- debounce
+- split input updating into pi pico's second core?
