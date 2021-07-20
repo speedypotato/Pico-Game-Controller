@@ -24,7 +24,7 @@
 #define ENC_PPR 600                   // Encoder PPR
 #define ENC_PULSE (ENC_PPR * 4)       // 4 pulses per PPR
 #define ENC_ROLLOVER (ENC_PULSE * 2)  // Delta Rollover threshold
-#define REACTIVE_TIMEOUT_MAX 1000  // Cycles before HID falls back to reactive
+#define REACTIVE_TIMEOUT_MAX 100000  // Cycles before HID falls back to reactive
 
 // MODIFY KEYBINDS HERE, MAKE SURE LENGTHS MATCH SW_GPIO_SIZE
 const uint8_t SW_KEYCODE[] = {HID_KEY_D, HID_KEY_F, HID_KEY_J, HID_KEY_K,
@@ -61,6 +61,9 @@ struct lights_report {
  * HID/Reactive Lights
  **/
 void update_lights() {
+  if (reactive_timeout_count < REACTIVE_TIMEOUT_MAX) {
+    reactive_timeout_count++;
+  }
   if (leds_changed) {
     for (int i = 0; i < SW_GPIO_SIZE; i++) {
       if (reactive_timeout_count >= REACTIVE_TIMEOUT_MAX) {
