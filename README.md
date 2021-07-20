@@ -6,17 +6,18 @@ Currently working/fixed:
 
 - Gamepad mode - untested on EAC - default boot mode
 - Keyboard & Mouse Mode - limited to 6KRO - hold btn-a to enter kb mode
-- HID LEDs with Reactive LED fallback - untested
+- HID LEDs with Reactive LED fallback
 - sdvx/iidx spoof - untested on EAC
 - 1000hz polling
-- Fix 0-~71% encoder rollover in gamepad mode, uint32 max val isn't divisible evenly by ppr\*4 for joystick - thanks friends
 - Switch and LED pins are now staggered for easier wiring
+- Fix 0-~71% encoder rollover in gamepad mode, uint32 max val isn't divisible evenly by ppr\*4 for joystick - thanks friends
 
 TODO:
 
 - Store last mode in flash memory https://www.raspberrypi.org/forums/viewtopic.php?t=305570
 - nkro
 - debounce
+- ws2812b rgb on second core?
 - split input updating into pi pico's second core?
 
 How to Use:
