@@ -36,7 +36,8 @@ const uint8_t SW_GPIO[] = {
 const uint8_t LED_GPIO[] = {
     5, 7, 9, 11, 13, 15, 17, 19, 21, 26, 28,
 };
-const uint8_t ENC_GPIO[] = {0, 2};  // L_ENC(0, 1); R_ENC(2, 3)
+const uint8_t ENC_GPIO[] = {0, 2};      // L_ENC(0, 1); R_ENC(2, 3)
+const bool ENC_REV[] = {false, false};  // Reverse Encoders
 
 PIO pio;
 uint32_t enc_val[ENC_GPIO_SIZE];
@@ -129,7 +130,8 @@ void joy_mode() {
                                            // overflowed / underflowed by
         }
 
-        cur_enc_val[i] = cur_enc_val[i] + (delta * changeType);
+        cur_enc_val[i] =
+            cur_enc_val[i] + ((ENC_REV[i] ? 1 : -1) * delta * changeType);
         while (cur_enc_val[i] < 0) {
           cur_enc_val[i] = ENC_PULSE - cur_enc_val[i];
         }
@@ -209,7 +211,7 @@ void key_mode() {
               UINT32_MAX - delta[i] + 1;  // this should give us how much we
                                           // overflowed / underflowed by
         }
-        delta[i] *= changeType;  // set direction
+        delta[i] *= changeType * (ENC_REV[i] ? 1 : -1);  // set direction
         prev_enc_val[i] = enc_val[i];
       }
       tud_hid_mouse_report(REPORT_ID_MOUSE, 0x00, delta[0], delta[1], 0, 0);

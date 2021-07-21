@@ -9,6 +9,7 @@ Currently working/fixed:
 - HID LEDs with Reactive LED fallback
 - sdvx/iidx spoof - untested on EAC
 - 1000hz polling
+- Reversable Encoders
 - Switch and LED pins are now staggered for easier wiring
 - Fix 0-~71% encoder rollover in gamepad mode, uint32 max val isn't divisible evenly by ppr\*4 for joystick - thanks friends
 
