@@ -145,7 +145,7 @@ void joy_mode() {
     }
 
     if (send_report) {
-      tud_hid_n_report(0x00, REPORT_ID_GAMEPAD, &report, sizeof(report));
+      tud_hid_n_report(0x00, REPORT_ID_JOYSTICK, &report, sizeof(report));
     }
   }
 }
