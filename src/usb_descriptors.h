@@ -5,7 +5,7 @@
 #define USB_DESCRIPTORS_H_
 
 enum {
-  REPORT_ID_GAMEPAD = 1,
+  REPORT_ID_JOYSTICK = 1,
   REPORT_ID_LIGHTS,
   REPORT_ID_KEYBOARD,
   REPORT_ID_MOUSE,
@@ -13,11 +13,11 @@ enum {
 
 #endif /* USB_DESCRIPTORS_H_ */
 
-// Gamepad Report Descriptor Template - Based off Drewol/rp2040-gamecon
+// Joystick Report Descriptor Template - Based off Drewol/rp2040-gamecon
 // 11 Button Map | X | Y
-#define GAMECON_REPORT_DESC_GAMEPAD(...)                                       \
+#define GAMECON_REPORT_DESC_JOYSTICK(...)                                      \
   HID_USAGE_PAGE(HID_USAGE_PAGE_DESKTOP),                                      \
-      HID_USAGE(HID_USAGE_DESKTOP_GAMEPAD),                                    \
+      HID_USAGE(HID_USAGE_DESKTOP_JOYSTICK),                                   \
       HID_COLLECTION(HID_COLLECTION_APPLICATION),                              \
       __VA_ARGS__ HID_USAGE_PAGE(HID_USAGE_PAGE_BUTTON), HID_USAGE_MIN(1),     \
       HID_USAGE_MAX(11), /*11 buttons*/                                        \

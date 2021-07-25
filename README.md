@@ -7,7 +7,7 @@ Currently working/fixed:
 - Gamepad mode - default boot mode
 - Keyboard & Mouse Mode - limited to 6KRO - hold btn-a to enter kb mode
 - HID LEDs with Reactive LED fallback
-- sdvx/iidx spoof - untested on EAC
+- sdvx/iidx spoof - Tested on EAC
 - 1000hz polling
 - Reversable Encoders
 - Switch and LED pins are now staggered for easier wiring
