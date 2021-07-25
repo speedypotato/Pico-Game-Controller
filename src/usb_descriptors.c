@@ -36,14 +36,10 @@
  */
 
 // MODIFY SPOOF MODE HERE(0: SDVX | 1: IIDX)
-#define con_mode 0
-#define sdvx_pid 0x101c
-#define iidx_pid 0x8048
-// todo figure out why above no worky on line 61-62
-#define _PID_MAP(itf, n) ((CFG_TUD_##itf) << (n))
-#define USB_PID                                                      \
-  (0x4000 | _PID_MAP(CDC, 0) | _PID_MAP(MSC, 1) | _PID_MAP(HID, 2) | \
-   _PID_MAP(MIDI, 3) | _PID_MAP(VENDOR, 4))
+#define CON_MODE 0
+#define KONAMI_VID 0x1ccf
+#define SDVX_PID 0x101c
+#define IIDX_PID 0x8048
 
 //--------------------------------------------------------------------+
 // Device Descriptors
@@ -57,8 +53,8 @@ tusb_desc_device_t const desc_device = {
     .bDeviceProtocol = 0x00,
     .bMaxPacketSize0 = CFG_TUD_ENDPOINT0_SIZE,
 
-    .idVendor = 0xCafe,
-    .idProduct = USB_PID,
+    .idVendor = KONAMI_VID,
+    .idProduct = CON_MODE ? IIDX_PID : SDVX_PID,
     .bcdDevice = 0x0100,
 
     .iManufacturer = 0x01,
@@ -125,18 +121,18 @@ uint8_t const* tud_descriptor_configuration_cb(uint8_t index) {
 // String Descriptors
 //--------------------------------------------------------------------+
 
-#define sdvx_prod "SOUND VOLTEX controller"
-#define iidx_prod "beatmania IIDX controller premium model"
+#define SDVX_PROD "SOUND VOLTEX controller"
+#define IIDX_PROD "beatmania IIDX controller premium model"
 
 // array of pointer to string descriptors
 char const* string_desc_arr[] = {
     (const char[]){0x09, 0x04},  // 0: is supported language is English (0x0409)
     "Konami Amusement",          // 1: Manufacturer
-    con_mode ? iidx_prod : sdvx_prod,  // 2: Product
+    CON_MODE ? IIDX_PROD : SDVX_PROD,  // 2: Product
     "123456",                          // 3: Serials, should use chip ID
 };
 
-static uint16_t _desc_str[32];
+static uint16_t _desc_str[64];
 
 // Invoked when received GET STRING DESCRIPTOR request
 // Application return pointer to descriptor, whose contents must exist long
@@ -160,7 +156,7 @@ uint16_t const* tud_descriptor_string_cb(uint8_t index, uint16_t langid) {
 
     // Cap at max char
     chr_count = strlen(str);
-    if (chr_count > 31) chr_count = 31;
+    if (chr_count > 63) chr_count = 63;
 
     // Convert ASCII string into UTF-16
     for (uint8_t i = 0; i < chr_count; i++) {

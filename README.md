@@ -4,7 +4,7 @@ WIP code for a rhythm game controller using a Raspberry Pi Pico. Intended for SD
 
 Currently working/fixed:
 
-- Gamepad mode - untested on EAC - default boot mode
+- Gamepad mode - default boot mode
 - Keyboard & Mouse Mode - limited to 6KRO - hold btn-a to enter kb mode
 - HID LEDs with Reactive LED fallback
 - sdvx/iidx spoof - untested on EAC
