@@ -242,8 +242,9 @@ void update_inputs() {
       sw_changed = true;
     }
   }
-  // Update LEDs if in reactive mode
-  if (reactive_timeout_count >= REACTIVE_TIMEOUT_MAX) leds_changed = true;
+  // Update LEDs if input changed while in reactive mode
+  if (sw_changed && reactive_timeout_count >= REACTIVE_TIMEOUT_MAX)
+    leds_changed = true;
 }
 
 /**
