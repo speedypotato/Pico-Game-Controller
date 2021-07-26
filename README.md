@@ -1,11 +1,11 @@
 # Pico-Game-Controller
 
-WIP code for a rhythm game controller using a Raspberry Pi Pico. Intended for SDVX but is capable of handling 11 buttons, 11 LEDs, and 2 encoders.
+WIP code for a rhythm game controller using a Raspberry Pi Pico. Intended for SDVX or IIDX but is capable of handling 11 buttons, 11 LEDs, and 2 encoders.
 
 Currently working/fixed:
 
 - Gamepad mode - default boot mode
-- Keyboard & Mouse Mode - limited to 6KRO - hold btn-a to enter kb mode
+- NKRO Keyboard & Mouse Mode - hold first button to enter kb mode
 - HID LEDs with Reactive LED fallback
 - sdvx/iidx spoof - Tested on EAC
 - 1000hz polling
@@ -16,7 +16,6 @@ Currently working/fixed:
 TODO:
 
 - Store last mode in flash memory https://www.raspberrypi.org/forums/viewtopic.php?t=305570
-- nkro
 - debounce
 - ws2812b rgb on second core?
 - split input updating into pi pico's second core?
@@ -29,3 +28,13 @@ How to Use:
 - Move pico-sdk back outside to the same level directory as Pico-Game-Controller.
 - Open Pico-Game-Controller in VSCode(assuming this is setup for the Pi Pico) and see if everything builds.
 - Tweakable parameters: Pinout, bindings in pico_game_controller.c, USB device reporting as SDVX/IIDX(con_mode) in usb_descriptors.c
+
+Thanks to:
+
+- Everyone in the Cons & Stuff Discord for providing near instant support to questions.
+- https://github.com/hathach/tinyusb/tree/master/examples/device/hid_composite
+- https://github.com/mdxtinkernick/pico_encoders for encoders which performed better than both interrupts and polling.
+- My SE buddies who helped come up with a solution for the encoder rollover edge case scenario.
+- https://github.com/Drewol/rp2040-gamecon for usb gamepad descriptor info.
+- https://github.com/veroxzik/arduino-konami-spoof for konami spoof usb descriptor info.
+- https://github.com/veroxzik/roxy-firmware for nkro descriptor and logic info.

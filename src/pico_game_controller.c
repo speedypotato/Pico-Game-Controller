@@ -1,9 +1,6 @@
 /*
  * Pico Game Controller
  * @author SpeedyPotato
- *
- * Based off tinyusb's hid_composite, mdxtinkernick/pico_encoders, and
- * Drewol/rp2040-gamecon
  */
 
 #include <stdio.h>
@@ -29,7 +26,7 @@
 // MODIFY KEYBINDS HERE, MAKE SURE LENGTHS MATCH SW_GPIO_SIZE
 const uint8_t SW_KEYCODE[] = {HID_KEY_D, HID_KEY_F, HID_KEY_J, HID_KEY_K,
                               HID_KEY_C, HID_KEY_M, HID_KEY_A, HID_KEY_B,
-                              HID_KEY_1, HID_KEY_C, HID_KEY_D};
+                              HID_KEY_1, HID_KEY_E, HID_KEY_G};
 const uint8_t SW_GPIO[] = {
     4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 27,
 };
@@ -157,31 +154,23 @@ void key_mode() {
   if (tud_hid_ready()) {
     /*------------- Keyboard -------------*/
     if (sw_changed) {
-      bool is_pressed = false;
-      int keycode_idx = 0;
-      uint8_t keycode[6] = {0};  // looks like we are limited to 6kro?
+      uint8_t nkro_report[32] = {0};
       for (int i = 0; i < SW_GPIO_SIZE; i++) {
         if (sw_val[i]) {
-          // use to avoid send multiple consecutive zero report for keyboard
-          keycode[keycode_idx] = SW_KEYCODE[i];
-          keycode_idx = ++keycode_idx % SW_GPIO_SIZE;
-          is_pressed = true;
+          uint8_t bit = SW_KEYCODE[i] % 8;
+          uint8_t byte = (SW_KEYCODE[i] / 8) + 1;
+          if (SW_KEYCODE[i] >= 240 && SW_KEYCODE[i] <= 247) {
+            nkro_report[0] |= (1 << bit);
+          } else if (byte > 0 && byte <= 31) {
+            nkro_report[byte] |= (1 << bit);
+          }
 
           prev_sw_val[i] = sw_val[i];
-          // Reactive Lighting On
-          gpio_put(LED_GPIO[i], 1);
-        } else {
-          // Reactive Lighting Off
-          gpio_put(LED_GPIO[i], 0);
         }
       }
-      if (is_pressed) {
-        // Send key report
-        tud_hid_keyboard_report(REPORT_ID_KEYBOARD, 0, keycode);
-      } else {
-        // Send empty key report if previously has key pressed
-        tud_hid_keyboard_report(REPORT_ID_KEYBOARD, 0, NULL);
-      }
+      // Send key report
+      tud_hid_n_report(0x00, REPORT_ID_KEYBOARD, &nkro_report,
+                       sizeof(nkro_report));
       sw_changed = false;
     }
 
