@@ -15,6 +15,7 @@ Currently working/fixed:
 
 TODO:
 
+- store configuration settings in a text file? consider implementing littlefs https://github.com/littlefs-project/littlefs https://www.raspberrypi.org/forums/viewtopic.php?t=313009 https://www.raspberrypi.org/forums/viewtopic.php?p=1894014#p1894014
 - Store last mode in flash memory https://www.raspberrypi.org/forums/viewtopic.php?t=305570
 - debounce
 - ws2812b rgb on second core?
