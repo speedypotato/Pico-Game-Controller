@@ -1,12 +1,14 @@
 # Pico-Game-Controller
 
-WIP code for a rhythm game controller using a Raspberry Pi Pico. Intended for SDVX or IIDX but is capable of handling 11 buttons, 11 LEDs, and 2 encoders.
+WIP code for a rhythm game controller using a Raspberry Pi Pico. Intended for SDVX or IIDX but is capable of handling 11 buttons, 10 LEDs, 1 WS2812B RGB strip, and 2 encoders.
 
 Currently working/fixed:
 
 - Gamepad mode - default boot mode
 - NKRO Keyboard & Mouse Mode - hold first button to enter kb mode
 - HID LEDs with Reactive LED fallback
+- ws2812b rgb on second core
+- 2 ws2812b hid descriptor zones
 - sdvx/iidx spoof - Tested on EAC
 - 1000hz polling
 - Reversable Encoders with debouncing
@@ -17,9 +19,7 @@ TODO:
 
 - store configuration settings in a text file? consider implementing littlefs https://github.com/littlefs-project/littlefs https://www.raspberrypi.org/forums/viewtopic.php?t=313009 https://www.raspberrypi.org/forums/viewtopic.php?p=1894014#p1894014
 - Store last mode in flash memory https://www.raspberrypi.org/forums/viewtopic.php?t=305570
-- debounce
-- ws2812b rgb on second core?
-- split input updating into pi pico's second core?
+- debounce on switches
 
 How to Use:
 
