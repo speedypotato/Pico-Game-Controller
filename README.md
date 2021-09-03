@@ -9,7 +9,7 @@ Currently working/fixed:
 - HID LEDs with Reactive LED fallback
 - sdvx/iidx spoof - Tested on EAC
 - 1000hz polling
-- Reversable Encoders
+- Reversable Encoders with debouncing
 - Switch and LED pins are now staggered for easier wiring
 - Fix 0-~71% encoder rollover in gamepad mode, uint32 max val isn't divisible evenly by ppr\*4 for joystick - thanks friends
 
@@ -39,3 +39,4 @@ Thanks to:
 - https://github.com/Drewol/rp2040-gamecon for usb gamepad descriptor info.
 - https://github.com/veroxzik/arduino-konami-spoof for konami spoof usb descriptor info.
 - https://github.com/veroxzik/roxy-firmware for nkro descriptor and logic info.
+- KyubiFox for bringing clkdiv to my attention for encoder debouncing

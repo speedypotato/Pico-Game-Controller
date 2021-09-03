@@ -16,9 +16,11 @@
 #include "tusb.h"
 #include "usb_descriptors.h"
 
-#define SW_GPIO_SIZE 11               // Number of switches
-#define ENC_GPIO_SIZE 2               // Number of encoders
-#define ENC_PPR 600                   // Encoder PPR
+#define SW_GPIO_SIZE 11    // Number of switches
+#define ENC_GPIO_SIZE 2    // Number of encoders
+#define ENC_PPR 600        // Encoder PPR
+#define ENC_DEBOUNCE true  // Encoder Debouncing
+
 #define ENC_PULSE (ENC_PPR * 4)       // 4 pulses per PPR
 #define ENC_ROLLOVER (ENC_PULSE * 2)  // Delta Rollover threshold
 #define REACTIVE_TIMEOUT_MAX 100000  // Cycles before HID falls back to reactive
@@ -270,7 +272,7 @@ void init() {
     enc_val[i] = 0;
     prev_enc_val[i] = 0;
     cur_enc_val[i] = 0;
-    encoders_program_init(pio, i, offset, ENC_GPIO[i]);
+    encoders_program_init(pio, i, offset, ENC_GPIO[i], ENC_DEBOUNCE);
 
     dma_channel_config c = dma_channel_get_default_config(i);
     channel_config_set_read_increment(&c, false);
