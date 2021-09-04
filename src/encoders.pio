@@ -34,7 +34,7 @@ send:
 .wrap
 
 % c-sdk {
-static inline void encoders_program_init(PIO pio, uint sm, uint offset, uint pin) {
+static inline void encoders_program_init(PIO pio, uint sm, uint offset, uint pin, bool debounce) {
     pio_sm_set_consecutive_pindirs(pio, sm, pin, 2, false);
     pio_gpio_init(pio, pin);
     pio_gpio_init(pio, pin+1);
@@ -46,6 +46,10 @@ static inline void encoders_program_init(PIO pio, uint sm, uint offset, uint pin
     sm_config_set_jmp_pin(&c, pin +1);
     // Shift to left, autopull disabled
     sm_config_set_in_shift(&c, false, false, 2);
+    
+    // Debounce via reduced clock
+    if (debounce)
+        sm_config_set_clkdiv(&c, 5000);
 
     pio_sm_init(pio, sm, offset, &c);
     pio_sm_set_enabled(pio, sm, true);
