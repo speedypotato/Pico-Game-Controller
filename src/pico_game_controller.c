@@ -22,7 +22,7 @@
 #define SW_GPIO_SIZE 11               // Number of switches
 #define LED_GPIO_SIZE 10              // Number of switches
 #define ENC_GPIO_SIZE 2               // Number of encoders
-#define ENC_PPR 600                   // Encoder PPR
+#define ENC_PPR 24                    // Encoder PPR
 #define ENC_DEBOUNCE true             // Encoder Debouncing
 #define ENC_PULSE (ENC_PPR * 4)       // 4 pulses per PPR
 #define ENC_ROLLOVER (ENC_PULSE * 2)  // Delta Rollover threshold
