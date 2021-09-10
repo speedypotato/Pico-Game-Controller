@@ -89,18 +89,19 @@ static inline uint32_t urgb_u32(uint8_t r, uint8_t g, uint8_t b) {
 }
 
 /**
- * Color Wheel Picker
- * @param wheel_pos Color value from 0-255, r->g->b->r...
+ * 768 Color Wheel Picker
+ * @param wheel_pos Color value, r->g->b->r...
  **/
-uint32_t color_wheel(uint8_t wheel_pos) {
-  if (wheel_pos < 85) {
-    return urgb_u32(wheel_pos * 3, 255 - wheel_pos * 3, 0);
-  } else if (wheel_pos < 170) {
-    wheel_pos -= 85;
-    return urgb_u32(255 - wheel_pos * 3, 0, wheel_pos * 3);
+uint32_t color_wheel(uint16_t wheel_pos) {
+  wheel_pos %= 768;
+  if (wheel_pos < 256) {
+    return urgb_u32(wheel_pos, 255 - wheel_pos, 0);
+  } else if (wheel_pos < 512) {
+    wheel_pos -= 256;
+    return urgb_u32(255 - wheel_pos, 0, wheel_pos);
   } else {
-    wheel_pos -= 170;
-    return urgb_u32(0, wheel_pos * 3, 255 - wheel_pos * 3);
+    wheel_pos -= 512;
+    return urgb_u32(0, wheel_pos, 255 - wheel_pos);
   }
 }
 
@@ -109,7 +110,7 @@ uint32_t color_wheel(uint8_t wheel_pos) {
  **/
 void ws2812b_color_cycle(uint32_t counter) {
   for (int i = 0; i < WS2812B_LED_SIZE; ++i) {
-    put_pixel(color_wheel((counter + i * (int)(255 / WS2812B_LED_SIZE)) % 256));
+    put_pixel(color_wheel((counter + i * (int)(768 / WS2812B_LED_SIZE)) % 768));
   }
 }
 
@@ -407,7 +408,7 @@ void core1_entry() {
   uint32_t counter = 0;
   while (1) {
     ws2812b_update(++counter);
-    sleep_ms(10);
+    sleep_ms(5);
   }
 }
 
