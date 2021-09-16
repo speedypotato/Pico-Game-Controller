@@ -2,6 +2,10 @@
 
 WIP code for a rhythm game controller using a Raspberry Pi Pico. Intended for SDVX or IIDX but is capable of handling 11 buttons, 10 LEDs, 1 WS2812B RGB strip, and 2 encoders.
 
+Demo of this firmware running on Pocket SDVX Pico, purchasable at https://discord.gg/MmuKd73XbY
+
+![Pocket SDVX Pico](demo.gif)
+
 Currently working/fixed:
 
 - Gamepad mode - default boot mode
