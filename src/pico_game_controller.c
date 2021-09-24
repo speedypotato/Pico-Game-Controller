@@ -72,7 +72,7 @@ void ws2812b_update(uint32_t counter) {
  * HID/Reactive Lights
  **/
 void update_lights() {
-  for (int i = 0; i < LED_GPIO_SIZE; i++) {
+  for (int i = 0; i < LED_GPIO_SIZE - 1; i++) {
     if (time_us_64() - reactive_timeout_timestamp >= REACTIVE_TIMEOUT_MAX) {
       if (!gpio_get(SW_GPIO[i])) {
         gpio_put(LED_GPIO[i], 1);
@@ -84,6 +84,20 @@ void update_lights() {
         gpio_put(LED_GPIO[i], 0);
       } else {
         gpio_put(LED_GPIO[i], 1);
+      }
+    }
+    /* start button sw_val index is offset by two with respect to LED_GPIO */
+    if (time_us_64() - reactive_timeout_timestamp >= REACTIVE_TIMEOUT_MAX) {
+      if (!gpio_get(SW_GPIO[LED_GPIO_SIZE + 1])) {
+        gpio_put(LED_GPIO[LED_GPIO_SIZE - 1], 1);
+      } else {
+        gpio_put(LED_GPIO[LED_GPIO_SIZE - 1], 0);
+      }
+    } else {
+      if (lights_report.lights.buttons[LED_GPIO_SIZE - 1] == 0) {
+        gpio_put(LED_GPIO[LED_GPIO_SIZE - 1], 0);
+      } else {
+        gpio_put(LED_GPIO[LED_GPIO_SIZE - 1], 1);
       }
     }
   }
