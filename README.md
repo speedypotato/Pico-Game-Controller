@@ -1,8 +1,8 @@
 # Pico-Game-Controller
 
-Code for a keyboard or game controller using a Raspberry Pi Pico. Capable of handling 11 buttons, 10 LEDs, 1 WS2812B RGB strip, and 2 encoders. Developed with SDVX and IIDX in mind - see branches release/pocket-sdvx-pico and release/pocket-iidx for preconfigured versions.
+This branch was developed with SDVX in mind. Capable of handling 7 LEDs, 1 WS2812B RGB strip, and 2 encoders.
 
-Demo of this firmware running on Pocket SDVX Pico, purchasable at https://discord.gg/MmuKd73XbY
+Demo of this firmware running on Pocket SDVX Pico v4, purchasable at https://discord.gg/MmuKd73XbY
 
 ![Pocket SDVX Pico](demo.gif)
 
