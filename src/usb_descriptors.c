@@ -130,6 +130,19 @@ char const* string_desc_arr[] = {
     "Konami Amusement",          // 1: Manufacturer
     CON_MODE ? IIDX_PROD : SDVX_PROD,  // 2: Product
     "123456",                          // 3: Serials, should use chip ID
+    "BT-A",
+    "BT-B",
+    "BT-C",
+    "BT-D",
+    "FX-L",
+    "FX-R",
+    "Start",
+    "Left R",
+    "Left G",
+    "Left B",
+    "Right R",
+    "Right G",
+    "Right B",
 };
 
 static uint16_t _desc_str[64];

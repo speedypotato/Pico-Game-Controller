@@ -20,15 +20,15 @@
 #include "ws2812.pio.h"
 
 #define SW_GPIO_SIZE 11               // Number of switches
-#define LED_GPIO_SIZE 10              // Number of switches
+#define LED_GPIO_SIZE 7               // Number of button leds
 #define ENC_GPIO_SIZE 2               // Number of encoders
 #define ENC_PPR 24                    // Encoder PPR
 #define ENC_DEBOUNCE true             // Encoder Debouncing
 #define ENC_PULSE (ENC_PPR * 4)       // 4 pulses per PPR
 #define ENC_ROLLOVER (ENC_PULSE * 2)  // Delta Rollover threshold
-#define REACTIVE_TIMEOUT_MAX 100000  // Cycles before HID falls back to reactive
-#define WS2812B_LED_SIZE 10          // Number of WS2812B LEDs
-#define WS2812B_LED_ZONES 2          // Number of WS2812B LED Zones
+#define REACTIVE_TIMEOUT_MAX 500000   // Cycles before HID falls back to reactive
+#define WS2812B_LED_SIZE 10           // Number of WS2812B LEDs
+#define WS2812B_LED_ZONES 2           // Number of WS2812B LED Zones
 #define WS2812B_LEDS_PER_ZONE \
   WS2812B_LED_SIZE / WS2812B_LED_ZONES  // Number of LEDs per zone
 
@@ -40,7 +40,7 @@ const uint8_t SW_GPIO[] = {
     4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 27,
 };
 const uint8_t LED_GPIO[] = {
-    5, 7, 9, 11, 13, 15, 17, 19, 21, 26,
+    5, 7, 9, 11, 13, 15,         21, 
 };
 const uint8_t ENC_GPIO[] = {0, 2};      // L_ENC(0, 1); R_ENC(2, 3)
 const bool ENC_REV[] = {false, false};  // Reverse Encoders
@@ -140,7 +140,7 @@ void update_lights() {
     reactive_timeout_count++;
   }
   if (leds_changed) {
-    for (int i = 0; i < LED_GPIO_SIZE; i++) {
+    for (int i = 0; i < LED_GPIO_SIZE-1; i++) {
       if (reactive_timeout_count >= REACTIVE_TIMEOUT_MAX) {
         if (sw_val[i]) {
           gpio_put(LED_GPIO[i], 1);
@@ -155,6 +155,21 @@ void update_lights() {
         }
       }
     }
+    /* start button sw_val index is offset by two with respect to LED_GPIO */
+    if (reactive_timeout_count >= REACTIVE_TIMEOUT_MAX) {
+      if (sw_val[LED_GPIO_SIZE+1]) {
+        gpio_put(LED_GPIO[LED_GPIO_SIZE-1], 1);
+      } else {
+        gpio_put(LED_GPIO[LED_GPIO_SIZE-1], 0);
+      }
+    } else {
+      if (lights_report.lights.buttons[LED_GPIO_SIZE-1] == 0) {
+        gpio_put(LED_GPIO[LED_GPIO_SIZE-1], 0);
+      } else {
+        gpio_put(LED_GPIO[LED_GPIO_SIZE-1], 1);
+      }
+    }
+
     leds_changed = false;
   }
 }
