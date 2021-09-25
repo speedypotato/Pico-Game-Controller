@@ -26,7 +26,7 @@
 #define ENC_DEBOUNCE true             // Encoder Debouncing
 #define ENC_PULSE (ENC_PPR * 4)       // 4 pulses per PPR
 #define ENC_ROLLOVER (ENC_PULSE * 2)  // Delta Rollover threshold
-#define REACTIVE_TIMEOUT_MAX 100000  // Cycles before HID falls back to reactive
+#define REACTIVE_TIMEOUT_MAX 500000  // Cycles before HID falls back to reactive
 #define WS2812B_LED_SIZE 10          // Number of WS2812B LEDs
 #define WS2812B_LED_ZONES 2          // Number of WS2812B LED Zones
 #define WS2812B_LEDS_PER_ZONE \

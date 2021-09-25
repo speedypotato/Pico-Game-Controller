@@ -34,12 +34,10 @@
  * Auto ProductID layout's Bitmap:
  *   [MSB]         HID | MSC | CDC          [LSB]
  */
-
-// MODIFY SPOOF MODE HERE(0: SDVX | 1: IIDX)
-#define CON_MODE 0
-#define KONAMI_VID 0x1ccf
-#define SDVX_PID 0x101c
-#define IIDX_PID 0x8048
+#define _PID_MAP(itf, n) ((CFG_TUD_##itf) << (n))
+#define USB_PID                                                      \
+  (0x4000 | _PID_MAP(CDC, 0) | _PID_MAP(MSC, 1) | _PID_MAP(HID, 2) | \
+   _PID_MAP(MIDI, 3) | _PID_MAP(VENDOR, 4))
 
 //--------------------------------------------------------------------+
 // Device Descriptors
@@ -53,8 +51,8 @@ tusb_desc_device_t const desc_device = {
     .bDeviceProtocol = 0x00,
     .bMaxPacketSize0 = CFG_TUD_ENDPOINT0_SIZE,
 
-    .idVendor = KONAMI_VID,
-    .idProduct = CON_MODE ? IIDX_PID : SDVX_PID,
+    .idVendor = 0xCafe,
+    .idProduct = USB_PID,
     .bcdDevice = 0x0100,
 
     .iManufacturer = 0x01,
@@ -121,15 +119,28 @@ uint8_t const* tud_descriptor_configuration_cb(uint8_t index) {
 // String Descriptors
 //--------------------------------------------------------------------+
 
-#define SDVX_PROD "SOUND VOLTEX controller"
-#define IIDX_PROD "beatmania IIDX controller premium model"
-
 // array of pointer to string descriptors
 char const* string_desc_arr[] = {
     (const char[]){0x09, 0x04},  // 0: is supported language is English (0x0409)
-    "Konami Amusement",          // 1: Manufacturer
-    CON_MODE ? IIDX_PROD : SDVX_PROD,  // 2: Product
-    "123456",                          // 3: Serials, should use chip ID
+    "SpeedyPotato",              // 1: Manufacturer
+    "Pico Game Controller",      // 2: Product
+    "123456",                    // 3: Serials, should use chip ID
+    "Button 1",
+    "Button 2",
+    "Button 3",
+    "Button 4",
+    "Button 5",
+    "Button 6",
+    "Button 7",
+    "Button 8",
+    "Button 9",
+    "Button 10",
+    "Red 1",
+    "Green 1",
+    "Blue 1",
+    "Red 2",
+    "Green 2",
+    "Blue 2",
 };
 
 static uint16_t _desc_str[64];
