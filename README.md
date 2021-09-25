@@ -9,15 +9,16 @@ Demo of this firmware running on Pocket SDVX Pico, purchasable at https://discor
 Currently working/fixed:
 
 - Gamepad mode - default boot mode
-- NKRO Keyboard & Mouse Mode - hold first button to enter kb mode
+- NKRO Keyboard & Mouse Mode - hold first button(gpio4) to enter kb mode
 - HID LEDs with Reactive LED fallback
 - ws2812b rgb on second core
 - 2 ws2812b hid descriptor zones
-- sdvx/iidx spoof - Tested on EAC
+- sdvx/iidx spoof - Tested on EAC - checkout branches release/pocket-sdvx-pico or release/pocket-iidx
 - 1000hz polling
 - Reversable Encoders with debouncing
 - Switch and LED pins are now staggered for easier wiring
 - Fix 0-~71% encoder rollover in gamepad mode, uint32 max val isn't divisible evenly by ppr\*4 for joystick - thanks friends
+- HID LEDs now have labels, thanks CrazyRedMachine
 
 TODO:
 
