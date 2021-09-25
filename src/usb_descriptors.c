@@ -34,10 +34,6 @@
  * Auto ProductID layout's Bitmap:
  *   [MSB]         HID | MSC | CDC          [LSB]
  */
-#define _PID_MAP(itf, n) ((CFG_TUD_##itf) << (n))
-#define USB_PID                                                      \
-  (0x4000 | _PID_MAP(CDC, 0) | _PID_MAP(MSC, 1) | _PID_MAP(HID, 2) | \
-   _PID_MAP(MIDI, 3) | _PID_MAP(VENDOR, 4))
 
 //--------------------------------------------------------------------+
 // Device Descriptors
@@ -51,8 +47,8 @@ tusb_desc_device_t const desc_device_joy = {
     .bDeviceProtocol = 0x00,
     .bMaxPacketSize0 = CFG_TUD_ENDPOINT0_SIZE,
 
-    .idVendor = 0xCafe,
-    .idProduct = USB_PID,
+    .idVendor = 0x1ccf,
+    .idProduct = 0x8048,
     .bcdDevice = 0x0100,
 
     .iManufacturer = 0x01,
@@ -70,8 +66,8 @@ tusb_desc_device_t const desc_device_key = {
     .bDeviceProtocol = 0x00,
     .bMaxPacketSize0 = CFG_TUD_ENDPOINT0_SIZE,
 
-    .idVendor = 0xCafe,
-    .idProduct = USB_PID,
+    .idVendor = 0x1ccf,
+    .idProduct = 0x8048,
     .bcdDevice = 0x0100,
 
     .iManufacturer = 0x01,
@@ -92,14 +88,12 @@ uint8_t const* tud_descriptor_device_cb(void) {
 
 uint8_t const desc_hid_report_joy[] = {
     GAMECON_REPORT_DESC_JOYSTICK(HID_REPORT_ID(REPORT_ID_JOYSTICK)),
-    GAMECON_REPORT_DESC_LIGHTS(HID_REPORT_ID(REPORT_ID_LIGHTS))
-};
+    GAMECON_REPORT_DESC_LIGHTS(HID_REPORT_ID(REPORT_ID_LIGHTS))};
 
 uint8_t const desc_hid_report_key[] = {
     GAMECON_REPORT_DESC_LIGHTS(HID_REPORT_ID(REPORT_ID_LIGHTS)),
     GAMECON_REPORT_DESC_NKRO(HID_REPORT_ID(REPORT_ID_KEYBOARD)),
-    TUD_HID_REPORT_DESC_MOUSE(HID_REPORT_ID(REPORT_ID_MOUSE))
-};
+    TUD_HID_REPORT_DESC_MOUSE(HID_REPORT_ID(REPORT_ID_MOUSE))};
 
 // Invoked when received GET HID REPORT DESCRIPTOR
 // Application return pointer to descriptor
@@ -131,7 +125,6 @@ uint8_t const desc_configuration_joy[] = {
                        sizeof(desc_hid_report_joy), EPNUM_HID,
                        CFG_TUD_HID_EP_BUFSIZE, 1)};
 
-
 uint8_t const desc_configuration_key[] = {
     // Config number, interface count, string index, total length, attribute,
     // power in mA
@@ -159,19 +152,21 @@ uint8_t const* tud_descriptor_configuration_cb(uint8_t index) {
 // array of pointer to string descriptors
 char const* string_desc_arr[] = {
     (const char[]){0x09, 0x04},  // 0: is supported language is English (0x0409)
-    "SpeedyPotato",              // 1: Manufacturer
-    "Pico Game Controller",      // 2: Product
-    "123456",                    // 3: Serials, should use chip ID
-    "Button 1",
-    "Button 2",
-    "Button 3",
-    "Button 4",
-    "Button 5",
-    "Button 6",
-    "Button 7",
-    "Button 8",
-    "Button 9",
-    "Button 10",
+    "Konami Amusement",          // 1: Manufacturer
+    "beatmania IIDX controller premium model",  // 2: Product
+    "123456",  // 3: Serials, should use chip ID
+    "Key 1",
+    "Key 2",
+    "Key 3",
+    "Key 4",
+    "Key 5",
+    "Key 6",
+    "Key 7",
+    "UNUSED GPIO 27",
+    "Key E1",
+    "Key E2",
+    "Key E3",
+    "Key E4",
     "Red 1",
     "Green 1",
     "Blue 1",
