@@ -35,7 +35,8 @@ enum {
       HID_LOGICAL_MAX_N(0x00ff, 2),                                            \
       HID_USAGE(HID_USAGE_DESKTOP_X), /*Joystick*/                             \
       HID_USAGE(HID_USAGE_DESKTOP_Y), HID_REPORT_COUNT(2), HID_REPORT_SIZE(8), \
-      HID_INPUT(HID_DATA | HID_VARIABLE | HID_ABSOLUTE), HID_COLLECTION_END
+      HID_INPUT(HID_DATA | HID_VARIABLE | HID_ABSOLUTE | HID_WRAP),            \
+      HID_COLLECTION_END
 
 // 11 Light Map
 #define GAMECON_REPORT_DESC_LIGHTS(...)                                        \

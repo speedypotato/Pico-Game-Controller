@@ -260,24 +260,7 @@ void key_mode() {
       // find the delta between previous and current enc_val
       int delta[ENC_GPIO_SIZE] = {0};
       for (int i = 0; i < ENC_GPIO_SIZE; i++) {
-        int changeType;                      // -1 for negative 1 for positive
-        if (enc_val[i] > prev_enc_val[i]) {  // if the new value is bigger its
-                                             // a positive change
-          delta[i] = enc_val[i] - prev_enc_val[i];
-          changeType = 1;
-        } else {  // otherwise its a negative change
-          delta[i] = prev_enc_val[i] - enc_val[i];
-          changeType = -1;
-        }
-        // Overflow / Underflow
-        if (delta[i] > ENC_ROLLOVER) {
-          // Reverse the change type due to overflow / underflow
-          changeType *= -1;
-          delta[i] =
-              UINT32_MAX - delta[i] + 1;  // this should give us how much we
-                                          // overflowed / underflowed by
-        }
-        delta[i] *= changeType * (ENC_REV[i] ? 1 : -1);  // set direction
+        delta[i] = (enc_val[i] - prev_enc_val[i]) * (ENC_REV[i] ? 1 : -1);
         prev_enc_val[i] = enc_val[i];
       }
       tud_hid_mouse_report(REPORT_ID_MOUSE, 0x00, delta[0], delta[1], 0, 0);
