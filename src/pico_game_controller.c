@@ -188,8 +188,8 @@ void joy_mode() {
         //HID takes aboslute values
         report_val[i] = enc_val[i] % (unsigned)ENC_PULSE; //Modulo down to pulses
         
-        //Shift halfway to negative, +1 correction for 0, convert to signed
-        report_val[i] = ((ENC_PULSE / 2) + 1) - report_val[i];
+        //Shift halfway to negative, convert to signed
+        report_val[i] = (ENC_PULSE / 2) - report_val[i];
 
         report_val[i] *= (ENC_REV[i] ? -1 : 1);   //Check reverse
         
