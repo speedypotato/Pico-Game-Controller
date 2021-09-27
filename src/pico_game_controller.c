@@ -60,6 +60,7 @@ bool leds_changed;
 unsigned long reactive_timeout_count = REACTIVE_TIMEOUT_MAX;
 
 void (*loop_mode)();
+bool joy_mode_check = true;
 
 typedef struct {
   uint8_t r, g, b;
@@ -396,8 +397,10 @@ void init() {
   // Joy/KB Mode Switching
   if (gpio_get(SW_GPIO[0])) {
     loop_mode = &joy_mode;
+    joy_mode_check = true;
   } else {
     loop_mode = &key_mode;
+    joy_mode_check = false;
   }
 }
 
@@ -417,8 +420,8 @@ void core1_entry() {
  **/
 int main(void) {
   board_init();
-  tusb_init();
   init();
+  tusb_init();
 
   multicore_launch_core1(core1_entry);
 

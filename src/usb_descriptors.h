@@ -4,6 +4,8 @@
 #include "common/tusb_common.h"
 #include "device/usbd.h"
 
+extern bool joy_mode_check;
+
 enum {
   REPORT_ID_JOYSTICK = 1,
   REPORT_ID_LIGHTS,
