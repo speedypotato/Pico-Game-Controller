@@ -42,7 +42,7 @@
 //--------------------------------------------------------------------+
 // Device Descriptors
 //--------------------------------------------------------------------+
-tusb_desc_device_t const desc_device_joy = {
+tusb_desc_device_t const desc_device = {
     .bLength = sizeof(tusb_desc_device_t),
     .bDescriptorType = TUSB_DESC_DEVICE,
     .bcdUSB = 0x0200,
@@ -61,52 +61,28 @@ tusb_desc_device_t const desc_device_joy = {
 
     .bNumConfigurations = 0x01};
 
-tusb_desc_device_t const desc_device_key = {
-    .bLength = sizeof(tusb_desc_device_t),
-    .bDescriptorType = TUSB_DESC_DEVICE,
-    .bcdUSB = 0x0200,
-    .bDeviceClass = 0x00,
-    .bDeviceSubClass = 0x00,
-    .bDeviceProtocol = 0x00,
-    .bMaxPacketSize0 = CFG_TUD_ENDPOINT0_SIZE,
-
-    .idVendor = 0xCafe,
-    .idProduct = USB_PID,
-    .bcdDevice = 0x0100,
-
-    .iManufacturer = 0x01,
-    .iProduct = 0x02,
-    .iSerialNumber = 0x04,
-
-    .bNumConfigurations = 0x01};
-
 // Invoked when received GET DEVICE DESCRIPTOR
 // Application return pointer to descriptor
 uint8_t const* tud_descriptor_device_cb(void) {
-  return (uint8_t const*)(joy_mode_check ? &desc_device_joy : &desc_device_key);
+  return (uint8_t const*)&desc_device;
 }
 
 //--------------------------------------------------------------------+
 // HID Report Descriptor
 //--------------------------------------------------------------------+
 
-uint8_t const desc_hid_report_joy[] = {
+uint8_t const desc_hid_report[] = {
     GAMECON_REPORT_DESC_JOYSTICK(HID_REPORT_ID(REPORT_ID_JOYSTICK)),
-    GAMECON_REPORT_DESC_LIGHTS(HID_REPORT_ID(REPORT_ID_LIGHTS))
-};
-
-uint8_t const desc_hid_report_key[] = {
     GAMECON_REPORT_DESC_LIGHTS(HID_REPORT_ID(REPORT_ID_LIGHTS)),
     GAMECON_REPORT_DESC_NKRO(HID_REPORT_ID(REPORT_ID_KEYBOARD)),
-    TUD_HID_REPORT_DESC_MOUSE(HID_REPORT_ID(REPORT_ID_MOUSE))
-};
+    TUD_HID_REPORT_DESC_MOUSE(HID_REPORT_ID(REPORT_ID_MOUSE))};
 
 // Invoked when received GET HID REPORT DESCRIPTOR
 // Application return pointer to descriptor
 // Descriptor contents must exist long enough for transfer to complete
 uint8_t const* tud_hid_descriptor_report_cb(uint8_t itf) {
   (void)itf;
-  return (joy_mode_check ? desc_hid_report_joy : desc_hid_report_key);
+  return desc_hid_report;
 }
 
 //--------------------------------------------------------------------+
@@ -119,7 +95,7 @@ enum { ITF_NUM_HID, ITF_NUM_TOTAL };
 
 #define EPNUM_HID 0x81
 
-uint8_t const desc_configuration_joy[] = {
+uint8_t const desc_configuration[] = {
     // Config number, interface count, string index, total length, attribute,
     // power in mA
     TUD_CONFIG_DESCRIPTOR(1, ITF_NUM_TOTAL, 0, CONFIG_TOTAL_LEN,
@@ -128,20 +104,7 @@ uint8_t const desc_configuration_joy[] = {
     // Interface number, string index, protocol, report descriptor len, EP In
     // address, size & polling interval
     TUD_HID_DESCRIPTOR(ITF_NUM_HID, 0, HID_ITF_PROTOCOL_NONE,
-                       sizeof(desc_hid_report_joy), EPNUM_HID,
-                       CFG_TUD_HID_EP_BUFSIZE, 1)};
-
-
-uint8_t const desc_configuration_key[] = {
-    // Config number, interface count, string index, total length, attribute,
-    // power in mA
-    TUD_CONFIG_DESCRIPTOR(1, ITF_NUM_TOTAL, 0, CONFIG_TOTAL_LEN,
-                          TUSB_DESC_CONFIG_ATT_REMOTE_WAKEUP, 100),
-
-    // Interface number, string index, protocol, report descriptor len, EP In
-    // address, size & polling interval
-    TUD_HID_DESCRIPTOR(ITF_NUM_HID, 0, HID_ITF_PROTOCOL_NONE,
-                       sizeof(desc_hid_report_key), EPNUM_HID,
+                       sizeof(desc_hid_report), EPNUM_HID,
                        CFG_TUD_HID_EP_BUFSIZE, 1)};
 
 // Invoked when received GET CONFIGURATION DESCRIPTOR
@@ -149,7 +112,7 @@ uint8_t const desc_configuration_key[] = {
 // Descriptor contents must exist long enough for transfer to complete
 uint8_t const* tud_descriptor_configuration_cb(uint8_t index) {
   (void)index;  // for multiple configurations
-  return (joy_mode_check ? desc_configuration_joy : desc_configuration_key);
+  return desc_configuration;
 }
 
 //--------------------------------------------------------------------+
