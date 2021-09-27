@@ -22,10 +22,9 @@
 #define SW_GPIO_SIZE 11               // Number of switches
 #define LED_GPIO_SIZE 10              // Number of switches
 #define ENC_GPIO_SIZE 2               // Number of encoders
-#define ENC_PPR 600                   // Encoder PPR
+#define ENC_PPR 24                   // Encoder PPR
 #define ENC_DEBOUNCE true             // Encoder Debouncing
 #define ENC_PULSE (ENC_PPR * 4)       // 4 pulses per PPR
-#define ENC_ROLLOVER (ENC_PULSE * 2)  // Delta Rollover threshold
 #define REACTIVE_TIMEOUT_MAX 500000  // Cycles before HID falls back to reactive
 #define WS2812B_LED_SIZE 10          // Number of WS2812B LEDs
 #define WS2812B_LED_ZONES 2          // Number of WS2812B LED Zones
@@ -49,7 +48,6 @@ const uint8_t WS2812B_GPIO = 28;
 PIO pio, pio_1;
 uint32_t enc_val[ENC_GPIO_SIZE];
 uint32_t prev_enc_val[ENC_GPIO_SIZE];
-int cur_enc_val[ENC_GPIO_SIZE];
 bool enc_changed;
 
 bool sw_val[SW_GPIO_SIZE];
@@ -184,37 +182,22 @@ void joy_mode() {
     if (enc_changed) {
       send_report = true;
 
-      // find the delta between previous and current enc_val
+      uint8_t report_val[ENC_GPIO_SIZE];
       for (int i = 0; i < ENC_GPIO_SIZE; i++) {
-        int delta;
-        int changeType;                      // -1 for negative 1 for positive
-        if (enc_val[i] > prev_enc_val[i]) {  // if the new value is bigger its
-                                             // a positive change
-          delta = enc_val[i] - prev_enc_val[i];
-          changeType = 1;
-        } else {  // otherwise its a negative change
-          delta = prev_enc_val[i] - enc_val[i];
-          changeType = -1;
-        }
-        // Overflow / Underflow
-        if (delta > ENC_ROLLOVER) {
-          // Reverse the change type due to overflow / underflow
-          changeType *= -1;
-          delta = UINT32_MAX - delta + 1;  // this should give us how much we
-                                           // overflowed / underflowed by
-        }
+        
+        //HID takes aboslute values
+        report_val[i] = enc_val[i] % (unsigned)ENC_PULSE; //Modulo down to pulses
+        
+        //Shift halfway to negative, +1 correction for 0, convert to signed
+        report_val[i] = ((ENC_PULSE / 2) + 1) - report_val[i];
 
-        cur_enc_val[i] =
-            cur_enc_val[i] + ((ENC_REV[i] ? 1 : -1) * delta * changeType);
-        while (cur_enc_val[i] < 0) {
-          cur_enc_val[i] = ENC_PULSE - cur_enc_val[i];
-        }
-
+        report_val[i] *= (ENC_REV[i] ? -1 : 1);   //Check reverse
+        
         prev_enc_val[i] = enc_val[i];
       }
 
-      report.joy0 = ((double)cur_enc_val[0] / ENC_PULSE) * 256;
-      report.joy1 = ((double)cur_enc_val[1] / ENC_PULSE) * 256;
+      report.joy0 = report_val[0];
+      report.joy1 = report_val[1];
       enc_changed = false;
     }
 
@@ -330,7 +313,6 @@ void init() {
   for (int i = 0; i < ENC_GPIO_SIZE; i++) {
     enc_val[i] = 0;
     prev_enc_val[i] = 0;
-    cur_enc_val[i] = 0;
     encoders_program_init(pio, i, offset, ENC_GPIO[i], ENC_DEBOUNCE);
 
     dma_channel_config c = dma_channel_get_default_config(i);

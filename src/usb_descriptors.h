@@ -32,10 +32,10 @@ enum {
       HID_REPORT_COUNT(1), HID_REPORT_SIZE(5), /*Padding*/                     \
       HID_INPUT(HID_CONSTANT | HID_VARIABLE | HID_ABSOLUTE),                   \
       HID_USAGE_PAGE(HID_USAGE_PAGE_DESKTOP), HID_LOGICAL_MIN(0x00),           \
-      HID_LOGICAL_MAX_N(0x00ff, 2),                                            \
+      HID_LOGICAL_MAX(0x60),     /*Match encoder pulses*/                      \
       HID_USAGE(HID_USAGE_DESKTOP_X), /*Joystick*/                             \
       HID_USAGE(HID_USAGE_DESKTOP_Y), HID_REPORT_COUNT(2), HID_REPORT_SIZE(8), \
-      HID_INPUT(HID_DATA | HID_VARIABLE | HID_ABSOLUTE | HID_WRAP),            \
+      HID_INPUT(HID_DATA | HID_VARIABLE | HID_ABSOLUTE),                       \
       HID_COLLECTION_END
 
 // 11 Light Map
