@@ -3,6 +3,7 @@
 
 #include "common/tusb_common.h"
 #include "device/usbd.h"
+#include "controller_config.h"
 
 enum {
   REPORT_ID_JOYSTICK = 1,
@@ -20,29 +21,29 @@ enum {
 #define HID_STRING_MAXIMUM_N(x, n) HID_REPORT_ITEM(x, 9, RI_TYPE_LOCAL, n)
 
 // Joystick Report Descriptor Template - Based off Drewol/rp2040-gamecon
-// 11 Button Map | X | Y
+// Button Map | X | Y
 #define GAMECON_REPORT_DESC_JOYSTICK(...)                                      \
   HID_USAGE_PAGE(HID_USAGE_PAGE_DESKTOP),                                      \
       HID_USAGE(HID_USAGE_DESKTOP_JOYSTICK),                                   \
       HID_COLLECTION(HID_COLLECTION_APPLICATION),                              \
       __VA_ARGS__ HID_USAGE_PAGE(HID_USAGE_PAGE_BUTTON), HID_USAGE_MIN(1),     \
-      HID_USAGE_MAX(11), /*11 buttons*/                                        \
-      HID_LOGICAL_MIN(0), HID_LOGICAL_MAX(1), HID_REPORT_COUNT(11),            \
+      HID_USAGE_MAX(SW_GPIO_SIZE),                                             \
+      HID_LOGICAL_MIN(0), HID_LOGICAL_MAX(1), HID_REPORT_COUNT(SW_GPIO_SIZE),  \
       HID_REPORT_SIZE(1), HID_INPUT(HID_DATA | HID_VARIABLE | HID_ABSOLUTE),   \
-      HID_REPORT_COUNT(1), HID_REPORT_SIZE(5), /*Padding*/                     \
+      HID_REPORT_COUNT(1), HID_REPORT_SIZE(16 - SW_GPIO_SIZE), /*Padding*/\
       HID_INPUT(HID_CONSTANT | HID_VARIABLE | HID_ABSOLUTE),                   \
       HID_USAGE_PAGE(HID_USAGE_PAGE_DESKTOP), HID_LOGICAL_MIN(0x00),           \
-      HID_LOGICAL_MAX_N(0x0960, 2), /*Match encoder pulses*/                   \
+      HID_LOGICAL_MAX_N(ENC_PULSE, 2), /*Match encoder pulses*/                \
       HID_USAGE(HID_USAGE_DESKTOP_X), /*Joystick*/                             \
       HID_USAGE(HID_USAGE_DESKTOP_Y), HID_REPORT_COUNT(2), HID_REPORT_SIZE(16),\
       HID_INPUT(HID_DATA | HID_VARIABLE | HID_ABSOLUTE),                       \
       HID_COLLECTION_END
 
-// 11 Light Map
+// Light Map
 #define GAMECON_REPORT_DESC_LIGHTS(...)                                        \
   HID_USAGE_PAGE(HID_USAGE_PAGE_DESKTOP), HID_USAGE(0x00),                     \
       HID_COLLECTION(HID_COLLECTION_APPLICATION),                              \
-      __VA_ARGS__ HID_REPORT_COUNT(16), /*10 button lights + 2 RGB Sets*/      \
+      __VA_ARGS__ HID_REPORT_COUNT(LED_GPIO_SIZE + (WS2812B_LED_ZONES * 3)),   \
       HID_REPORT_SIZE(8), HID_LOGICAL_MIN(0x00), HID_LOGICAL_MAX_N(0x00ff, 2), \
       HID_USAGE_PAGE(HID_USAGE_PAGE_ORDINAL), HID_STRING_MINIMUM(4),           \
       HID_STRING_MAXIMUM(16), HID_USAGE_MIN(1), HID_USAGE_MAX(16),             \
