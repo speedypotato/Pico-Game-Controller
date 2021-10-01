@@ -206,36 +206,36 @@ void joy_mode() {
  **/
 void key_mode() {
   // Wait for ready, reporting mouse too fast hampers movement
-  if (tud_hid_ready()) {
-    /*------------- Keyboard -------------*/
-    uint8_t nkro_report[32] = {0};
-    for (int i = 0; i < SW_GPIO_SIZE; i++) {
-      if (sw_val[i]) {
-        uint8_t bit = SW_KEYCODE[i] % 8;
-        uint8_t byte = (SW_KEYCODE[i] / 8) + 1;
-        if (SW_KEYCODE[i] >= 240 && SW_KEYCODE[i] <= 247) {
-          nkro_report[0] |= (1 << bit);
-        } else if (byte > 0 && byte <= 31) {
-          nkro_report[byte] |= (1 << bit);
-        }
-
-        prev_sw_val[i] = sw_val[i];
-      }
-    }
-    
-    /*------------- Mouse -------------*/
-    // find the delta between previous and current enc_val
-    int delta[ENC_GPIO_SIZE] = {0};
-    for (int i = 0; i < ENC_GPIO_SIZE; i++) {
-      delta[i] = (enc_val[i] - prev_enc_val[i]) * (ENC_REV[i] ? 1 : -1);
-      prev_enc_val[i] = enc_val[i];
-    }
-
+  if (tud_hid_ready()) {    
     // Alternate report to send
     if (kbm_report_mode) {
+      /*------------- Keyboard -------------*/
+      uint8_t nkro_report[32] = {0};
+      for (int i = 0; i < SW_GPIO_SIZE; i++) {
+        if (sw_val[i]) {
+          uint8_t bit = SW_KEYCODE[i] % 8;
+          uint8_t byte = (SW_KEYCODE[i] / 8) + 1;
+          if (SW_KEYCODE[i] >= 240 && SW_KEYCODE[i] <= 247) {
+            nkro_report[0] |= (1 << bit);
+          } else if (byte > 0 && byte <= 31) {
+            nkro_report[byte] |= (1 << bit);
+          }
+
+          prev_sw_val[i] = sw_val[i];
+        }
+      }
+
       tud_hid_n_report(0x00, REPORT_ID_KEYBOARD, &nkro_report, sizeof(nkro_report));
       sw_changed = false;
     } else {
+      /*------------- Mouse -------------*/
+      // find the delta between previous and current enc_val
+      int delta[ENC_GPIO_SIZE] = {0};
+      for (int i = 0; i < ENC_GPIO_SIZE; i++) {
+        delta[i] = (enc_val[i] - prev_enc_val[i]) * (ENC_REV[i] ? 1 : -1);
+        prev_enc_val[i] = enc_val[i];
+      }
+
       tud_hid_mouse_report(REPORT_ID_MOUSE, 0x00, delta[0], delta[1], 0, 0);
       enc_changed = false;
     }
