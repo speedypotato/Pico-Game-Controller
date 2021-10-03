@@ -50,11 +50,10 @@ PIO pio, pio_1;
 uint32_t enc_val[ENC_GPIO_SIZE];
 uint32_t prev_enc_val[ENC_GPIO_SIZE];
 int cur_enc_val[ENC_GPIO_SIZE];
-bool enc_changed;
 
 bool sw_val[SW_GPIO_SIZE];
-bool prev_sw_val[SW_GPIO_SIZE];
-bool sw_changed;
+
+bool kbm_report;
 
 bool leds_changed;
 unsigned long reactive_timeout_count = REACTIVE_TIMEOUT_MAX;
@@ -171,57 +170,45 @@ struct report {
  **/
 void joy_mode() {
   if (tud_hid_ready()) {
-    bool send_report = false;
-    if (sw_changed) {
-      send_report = true;
-      uint16_t translate_buttons = 0;
-      for (int i = SW_GPIO_SIZE - 1; i >= 0; i--) {
-        translate_buttons = (translate_buttons << 1) | (sw_val[i] ? 1 : 0);
-        prev_sw_val[i] = sw_val[i];
-      }
-      report.buttons = translate_buttons;
-      sw_changed = false;
+    uint16_t translate_buttons = 0;
+    for (int i = SW_GPIO_SIZE - 1; i >= 0; i--) {
+      translate_buttons = (translate_buttons << 1) | (sw_val[i] ? 1 : 0);
     }
-    if (enc_changed) {
-      send_report = true;
+    report.buttons = translate_buttons;
 
-      // find the delta between previous and current enc_val
-      for (int i = 0; i < ENC_GPIO_SIZE; i++) {
-        int delta;
-        int changeType;                      // -1 for negative 1 for positive
-        if (enc_val[i] > prev_enc_val[i]) {  // if the new value is bigger its
-                                             // a positive change
-          delta = enc_val[i] - prev_enc_val[i];
-          changeType = 1;
-        } else {  // otherwise its a negative change
-          delta = prev_enc_val[i] - enc_val[i];
-          changeType = -1;
-        }
-        // Overflow / Underflow
-        if (delta > ENC_ROLLOVER) {
-          // Reverse the change type due to overflow / underflow
-          changeType *= -1;
-          delta = UINT32_MAX - delta + 1;  // this should give us how much we
-                                           // overflowed / underflowed by
-        }
-
-        cur_enc_val[i] =
-            cur_enc_val[i] + ((ENC_REV[i] ? 1 : -1) * delta * changeType);
-        while (cur_enc_val[i] < 0) {
-          cur_enc_val[i] = ENC_PULSE - cur_enc_val[i];
-        }
-
-        prev_enc_val[i] = enc_val[i];
+    // find the delta between previous and current enc_val
+    for (int i = 0; i < ENC_GPIO_SIZE; i++) {
+      int delta;
+      int changeType;                      // -1 for negative 1 for positive
+      if (enc_val[i] > prev_enc_val[i]) {  // if the new value is bigger its
+                                           // a positive change
+        delta = enc_val[i] - prev_enc_val[i];
+        changeType = 1;
+      } else {  // otherwise its a negative change
+        delta = prev_enc_val[i] - enc_val[i];
+        changeType = -1;
+      }
+      // Overflow / Underflow
+      if (delta > ENC_ROLLOVER) {
+        // Reverse the change type due to overflow / underflow
+        changeType *= -1;
+        delta = UINT32_MAX - delta + 1;  // this should give us how much we
+                                         // overflowed / underflowed by
       }
 
-      report.joy0 = ((double)cur_enc_val[0] / ENC_PULSE) * 256;
-      report.joy1 = ((double)cur_enc_val[1] / ENC_PULSE) * 256;
-      enc_changed = false;
+      cur_enc_val[i] =
+          cur_enc_val[i] + ((ENC_REV[i] ? 1 : -1) * delta * changeType);
+      while (cur_enc_val[i] < 0) {
+        cur_enc_val[i] = ENC_PULSE - cur_enc_val[i];
+      }
+
+      prev_enc_val[i] = enc_val[i];
     }
 
-    if (send_report) {
-      tud_hid_n_report(0x00, REPORT_ID_JOYSTICK, &report, sizeof(report));
-    }
+    report.joy0 = ((double)cur_enc_val[0] / ENC_PULSE) * 256;
+    report.joy1 = ((double)cur_enc_val[1] / ENC_PULSE) * 256;
+
+    tud_hid_n_report(0x00, REPORT_ID_JOYSTICK, &report, sizeof(report));
   }
 }
 
@@ -229,44 +216,38 @@ void joy_mode() {
  * Keyboard Mode
  **/
 void key_mode() {
-  if (tud_hid_ready()) {
+  if (tud_hid_ready()) {  // Wait for ready, updating mouse too fast hampers
+                          // movement
     /*------------- Keyboard -------------*/
-    if (sw_changed) {
-      uint8_t nkro_report[32] = {0};
-      for (int i = 0; i < SW_GPIO_SIZE; i++) {
-        if (sw_val[i]) {
-          uint8_t bit = SW_KEYCODE[i] % 8;
-          uint8_t byte = (SW_KEYCODE[i] / 8) + 1;
-          if (SW_KEYCODE[i] >= 240 && SW_KEYCODE[i] <= 247) {
-            nkro_report[0] |= (1 << bit);
-          } else if (byte > 0 && byte <= 31) {
-            nkro_report[byte] |= (1 << bit);
-          }
-
-          prev_sw_val[i] = sw_val[i];
+    uint8_t nkro_report[32] = {0};
+    for (int i = 0; i < SW_GPIO_SIZE; i++) {
+      if (sw_val[i]) {
+        uint8_t bit = SW_KEYCODE[i] % 8;
+        uint8_t byte = (SW_KEYCODE[i] / 8) + 1;
+        if (SW_KEYCODE[i] >= 240 && SW_KEYCODE[i] <= 247) {
+          nkro_report[0] |= (1 << bit);
+        } else if (byte > 0 && byte <= 31) {
+          nkro_report[byte] |= (1 << bit);
         }
       }
-      // Send key report
-      tud_hid_n_report(0x00, REPORT_ID_KEYBOARD, &nkro_report,
-                       sizeof(nkro_report));
-      sw_changed = false;
     }
 
     /*------------- Mouse -------------*/
-    if (enc_changed) {
-      // Delay if needed before attempt to send mouse report
-      while (!tud_hid_ready()) {
-        board_delay(1);
-      }
-      // find the delta between previous and current enc_val
-      int delta[ENC_GPIO_SIZE] = {0};
-      for (int i = 0; i < ENC_GPIO_SIZE; i++) {
-        delta[i] = (enc_val[i] - prev_enc_val[i]) * (ENC_REV[i] ? 1 : -1);
-        prev_enc_val[i] = enc_val[i];
-      }
-      tud_hid_mouse_report(REPORT_ID_MOUSE, 0x00, delta[0], delta[1], 0, 0);
-      enc_changed = false;
+    // find the delta between previous and current enc_val
+    int delta[ENC_GPIO_SIZE] = {0};
+    for (int i = 0; i < ENC_GPIO_SIZE; i++) {
+      delta[i] = (enc_val[i] - prev_enc_val[i]) * (ENC_REV[i] ? 1 : -1);
+      prev_enc_val[i] = enc_val[i];
     }
+
+    if (kbm_report) {
+      tud_hid_n_report(0x00, REPORT_ID_KEYBOARD, &nkro_report,
+                       sizeof(nkro_report));
+    } else {
+      tud_hid_mouse_report(REPORT_ID_MOUSE, 0x00, delta[0], delta[1], 0, 0);
+    }
+    // Alternate reports
+    kbm_report = !kbm_report;
   }
 }
 
@@ -274,27 +255,12 @@ void key_mode() {
  * Update Input States
  **/
 void update_inputs() {
-  // Encoder Flag
-  for (int i = 0; i < ENC_GPIO_SIZE; i++) {
-    if (enc_val[i] != prev_enc_val[i]) {
-      enc_changed = true;
-      break;
-    }
-  }
-  // Switch Update & Flag
   for (int i = 0; i < SW_GPIO_SIZE; i++) {
-    if (gpio_get(SW_GPIO[i])) {
-      sw_val[i] = false;
-    } else {
-      sw_val[i] = true;
-    }
-    if (!sw_changed && sw_val[i] != prev_sw_val[i]) {
-      sw_changed = true;
-    }
+    sw_val[i] = !gpio_get(SW_GPIO[i]);  // Switches are pull up, negate value
   }
+
   // Update LEDs if input changed while in reactive mode
-  if (sw_changed && reactive_timeout_count >= REACTIVE_TIMEOUT_MAX)
-    leds_changed = true;
+  if (reactive_timeout_count >= REACTIVE_TIMEOUT_MAX) leds_changed = true;
 }
 
 /**
@@ -359,7 +325,6 @@ void init() {
   // Setup Button GPIO
   for (int i = 0; i < SW_GPIO_SIZE; i++) {
     sw_val[i] = false;
-    prev_sw_val[i] = false;
     gpio_init(SW_GPIO[i]);
     gpio_set_function(SW_GPIO[i], GPIO_FUNC_SIO);
     gpio_set_dir(SW_GPIO[i], GPIO_IN);
@@ -373,9 +338,8 @@ void init() {
   }
 
   // Set listener bools
-  enc_changed = false;
-  sw_changed = false;
   leds_changed = false;
+  kbm_report = false;
 
   // Joy/KB Mode Switching
   if (gpio_get(SW_GPIO[0])) {
