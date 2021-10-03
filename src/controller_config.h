@@ -1,13 +1,12 @@
 #ifndef CONTROLLER_CONFIG_H
 #define CONTROLLER_CONFIG_H
 
-#define SW_GPIO_SIZE 11               // Number of switches
-#define LED_GPIO_SIZE 10              // Number of switches
-#define ENC_GPIO_SIZE 2               // Number of encoders
-#define ENC_PPR 600                   // Encoder PPR
-#define ENC_DEBOUNCE true             // Encoder Debouncing
-#define ENC_PULSE (ENC_PPR * 4)       // 4 pulses per PPR
-#define ENC_ROLLOVER (ENC_PULSE * 2)  // Delta Rollover threshold
+#define SW_GPIO_SIZE 11              // Number of switches
+#define LED_GPIO_SIZE 10             // Number of switch LEDs
+#define ENC_GPIO_SIZE 2              // Number of encoders
+#define ENC_PPR 600                  // Encoder PPR
+#define ENC_DEBOUNCE true            // Encoder Debouncing
+#define ENC_PULSE (ENC_PPR * 4)      // 4 pulses per PPR
 #define REACTIVE_TIMEOUT_MAX 500000  // Cycles before HID falls back to reactive
 #define WS2812B_LED_SIZE 10          // Number of WS2812B LEDs
 #define WS2812B_LED_ZONES 2          // Number of WS2812B LED Zones
