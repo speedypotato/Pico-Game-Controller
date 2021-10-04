@@ -1,0 +1,37 @@
+.program switches
+.wrap_target
+    pull block          //load bitmask to osr
+    in pins, 28         //read input
+    mov x, ~isr         //copy isr and invert
+    mov x, ::x          //reverse because isr is fifo, and lsb is filo
+    mov osr, ::osr      //reverse to match
+    set y, 0 
+    mov isr, y          //clear isr
+start:
+    out y, 1            //pop from bitmask
+    jmp !y discard      //discard bit from input if 0
+    in x, 1             //copy bit to isr
+discard:
+    mov y, osr          //copy bitmask to y
+    jmp !y end          //end if bitmask is all 0
+    mov osr, x          //copy input to osr
+    out x, 1            //pop a bit
+    mov x, osr          //copy input back to x
+    mov osr, y          //copy bitmask back to osr
+    jmp start           //go back
+end:
+    push
+.wrap
+
+% c-sdk {
+static inline void switches_program_init(PIO pio, uint sm, uint offset) {
+
+    pio_sm_config c = switches_program_get_default_config(offset);
+    sm_config_set_in_pins(&c, 0);
+    sm_config_set_in_shift(&c, false, false, 0);
+
+    // Load our configuration, and start the program from the beginning
+    pio_sm_init(pio, sm, offset, &c);
+    pio_sm_set_enabled(pio, sm, true);
+}
+%}
