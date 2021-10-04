@@ -24,11 +24,13 @@ end:
 .wrap
 
 % c-sdk {
-static inline void switches_program_init(PIO pio, uint sm, uint offset) {
+static inline void switches_program_init(PIO pio, uint sm, uint offset, bool debounce) {
 
     pio_sm_config c = switches_program_get_default_config(offset);
     sm_config_set_in_pins(&c, 0);
     sm_config_set_in_shift(&c, false, false, 0);
+
+    if (debounce) sm_config_set_clkdiv(&c, 5000);
 
     // Load our configuration, and start the program from the beginning
     pio_sm_init(pio, sm, offset, &c);

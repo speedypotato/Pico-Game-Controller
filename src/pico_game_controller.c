@@ -23,9 +23,11 @@
 #include "ws2812.pio.h"
 
 PIO pio_0, pio_1;
-uint32_t enc_val[ENC_GPIO_SIZE];
+//DMA writes to volatile, make local copy to use
+volatile uint32_t enc_val[ENC_GPIO_SIZE];
 uint32_t prev_enc_val[ENC_GPIO_SIZE];
 int cur_enc_val[ENC_GPIO_SIZE];
+int enc_dma_chan[ENC_GPIO_SIZE];
 
 dma_channel_config sw_rx_c;
 dma_channel_config sw_tx_c;
@@ -37,7 +39,6 @@ volatile uint32_t sw_data;
 
 bool kbm_report;
 
-bool leds_changed;
 unsigned long reactive_timeout_count = REACTIVE_TIMEOUT_MAX;
 
 void (*loop_mode)();
@@ -60,7 +61,7 @@ union {
  * @param pixel_grb The pixel color to set
  **/
 static inline void put_pixel(uint32_t pixel_grb) {
-  pio_sm_put_blocking(pio_0, 2, pixel_grb << 8u);
+  pio_sm_put_blocking(pio_1, 0, pixel_grb << 8u);
 }
 
 /**
@@ -146,14 +147,18 @@ void joy_mode() {
     //Report is a nonvolatile copy
     report.buttons = sw_data;
 
+    //Cache enc_val
+    uint32_t temp_val[ENC_GPIO_SIZE];
+    for (int i = 0; i < ENC_GPIO_SIZE; i++) temp_val[i] = enc_val[i];
+
     // find the delta between previous and current enc_val
     for (int i = 0; i < ENC_GPIO_SIZE; i++) {
       cur_enc_val[i] +=
-          ((ENC_REV[i] ? 1 : -1) * (enc_val[i] - prev_enc_val[i]));
+          ((ENC_REV[i] ? 1 : -1) * (temp_val[i] - prev_enc_val[i]));
       while (cur_enc_val[i] < 0) cur_enc_val[i] = ENC_PULSE + cur_enc_val[i];
       cur_enc_val[i] %= ENC_PULSE;
 
-      prev_enc_val[i] = enc_val[i];
+      prev_enc_val[i] = temp_val[i];
     }
 
     report.joy0 = ((double)cur_enc_val[0] / ENC_PULSE) * (UINT8_MAX + 1);
@@ -186,11 +191,14 @@ void key_mode() {
     }
 
     /*------------- Mouse -------------*/
+    //Cache enc_val
+    uint32_t temp_val[ENC_GPIO_SIZE];
+    for (int i = 0; i < ENC_GPIO_SIZE; i++) temp_val[i] = enc_val[i];
     // find the delta between previous and current enc_val
     int delta[ENC_GPIO_SIZE] = {0};
     for (int i = 0; i < ENC_GPIO_SIZE; i++) {
-      delta[i] = (enc_val[i] - prev_enc_val[i]) * (ENC_REV[i] ? 1 : -1);
-      prev_enc_val[i] = enc_val[i];
+      delta[i] = (temp_val[i] - prev_enc_val[i]) * (ENC_REV[i] ? 1 : -1);
+      prev_enc_val[i] = temp_val[i];
     }
 
     if (kbm_report) {
@@ -209,15 +217,15 @@ void key_mode() {
  **/
 void irq0_dma_handler() {
   for (int i = 0; i < ENC_GPIO_SIZE; i++) {
-    if (dma_channel_get_irq0_status(i)) {
-      dma_channel_acknowledge_irq0(i);
-      dma_channel_set_read_addr(i, &pio_0->rxf[i], true);
+    if (dma_channel_get_irq0_status(enc_dma_chan[i])) {
+      dma_channel_acknowledge_irq0(enc_dma_chan[i]);
+      dma_channel_set_read_addr(enc_dma_chan[i], &pio_0->rxf[i], true);
     }
   }
 }
 
+//Switch pio on irq1
 void irq1_dma_handler() {
-  //Switch IRQ1
   if (dma_channel_get_irq1_status(sw_dma_chan)) {  
     // Clear the interrupt request.
     dma_channel_acknowledge_irq1(sw_dma_chan);
@@ -248,41 +256,42 @@ void init() {
   irq_set_enabled(DMA_IRQ_1, true);
 
   //Name PIOs, dont need?
-  pio_0 = pio0;         //SM 0-1 encoders, 2 WS2812b
-  pio_1 = pio1;         //SM 0 switches
+  pio_0 = pio0;         //SM 0-3 encoders
+  pio_1 = pio1;         //SM 0 WS2812B, 1 Switches
 
-  //PIO 0  -  23 Encoder + 8 WS2812b instructions
+  //PIOs have a limit of 32 instructions each
+  //PIO 0  -  Encoders 23 instructions
   // Set up the state machine for encoders
   uint offset = pio_add_program(pio_0, &encoders_program);
 
-  // Setup Encoders
+  // Setup Encoders, i = sm
   for (int i = 0; i < ENC_GPIO_SIZE; i++) {
     enc_val[i] = 0;
     prev_enc_val[i] = 0;
     cur_enc_val[i] = 0;
     encoders_program_init(pio_0, i, offset, ENC_GPIO[i], ENC_DEBOUNCE);
 
-    dma_channel_claim(i);     //Claim DMA channel
-    dma_channel_config c = dma_channel_get_default_config(i);
+    enc_dma_chan[i] = dma_claim_unused_channel(true);     //Claim DMA channel
+    dma_channel_config c = dma_channel_get_default_config(enc_dma_chan[i]);
     channel_config_set_read_increment(&c, false);
     channel_config_set_write_increment(&c, false);
     channel_config_set_dreq(&c, pio_get_dreq(pio_0, i, false));
 
-    dma_channel_configure(i, &c,
+    dma_channel_configure(enc_dma_chan[i], &c,
                           &enc_val[i],   // Destinatinon pointer
                           &pio_0->rxf[i],  // Source pointer
                           0x10,          // Number of transfers
                           true           // Start immediately
     );
-    dma_channel_set_irq0_enabled(i, true);
+    dma_channel_set_irq0_enabled(enc_dma_chan[i], true);
   }
 
+  //PIO 1  -  WS2812B 4 + Switches 17 = 21 instructions
   // Set up WS2812B
-  uint offset2 = pio_add_program(pio_0, &ws2812_program);
-  ws2812_program_init(pio_0, 2, offset2, WS2812B_GPIO, 800000,
+  uint offset2 = pio_add_program(pio_1, &ws2812_program);
+  ws2812_program_init(pio_1, 0, offset2, WS2812B_GPIO, 800000,
                       false);
 
-  //PIO 1  -  17 Switches instructions
   //Switches
   //Prep bitmask and gpio pins
   sw_bitmask = 0;
@@ -293,9 +302,9 @@ void init() {
   }
 
   //State Machine
-  sw_sm = 0;
+  sw_sm = 1;
   uint sw_offset = pio_add_program(pio_1, &switches_program);
-  switches_program_init(pio_1, sw_sm, sw_offset);
+  switches_program_init(pio_1, sw_sm, sw_offset, ENC_DEBOUNCE);
   //Get dma channel
   sw_dma_chan = dma_claim_unused_channel(true);
   //Configure
@@ -319,16 +328,15 @@ void init() {
   }
 
   // Set listener bools
-  leds_changed = false;
   kbm_report = false;
 
   // Joy/KB Mode Switching
-  if (sw_data & 0x1) {
-    loop_mode = &key_mode;
-    joy_mode_check = false;
-  } else {
+  if (gpio_get(SW_GPIO[0])) {
     loop_mode = &joy_mode;
     joy_mode_check = true;
+  } else {
+    loop_mode = &key_mode;
+    joy_mode_check = false;
   }
 }
 
@@ -392,6 +400,5 @@ void tud_hid_set_report_cb(uint8_t itf, uint8_t report_id,
       lights_report.raw[i] = buffer[i + 1];
     }
     reactive_timeout_count = 0;
-    leds_changed = true;
   }
 }
