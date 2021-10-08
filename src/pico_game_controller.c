@@ -135,8 +135,7 @@ void update_lights() {
 
 struct report {
   uint16_t buttons;
-  uint8_t joy0;
-  uint8_t joy1;
+  uint8_t joy[ENC_GPIO_SIZE];
 } report;
 
 /**
@@ -144,8 +143,15 @@ struct report {
  **/
 void joy_mode() {
   if (tud_hid_ready()) {
-    //Report is a nonvolatile copy
-    report.buttons = sw_data;
+    //Cache sw_data
+    int temp_data = sw_data;
+    //Zero out buttons
+    report.buttons = 0;
+    for (int i = 0; i < SW_GPIO_SIZE; i++) {
+      int bt_val = (temp_data >> i) & 0x1;
+      //If button is 0, skip
+      if (bt_val) report.buttons |= bt_val << (BT_MAP[i] - 1);
+    }
 
     //Cache enc_val
     uint32_t temp_val[ENC_GPIO_SIZE];
@@ -159,10 +165,9 @@ void joy_mode() {
       cur_enc_val[i] %= ENC_PULSE;
 
       prev_enc_val[i] = temp_val[i];
-    }
 
-    report.joy0 = ((double)cur_enc_val[0] / ENC_PULSE) * (UINT8_MAX + 1);
-    report.joy1 = ((double)cur_enc_val[1] / ENC_PULSE) * (UINT8_MAX + 1);
+      report.joy[i] = ((double)cur_enc_val[i] / ENC_PULSE) * (UINT8_MAX + 1);
+    }
 
     tud_hid_n_report(0x00, REPORT_ID_JOYSTICK, &report, sizeof(report));
   }
