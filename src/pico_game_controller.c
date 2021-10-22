@@ -37,6 +37,11 @@ uint32_t sw_bitmask;
 //Must make local copy of sw_data. DMA will change value faster than CPU can process
 volatile uint32_t sw_data;
 
+uint64_t sw_debounce_timestamp[SW_GPIO_SIZE];
+uint32_t prev_sw_data;
+uint64_t enc_debounce_timestamp[ENC_GPIO_SIZE];
+int delta[ENC_GPIO_SIZE];
+
 bool kbm_report;
 
 unsigned long reactive_timeout_count = REACTIVE_TIMEOUT_MAX;
@@ -122,11 +127,10 @@ void update_lights() {
   if (reactive_timeout_count < REACTIVE_TIMEOUT_MAX) {
     reactive_timeout_count++;
   }
-  //Cache a local copy of sw_data
-  uint16_t temp_data = sw_data;
+  //Use prev_sw_data
   for (int i = 0; i < LED_GPIO_SIZE; i++) {
     if (reactive_timeout_count >= REACTIVE_TIMEOUT_MAX) {
-      gpio_put(LED_GPIO[i], (temp_data >> i) & 0x1);
+      gpio_put(LED_GPIO[i], (prev_sw_data >> i) & 0x1);
     } else {
       gpio_put(LED_GPIO[i], lights_report.lights.buttons[i]);
     }
@@ -143,14 +147,25 @@ struct report {
  **/
 void joy_mode() {
   if (tud_hid_ready()) {
+    //Debounce timestamp
+    uint64_t time_now = time_us_64();
+
     //Cache sw_data
     int temp_data = sw_data;
     //Zero out buttons
     report.buttons = 0;
     for (int i = 0; i < SW_GPIO_SIZE; i++) {
       int bt_val = (temp_data >> i) & 0x1;
-      //If button is 0, skip
-      if (bt_val) report.buttons |= bt_val << (BT_MAP[i] - 1);
+      int prev_bt_val = (prev_sw_data >> i) & 0x1;
+      //If debounce and under time, use old value
+      if (SW_DEBOUNCE && (time_now - sw_debounce_timestamp[i] < SW_DEBOUNCE_TIME_US)) {
+        report.buttons |= prev_bt_val << (BT_MAP[i] - 1);
+      } else {
+        //Use new value
+        report.buttons |= bt_val << (BT_MAP[i] - 1);
+        //Update prev_sw_data
+        prev_sw_data |= bt_val << (BT_MAP[i] - 1);
+      }
     }
 
     //Cache enc_val
@@ -159,12 +174,19 @@ void joy_mode() {
 
     // find the delta between previous and current enc_val
     for (int i = 0; i < ENC_GPIO_SIZE; i++) {
-      cur_enc_val[i] +=
-          ((ENC_REV[i] ? 1 : -1) * (temp_val[i] - prev_enc_val[i]));
-      while (cur_enc_val[i] < 0) cur_enc_val[i] = ENC_PULSE + cur_enc_val[i];
-      cur_enc_val[i] %= ENC_PULSE;
+      int temp_enc_val = cur_enc_val[i];
+      temp_enc_val += ((ENC_REV[i] ? 1 : -1) * (temp_enc_val - prev_enc_val[i]));
+      while (temp_enc_val < 0) temp_enc_val = ENC_PULSE + temp_enc_val;
+      temp_enc_val %= ENC_PULSE;
 
-      prev_enc_val[i] = temp_val[i];
+      //If not debounce and under, use old val
+      if (ENC_DEBOUNCE && (time_now - enc_debounce_timestamp[i] < ENC_DEBOUNCE_TIME_US)) {
+      } else {
+        //Update cur_enc_val
+        cur_enc_val[i] = temp_enc_val;
+        prev_enc_val[i] = temp_val[i];
+        enc_debounce_timestamp[i] = time_now;
+      }
 
       report.joy[i] = ((double)cur_enc_val[i] / ENC_PULSE) * (UINT8_MAX + 1);
     }
@@ -179,12 +201,25 @@ void joy_mode() {
 void key_mode() {
   if (tud_hid_ready()) {  // Wait for ready, updating mouse too fast hampers
                           // movement
+    uint64_t time_now = time_us_64();
     /*------------- Keyboard -------------*/
     uint8_t nkro_report[32] = {0};
     //Cache a local copy of sw_data, dma can change it in middle of processing
     uint16_t temp_data = sw_data;
     for (int i = 0; i < SW_GPIO_SIZE; i++) {
-      if (temp_data >> i & 0x1) {
+      int temp_key = temp_data >> i & 0x1;
+      //If debounce
+      if (SW_DEBOUNCE) {
+        //Under debounce time, use old key
+        if ((time_now - sw_debounce_timestamp[i]) < SW_DEBOUNCE_TIME_US) {
+          temp_key = prev_sw_data >> i & 0x1;
+        } else {
+          //Over debounce time, update prev key
+          prev_sw_data != temp_key << i;
+        }
+      }
+
+      if (temp_key) {
         uint8_t bit = SW_KEYCODE[i] % 8;
         uint8_t byte = (SW_KEYCODE[i] / 8) + 1;
         if (SW_KEYCODE[i] >= 240 && SW_KEYCODE[i] <= 247) {
@@ -200,10 +235,15 @@ void key_mode() {
     uint32_t temp_val[ENC_GPIO_SIZE];
     for (int i = 0; i < ENC_GPIO_SIZE; i++) temp_val[i] = enc_val[i];
     // find the delta between previous and current enc_val
-    int delta[ENC_GPIO_SIZE] = {0};
     for (int i = 0; i < ENC_GPIO_SIZE; i++) {
-      delta[i] = (temp_val[i] - prev_enc_val[i]) * (ENC_REV[i] ? 1 : -1);
-      prev_enc_val[i] = temp_val[i];
+      //Debounce on, under debounce time, ignore input
+      if (ENC_DEBOUNCE && (time_now - enc_debounce_timestamp[i] < ENC_DEBOUNCE_TIME_US)) {
+        //Use old value
+      } else {
+        //Update values
+        delta[i] = (temp_val[i] - prev_enc_val[i]) * (ENC_REV[i] ? 1 : -1);
+        prev_enc_val[i] = temp_val[i];
+      }
     }
 
     if (kbm_report) {
@@ -274,6 +314,8 @@ void init() {
     enc_val[i] = 0;
     prev_enc_val[i] = 0;
     cur_enc_val[i] = 0;
+    enc_debounce_timestamp[i] = 0;
+    delta[i] = 0;
     encoders_program_init(pio_0, i, offset, ENC_GPIO[i], ENC_DEBOUNCE);
 
     enc_dma_chan[i] = dma_claim_unused_channel(true);     //Claim DMA channel
@@ -304,12 +346,14 @@ void init() {
     sw_bitmask |= (0x1 << SW_GPIO[i]);
     gpio_pull_up(SW_GPIO[i]);
     gpio_init(SW_GPIO[i]);
+    sw_debounce_timestamp[i] = 0;
   }
+  prev_sw_data = 0;
 
   //State Machine
   sw_sm = 1;
   uint sw_offset = pio_add_program(pio_1, &switches_program);
-  switches_program_init(pio_1, sw_sm, sw_offset, ENC_DEBOUNCE);
+  switches_program_init(pio_1, sw_sm, sw_offset, SW_DEBOUNCE);
   //Get dma channel
   sw_dma_chan = dma_claim_unused_channel(true);
   //Configure

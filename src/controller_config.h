@@ -6,8 +6,11 @@
 #define ENC_GPIO_SIZE 2              // Number of encoders
 #define BT_MAP_MAX 11                // Number of buttons to report
 #define ENC_PPR 600                  // Encoder PPR
-#define ENC_DEBOUNCE true            // Encoder Debouncing
 #define ENC_PULSE (ENC_PPR * 4)      // 4 pulses per PPR
+#define ENC_DEBOUNCE true            // Encoder Debouncing
+#define ENC_DEBOUNCE_TIME_US 1000    // Encoder debounce delay in us
+#define SW_DEBOUNCE true             // Switch Debouncing
+#define SW_DEBOUNCE_TIME_US 1000     // Switch debounce delay in us
 #define REACTIVE_TIMEOUT_MAX 500000  // Cycles before HID falls back to reactive
 #define WS2812B_LED_SIZE 10          // Number of WS2812B LEDs
 #define WS2812B_LED_ZONES 2          // Number of WS2812B LED Zones
