@@ -27,16 +27,15 @@ enum {
       HID_USAGE(HID_USAGE_DESKTOP_JOYSTICK),                                   \
       HID_COLLECTION(HID_COLLECTION_APPLICATION),                              \
       __VA_ARGS__ HID_USAGE_PAGE(HID_USAGE_PAGE_BUTTON), HID_USAGE_MIN(1),     \
-      HID_USAGE_MAX(BT_MAP_MAX),                                               \
-      HID_LOGICAL_MIN(0), HID_LOGICAL_MAX(1), HID_REPORT_COUNT(BT_MAP_MAX),    \
+      HID_USAGE_MAX(SW_GPIO_SIZE),                                             \
+      HID_LOGICAL_MIN(0), HID_LOGICAL_MAX(1), HID_REPORT_COUNT(SW_GPIO_SIZE),  \
       HID_REPORT_SIZE(1), HID_INPUT(HID_DATA | HID_VARIABLE | HID_ABSOLUTE),   \
-      HID_REPORT_COUNT(1), HID_REPORT_SIZE(16 - BT_MAP_MAX), /*Padding*/       \
+      HID_REPORT_COUNT(1), HID_REPORT_SIZE(16 - SW_GPIO_SIZE), /*Padding*/\
       HID_INPUT(HID_CONSTANT | HID_VARIABLE | HID_ABSOLUTE),                   \
       HID_USAGE_PAGE(HID_USAGE_PAGE_DESKTOP), HID_LOGICAL_MIN(0x00),           \
       HID_LOGICAL_MAX_N(0x00ff, 2),                                            \
-      HID_USAGE(JOY_AXIS_MAP[0]), HID_USAGE(JOY_AXIS_MAP[1]),                  \
-      HID_USAGE(JOY_AXIS_MAP[2]), HID_USAGE(JOY_AXIS_MAP[3]),                  \
-      HID_REPORT_COUNT(ENC_GPIO_SIZE), HID_REPORT_SIZE(8),                     \
+      HID_USAGE(HID_USAGE_DESKTOP_X), /*Joystick*/                             \
+      HID_USAGE(HID_USAGE_DESKTOP_Y), HID_REPORT_COUNT(2), HID_REPORT_SIZE(8), \
       HID_INPUT(HID_DATA | HID_VARIABLE | HID_ABSOLUTE), HID_COLLECTION_END
 
 // Light Map

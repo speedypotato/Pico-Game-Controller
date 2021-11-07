@@ -17,33 +17,20 @@
 #include "hardware/pio.h"
 #include "pico/multicore.h"
 #include "pico/stdlib.h"
-#include "switches.pio.h"
 #include "tusb.h"
 #include "usb_descriptors.h"
 #include "ws2812.pio.h"
 
-PIO pio_0, pio_1;
-//DMA writes to volatile, make local copy to use
-volatile uint32_t enc_val[ENC_GPIO_SIZE];
+PIO pio, pio_1;
+uint32_t enc_val[ENC_GPIO_SIZE];
 uint32_t prev_enc_val[ENC_GPIO_SIZE];
 int cur_enc_val[ENC_GPIO_SIZE];
-int enc_dma_chan[ENC_GPIO_SIZE];
 
-dma_channel_config sw_rx_c;
-dma_channel_config sw_tx_c;
-int sw_sm;
-int sw_dma_chan;
-uint32_t sw_bitmask;
-//Must make local copy of sw_data. DMA will change value faster than CPU can process
-volatile uint32_t sw_data;
-
-uint64_t time_now;
-uint64_t sw_debounce_timestamp[SW_GPIO_SIZE];
-uint32_t prev_sw_data;
-int delta[ENC_GPIO_SIZE];
+bool sw_val[SW_GPIO_SIZE];
 
 bool kbm_report;
 
+bool leds_changed;
 unsigned long reactive_timeout_count = REACTIVE_TIMEOUT_MAX;
 
 void (*loop_mode)();
@@ -66,7 +53,7 @@ union {
  * @param pixel_grb The pixel color to set
  **/
 static inline void put_pixel(uint32_t pixel_grb) {
-  pio_sm_put_blocking(pio_1, 0, pixel_grb << 8u);
+  pio_sm_put_blocking(pio1, ENC_GPIO_SIZE, pixel_grb << 8u);
 }
 
 /**
@@ -127,19 +114,30 @@ void update_lights() {
   if (reactive_timeout_count < REACTIVE_TIMEOUT_MAX) {
     reactive_timeout_count++;
   }
-  //Use prev_sw_data
-  for (int i = 0; i < LED_GPIO_SIZE; i++) {
-    if (reactive_timeout_count >= REACTIVE_TIMEOUT_MAX) {
-      gpio_put(LED_GPIO[i], (prev_sw_data >> i) & 0x1);
-    } else {
-      gpio_put(LED_GPIO[i], lights_report.lights.buttons[i]);
+  if (leds_changed) {
+    for (int i = 0; i < LED_GPIO_SIZE; i++) {
+      if (reactive_timeout_count >= REACTIVE_TIMEOUT_MAX) {
+        if (sw_val[i]) {
+          gpio_put(LED_GPIO[i], 1);
+        } else {
+          gpio_put(LED_GPIO[i], 0);
+        }
+      } else {
+        if (lights_report.lights.buttons[i] == 0) {
+          gpio_put(LED_GPIO[i], 0);
+        } else {
+          gpio_put(LED_GPIO[i], 1);
+        }
+      }
     }
+    leds_changed = false;
   }
 }
 
 struct report {
   uint16_t buttons;
-  uint8_t joy[ENC_GPIO_SIZE];
+  uint8_t joy0;
+  uint8_t joy1;
 } report;
 
 /**
@@ -147,44 +145,24 @@ struct report {
  **/
 void joy_mode() {
   if (tud_hid_ready()) {
-    //Update time
-    time_now = time_us_64();
-
-    //Cache sw_data
-    int temp_data = sw_data;
-    //Zero out buttons
-    report.buttons = 0;
-
-    for (int i = 0; i < SW_GPIO_SIZE; i++) {
-      int bt_val = (temp_data >> i) & 0x1;
-      int prev_bt_val = (prev_sw_data >> i) & 0x1;
-      //If debounce and under time, use old value
-      if (SW_DEBOUNCE && (time_now - sw_debounce_timestamp[i] < SW_DEBOUNCE_TIME_US)) {
-        report.buttons |= prev_bt_val << (BT_MAP[i] - 1);
-      } else {
-        //Use new value
-        report.buttons |= bt_val << (BT_MAP[i] - 1);
-        //Update prev_sw_data
-        prev_sw_data |= bt_val << (BT_MAP[i] - 1);
-      }
+    uint16_t translate_buttons = 0;
+    for (int i = SW_GPIO_SIZE - 1; i >= 0; i--) {
+      translate_buttons = (translate_buttons << 1) | (sw_val[i] ? 1 : 0);
     }
-
-    //Cache enc_val
-    uint32_t temp_val[ENC_GPIO_SIZE];
-    for (int i = 0; i < ENC_GPIO_SIZE; i++) temp_val[i] = enc_val[i];
+    report.buttons = translate_buttons;
 
     // find the delta between previous and current enc_val
     for (int i = 0; i < ENC_GPIO_SIZE; i++) {
-      int temp_enc_val = cur_enc_val[i];
-      temp_enc_val += ((ENC_REV[i] ? 1 : -1) * (temp_enc_val - prev_enc_val[i]));
-      while (temp_enc_val < 0) temp_enc_val = ENC_PULSE + temp_enc_val;
-      temp_enc_val %= ENC_PULSE;
+      cur_enc_val[i] +=
+          ((ENC_REV[i] ? 1 : -1) * (enc_val[i] - prev_enc_val[i]));
+      while (cur_enc_val[i] < 0) cur_enc_val[i] = ENC_PULSE + cur_enc_val[i];
+      cur_enc_val[i] %= ENC_PULSE;
 
-      cur_enc_val[i] = temp_enc_val;
-      prev_enc_val[i] = temp_val[i];
-
-      report.joy[i] = ((double)cur_enc_val[i] / ENC_PULSE) * (UINT8_MAX + 1);
+      prev_enc_val[i] = enc_val[i];
     }
+
+    report.joy0 = ((double)cur_enc_val[0] / ENC_PULSE) * (UINT8_MAX + 1);
+    report.joy1 = ((double)cur_enc_val[1] / ENC_PULSE) * (UINT8_MAX + 1);
 
     tud_hid_n_report(0x00, REPORT_ID_JOYSTICK, &report, sizeof(report));
   }
@@ -193,32 +171,13 @@ void joy_mode() {
 /**
  * Keyboard Mode
  **/
-void key_mode(uint64_t time_now) {
+void key_mode() {
   if (tud_hid_ready()) {  // Wait for ready, updating mouse too fast hampers
                           // movement
-
-    //Update time
-    time_now = time_us_64();
-
     /*------------- Keyboard -------------*/
     uint8_t nkro_report[32] = {0};
-    //Cache a local copy of sw_data, dma can change it in middle of processing
-    uint16_t temp_data = sw_data;
-    
     for (int i = 0; i < SW_GPIO_SIZE; i++) {
-      int temp_key = temp_data >> i & 0x1;
-      //If debounce
-      if (SW_DEBOUNCE) {
-        //Under debounce time, use old key
-        if ((time_now - sw_debounce_timestamp[i]) < SW_DEBOUNCE_TIME_US) {
-          temp_key = prev_sw_data >> i & 0x1;
-        } else {
-          //Over debounce time, update prev key
-          prev_sw_data |= temp_key << i;
-        }
-      }
-
-      if (temp_key) {
+      if (sw_val[i]) {
         uint8_t bit = SW_KEYCODE[i] % 8;
         uint8_t byte = (SW_KEYCODE[i] / 8) + 1;
         if (SW_KEYCODE[i] >= 240 && SW_KEYCODE[i] <= 247) {
@@ -230,13 +189,11 @@ void key_mode(uint64_t time_now) {
     }
 
     /*------------- Mouse -------------*/
-    //Cache enc_val
-    uint32_t temp_val[ENC_GPIO_SIZE];
-    for (int i = 0; i < ENC_GPIO_SIZE; i++) temp_val[i] = enc_val[i];
     // find the delta between previous and current enc_val
+    int delta[ENC_GPIO_SIZE] = {0};
     for (int i = 0; i < ENC_GPIO_SIZE; i++) {
-      delta[i] = (temp_val[i] - prev_enc_val[i]) * (ENC_REV[i] ? 1 : -1);
-      prev_enc_val[i] = temp_val[i];
+      delta[i] = (enc_val[i] - prev_enc_val[i]) * (ENC_REV[i] ? 1 : -1);
+      prev_enc_val[i] = enc_val[i];
     }
 
     if (kbm_report) {
@@ -251,30 +208,31 @@ void key_mode(uint64_t time_now) {
 }
 
 /**
- * DMA Encoder Logic For 2 Encoders
+ * Update Input States
  **/
-void irq0_dma_handler() {
-  for (int i = 0; i < ENC_GPIO_SIZE; i++) {
-    if (dma_channel_get_irq0_status(enc_dma_chan[i])) {
-      dma_channel_acknowledge_irq0(enc_dma_chan[i]);
-      dma_channel_set_read_addr(enc_dma_chan[i], &pio_0->rxf[i], true);
-    }
+void update_inputs() {
+  for (int i = 0; i < SW_GPIO_SIZE; i++) {
+    sw_val[i] = !gpio_get(SW_GPIO[i]);  // Switches are pull up, negate value
   }
+
+  // Update LEDs if input changed while in reactive mode
+  if (reactive_timeout_count >= REACTIVE_TIMEOUT_MAX) leds_changed = true;
 }
 
-//Switch pio on irq1
-void irq1_dma_handler() {
-  if (dma_channel_get_irq1_status(sw_dma_chan)) {  
-    // Clear the interrupt request.
-    dma_channel_acknowledge_irq1(sw_dma_chan);
-    //Check rxf for data
-    if (pio_sm_get_rx_fifo_level(pio_1, sw_sm) > 0){
-      //Has data, copy RXF to variable
-      dma_channel_configure(sw_dma_chan, &sw_rx_c, &sw_data, &pio_1->rxf[sw_sm], 1, true);
-    } else {
-      //RXF empty, put bitmask into TXF
-      dma_channel_configure(sw_dma_chan, &sw_tx_c, &pio_1->txf[sw_sm], &sw_bitmask, 1, true);
-    }
+/**
+ * DMA Encoder Logic For 2 Encoders
+ **/
+void dma_handler() {
+  uint i = 1;
+  int interrupt_channel = 0;
+  while ((i & dma_hw->ints0) == 0) {
+    i = i << 1;
+    ++interrupt_channel;
+  }
+  dma_hw->ints0 = 1u << interrupt_channel;
+  if (interrupt_channel < 4) {
+    dma_channel_set_read_addr(interrupt_channel, &pio->rxf[interrupt_channel],
+                              true);
   }
 }
 
@@ -287,80 +245,47 @@ void init() {
   gpio_set_dir(25, GPIO_OUT);
   gpio_put(25, 1);
 
-  //Enable DMA IRQ
-  irq_set_exclusive_handler(DMA_IRQ_0, irq0_dma_handler);
-  irq_set_enabled(DMA_IRQ_0, true);
-  irq_set_exclusive_handler(DMA_IRQ_1, irq1_dma_handler);
-  irq_set_enabled(DMA_IRQ_1, true);
-
-  //Name PIOs, dont need?
-  pio_0 = pio0;         //SM 0-3 encoders
-  pio_1 = pio1;         //SM 0 WS2812B, 1 Switches
-
-  //PIOs have a limit of 32 instructions each
-  //PIO 0  -  Encoders 23 instructions
   // Set up the state machine for encoders
-  uint offset = pio_add_program(pio_0, &encoders_program);
+  pio = pio0;
+  uint offset = pio_add_program(pio, &encoders_program);
 
-  // Setup Encoders, i = sm
+  // Setup Encoders
   for (int i = 0; i < ENC_GPIO_SIZE; i++) {
     enc_val[i] = 0;
     prev_enc_val[i] = 0;
     cur_enc_val[i] = 0;
-    delta[i] = 0;
-    encoders_program_init(pio_0, i, offset, ENC_GPIO[i], ENC_DEBOUNCE);
+    encoders_program_init(pio, i, offset, ENC_GPIO[i], ENC_DEBOUNCE);
 
-    enc_dma_chan[i] = dma_claim_unused_channel(true);     //Claim DMA channel
-    dma_channel_config c = dma_channel_get_default_config(enc_dma_chan[i]);
+    dma_channel_config c = dma_channel_get_default_config(i);
     channel_config_set_read_increment(&c, false);
     channel_config_set_write_increment(&c, false);
-    channel_config_set_dreq(&c, pio_get_dreq(pio_0, i, false));
+    channel_config_set_dreq(&c, pio_get_dreq(pio, i, false));
 
-    dma_channel_configure(enc_dma_chan[i], &c,
+    dma_channel_configure(i, &c,
                           &enc_val[i],   // Destinatinon pointer
-                          &pio_0->rxf[i],  // Source pointer
+                          &pio->rxf[i],  // Source pointer
                           0x10,          // Number of transfers
                           true           // Start immediately
     );
-    dma_channel_set_irq0_enabled(enc_dma_chan[i], true);
+    irq_set_exclusive_handler(DMA_IRQ_0, dma_handler);
+    irq_set_enabled(DMA_IRQ_0, true);
+    dma_channel_set_irq0_enabled(i, true);
   }
 
-  //PIO 1  -  WS2812B 4 + Switches 17 = 21 instructions
   // Set up WS2812B
+  pio_1 = pio1;
   uint offset2 = pio_add_program(pio_1, &ws2812_program);
-  ws2812_program_init(pio_1, 0, offset2, WS2812B_GPIO, 800000,
+  ws2812_program_init(pio_1, ENC_GPIO_SIZE, offset2, WS2812B_GPIO, 800000,
                       false);
 
-  //Switches
-  //Prep bitmask and gpio pins
-  sw_bitmask = 0;
+  // Setup Button GPIO
   for (int i = 0; i < SW_GPIO_SIZE; i++) {
-    sw_bitmask |= (0x1 << SW_GPIO[i]);
-    gpio_pull_up(SW_GPIO[i]);
+    sw_val[i] = false;
     gpio_init(SW_GPIO[i]);
-    sw_debounce_timestamp[i] = 0;
+    gpio_set_function(SW_GPIO[i], GPIO_FUNC_SIO);
+    gpio_set_dir(SW_GPIO[i], GPIO_IN);
+    gpio_pull_up(SW_GPIO[i]);
   }
-  prev_sw_data = 0;
-
-  //State Machine
-  sw_sm = 1;
-  uint sw_offset = pio_add_program(pio_1, &switches_program);
-  switches_program_init(pio_1, sw_sm, sw_offset, SW_DEBOUNCE);
-  //Get dma channel
-  sw_dma_chan = dma_claim_unused_channel(true);
-  //Configure
-  sw_rx_c = dma_channel_get_default_config(sw_dma_chan);
-  sw_tx_c = dma_channel_get_default_config(sw_dma_chan);
-  //Set DREQs
-  channel_config_set_dreq(&sw_rx_c, pio_get_dreq(pio_1, sw_sm, false));
-  channel_config_set_dreq(&sw_tx_c, pio_get_dreq(pio_1, sw_sm, true));
-  //Disable increments
-  channel_config_set_read_increment(&sw_rx_c, false);
-  channel_config_set_read_increment(&sw_tx_c, false);
-  // Tell the DMA to raise IRQ line 0 when the channel finishes a block
-  dma_channel_set_irq1_enabled(sw_dma_chan, true);
-  // Trigger first transfer
-  dma_channel_configure(sw_dma_chan, &sw_tx_c, &pio_1->txf[sw_sm], &sw_bitmask, 1, true);
 
   // Setup LED GPIO
   for (int i = 0; i < LED_GPIO_SIZE; i++) {
@@ -369,6 +294,7 @@ void init() {
   }
 
   // Set listener bools
+  leds_changed = false;
   kbm_report = false;
 
   // Joy/KB Mode Switching
@@ -404,6 +330,7 @@ int main(void) {
 
   while (1) {
     tud_task();  // tinyusb device task
+    update_inputs();
     loop_mode();
     update_lights();
   }
@@ -441,5 +368,6 @@ void tud_hid_set_report_cb(uint8_t itf, uint8_t report_id,
       lights_report.raw[i] = buffer[i + 1];
     }
     reactive_timeout_count = 0;
+    leds_changed = true;
   }
 }
