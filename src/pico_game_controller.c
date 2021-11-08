@@ -26,11 +26,11 @@ uint32_t enc_val[ENC_GPIO_SIZE];
 uint32_t prev_enc_val[ENC_GPIO_SIZE];
 int cur_enc_val[ENC_GPIO_SIZE];
 
-bool sw_val[SW_GPIO_SIZE];
+bool prev_sw_val[SW_GPIO_SIZE];
+uint64_t sw_timestamp[SW_GPIO_SIZE];
 
 bool kbm_report;
 
-bool leds_changed;
 unsigned long reactive_timeout_count = REACTIVE_TIMEOUT_MAX;
 
 void (*loop_mode)();
@@ -114,23 +114,20 @@ void update_lights() {
   if (reactive_timeout_count < REACTIVE_TIMEOUT_MAX) {
     reactive_timeout_count++;
   }
-  if (leds_changed) {
-    for (int i = 0; i < LED_GPIO_SIZE; i++) {
-      if (reactive_timeout_count >= REACTIVE_TIMEOUT_MAX) {
-        if (sw_val[i]) {
-          gpio_put(LED_GPIO[i], 1);
-        } else {
-          gpio_put(LED_GPIO[i], 0);
-        }
+  for (int i = 0; i < LED_GPIO_SIZE; i++) {
+    if (reactive_timeout_count >= REACTIVE_TIMEOUT_MAX) {
+      if (!gpio_get(SW_GPIO[i])) {
+        gpio_put(LED_GPIO[i], 1);
       } else {
-        if (lights_report.lights.buttons[i] == 0) {
-          gpio_put(LED_GPIO[i], 0);
-        } else {
-          gpio_put(LED_GPIO[i], 1);
-        }
+        gpio_put(LED_GPIO[i], 0);
+      }
+    } else {
+      if (lights_report.lights.buttons[i] == 0) {
+        gpio_put(LED_GPIO[i], 0);
+      } else {
+        gpio_put(LED_GPIO[i], 1);
       }
     }
-    leds_changed = false;
   }
 }
 
@@ -147,7 +144,13 @@ void joy_mode() {
   if (tud_hid_ready()) {
     uint16_t translate_buttons = 0;
     for (int i = SW_GPIO_SIZE - 1; i >= 0; i--) {
-      translate_buttons = (translate_buttons << 1) | (sw_val[i] ? 1 : 0);
+      if (!gpio_get(SW_GPIO[i]) &&
+          time_us_64() - sw_timestamp[i] >= SW_DEBOUNCE_TIME_US) {
+        translate_buttons =
+            (translate_buttons << 1) | (!gpio_get(SW_GPIO[i]) ? 1 : 0);
+      } else {
+        translate_buttons <<= 1;
+      }
     }
     report.buttons = translate_buttons;
 
@@ -177,7 +180,8 @@ void key_mode() {
     /*------------- Keyboard -------------*/
     uint8_t nkro_report[32] = {0};
     for (int i = 0; i < SW_GPIO_SIZE; i++) {
-      if (sw_val[i]) {
+      if (!gpio_get(SW_GPIO[i]) &&
+          time_us_64() - sw_timestamp[i] >= SW_DEBOUNCE_TIME_US) {
         uint8_t bit = SW_KEYCODE[i] % 8;
         uint8_t byte = (SW_KEYCODE[i] / 8) + 1;
         if (SW_KEYCODE[i] >= 240 && SW_KEYCODE[i] <= 247) {
@@ -209,14 +213,16 @@ void key_mode() {
 
 /**
  * Update Input States
+ * Note: Switches are pull up, negate value
  **/
 void update_inputs() {
   for (int i = 0; i < SW_GPIO_SIZE; i++) {
-    sw_val[i] = !gpio_get(SW_GPIO[i]);  // Switches are pull up, negate value
+    // If switch gets pressed, record timestamp
+    if (prev_sw_val[i] == false && !gpio_get(SW_GPIO[i]) == true) {
+      sw_timestamp[i] = time_us_64();
+    }
+    prev_sw_val[i] = !gpio_get(SW_GPIO[i]);
   }
-
-  // Update LEDs if input changed while in reactive mode
-  if (reactive_timeout_count >= REACTIVE_TIMEOUT_MAX) leds_changed = true;
 }
 
 /**
@@ -251,9 +257,7 @@ void init() {
 
   // Setup Encoders
   for (int i = 0; i < ENC_GPIO_SIZE; i++) {
-    enc_val[i] = 0;
-    prev_enc_val[i] = 0;
-    cur_enc_val[i] = 0;
+    enc_val[i], prev_enc_val[i], cur_enc_val[i] = 0;
     encoders_program_init(pio, i, offset, ENC_GPIO[i], ENC_DEBOUNCE);
 
     dma_channel_config c = dma_channel_get_default_config(i);
@@ -280,7 +284,8 @@ void init() {
 
   // Setup Button GPIO
   for (int i = 0; i < SW_GPIO_SIZE; i++) {
-    sw_val[i] = false;
+    prev_sw_val[i] = false;
+    sw_timestamp[i] = 0;
     gpio_init(SW_GPIO[i]);
     gpio_set_function(SW_GPIO[i], GPIO_FUNC_SIO);
     gpio_set_dir(SW_GPIO[i], GPIO_IN);
@@ -294,16 +299,15 @@ void init() {
   }
 
   // Set listener bools
-  leds_changed = false;
   kbm_report = false;
 
   // Joy/KB Mode Switching
-  if (gpio_get(SW_GPIO[0])) {
-    loop_mode = &joy_mode;
-    joy_mode_check = true;
-  } else {
+  if (!gpio_get(SW_GPIO[0])) {
     loop_mode = &key_mode;
     joy_mode_check = false;
+  } else {
+    loop_mode = &joy_mode;
+    joy_mode_check = true;
   }
 }
 
@@ -368,6 +372,5 @@ void tud_hid_set_report_cb(uint8_t itf, uint8_t report_id,
       lights_report.raw[i] = buffer[i + 1];
     }
     reactive_timeout_count = 0;
-    leds_changed = true;
   }
 }
