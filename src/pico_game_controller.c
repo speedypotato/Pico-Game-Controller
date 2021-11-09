@@ -31,7 +31,7 @@ uint64_t sw_timestamp[SW_GPIO_SIZE];
 
 bool kbm_report;
 
-unsigned long reactive_timeout_count = REACTIVE_TIMEOUT_MAX;
+uint64_t reactive_timeout_timestamp;
 
 void (*loop_mode)();
 bool joy_mode_check = true;
@@ -94,7 +94,7 @@ void ws2812b_color_cycle(uint32_t counter) {
  * @param counter Current number of WS2812B cycles
  **/
 void ws2812b_update(uint32_t counter) {
-  if (reactive_timeout_count >= REACTIVE_TIMEOUT_MAX) {
+  if (time_us_64() - reactive_timeout_timestamp >= REACTIVE_TIMEOUT_MAX) {
     ws2812b_color_cycle(counter);
   } else {
     for (int i = 0; i < WS2812B_LED_ZONES; i++) {
@@ -111,11 +111,8 @@ void ws2812b_update(uint32_t counter) {
  * HID/Reactive Lights
  **/
 void update_lights() {
-  if (reactive_timeout_count < REACTIVE_TIMEOUT_MAX) {
-    reactive_timeout_count++;
-  }
   for (int i = 0; i < LED_GPIO_SIZE; i++) {
-    if (reactive_timeout_count >= REACTIVE_TIMEOUT_MAX) {
+    if (time_us_64() - reactive_timeout_timestamp >= REACTIVE_TIMEOUT_MAX) {
       if (!gpio_get(SW_GPIO[i])) {
         gpio_put(LED_GPIO[i], 1);
       } else {
@@ -276,6 +273,8 @@ void init() {
     dma_channel_set_irq0_enabled(i, true);
   }
 
+  reactive_timeout_timestamp = time_us_64();
+
   // Set up WS2812B
   pio_1 = pio1;
   uint offset2 = pio_add_program(pio_1, &ws2812_program);
@@ -365,12 +364,12 @@ void tud_hid_set_report_cb(uint8_t itf, uint8_t report_id,
                            uint16_t bufsize) {
   (void)itf;
   if (report_id == 2 && report_type == HID_REPORT_TYPE_OUTPUT &&
-      buffer[0] == 2 && bufsize >= sizeof(lights_report))  // light data
+      bufsize >= sizeof(lights_report))  // light data
   {
     size_t i = 0;
     for (i; i < sizeof(lights_report); i++) {
-      lights_report.raw[i] = buffer[i + 1];
+      lights_report.raw[i] = buffer[i];
     }
-    reactive_timeout_count = 0;
+    reactive_timeout_timestamp = time_us_64();
   }
 }
