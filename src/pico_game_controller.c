@@ -201,7 +201,8 @@ void key_mode() {
       tud_hid_n_report(0x00, REPORT_ID_KEYBOARD, &nkro_report,
                        sizeof(nkro_report));
     } else {
-      tud_hid_mouse_report(REPORT_ID_MOUSE, 0x00, delta[0], delta[1], 0, 0);
+      tud_hid_mouse_report(REPORT_ID_MOUSE, 0x00, delta[0] * MOUSE_SENS,
+                           delta[1] * MOUSE_SENS, 0, 0);
     }
     // Alternate reports
     kbm_report = !kbm_report;
@@ -236,6 +237,17 @@ void dma_handler() {
   if (interrupt_channel < 4) {
     dma_channel_set_read_addr(interrupt_channel, &pio->rxf[interrupt_channel],
                               true);
+  }
+}
+
+/**
+ * Second Core Runnable
+ **/
+void core1_entry() {
+  uint32_t counter = 0;
+  while (1) {
+    ws2812b_update(++counter);
+    sleep_ms(5);
   }
 }
 
@@ -308,16 +320,10 @@ void init() {
     loop_mode = &joy_mode;
     joy_mode_check = true;
   }
-}
 
-/**
- * Second Core Runnable
- **/
-void core1_entry() {
-  uint32_t counter = 0;
-  while (1) {
-    ws2812b_update(++counter);
-    sleep_ms(5);
+  // Disable RGB
+  if (gpio_get(SW_GPIO[8])) {
+    multicore_launch_core1(core1_entry);
   }
 }
 
@@ -328,8 +334,6 @@ int main(void) {
   board_init();
   init();
   tusb_init();
-
-  multicore_launch_core1(core1_entry);
 
   while (1) {
     tud_task();  // tinyusb device task
