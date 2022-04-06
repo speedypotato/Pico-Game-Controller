@@ -40,10 +40,10 @@ RGB_t ws2812b_data[32] = {0};
 
 union {
   struct {
-    uint8_t buttons[SW_GPIO_SIZE];
+    uint8_t buttons[SW_GPIO_SIZE - 2];
     RGB_t rgb[WS2812B_LED_ZONES];
   } lights;
-  uint8_t raw[SW_GPIO_SIZE + WS2812B_LED_ZONES * 3];
+  uint8_t raw[SW_GPIO_SIZE - 2 + WS2812B_LED_ZONES * 3];
 } lights_report;
 
 /**
@@ -158,10 +158,10 @@ void update_peripheral_lights(uint32_t counter) {
   if (time_us_64() - reactive_timeout_timestamp >= REACTIVE_TIMEOUT_MAX) {
     ws2812b_color_cycle(counter);
   } else {
-    for (int i = SW_GPIO_SIZE * 2; i < WS2812B_LED_SIZE; i++) {
-      ws2812b_data[i].r = lights_report.lights.rgb[i].r;
-      ws2812b_data[i].g = lights_report.lights.rgb[i].g;
-      ws2812b_data[i].b = lights_report.lights.rgb[i].b;
+    for (int i = (SW_GPIO_SIZE - 2) * 2; i < WS2812B_LED_SIZE; i++) {
+      ws2812b_data[i].r = lights_report.lights.rgb[0].r;
+      ws2812b_data[i].g = lights_report.lights.rgb[0].g;
+      ws2812b_data[i].b = lights_report.lights.rgb[0].b;
     }
   }
 }
