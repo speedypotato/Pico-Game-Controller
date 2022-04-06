@@ -36,16 +36,14 @@ uint64_t reactive_timeout_timestamp;
 void (*loop_mode)();
 bool joy_mode_check = true;
 
-typedef struct {
-  uint8_t r, g, b;
-} RGB_t;
+RGB_t ws2812b_data[32] = {0};
 
 union {
   struct {
-    uint8_t buttons[LED_GPIO_SIZE];
+    uint8_t buttons[SW_GPIO_SIZE];
     RGB_t rgb[WS2812B_LED_ZONES];
   } lights;
-  uint8_t raw[LED_GPIO_SIZE + WS2812B_LED_ZONES * 3];
+  uint8_t raw[SW_GPIO_SIZE + WS2812B_LED_ZONES * 3];
 } lights_report;
 
 /**
@@ -67,16 +65,37 @@ static inline uint32_t urgb_u32(uint8_t r, uint8_t g, uint8_t b) {
  * 768 Color Wheel Picker
  * @param wheel_pos Color value, r->g->b->r...
  **/
-uint32_t color_wheel(uint16_t wheel_pos) {
+RGB_t color_wheel(uint16_t wheel_pos) {
+  RGB_t temp = {0, 0, 0};
   wheel_pos %= 768;
   if (wheel_pos < 256) {
-    return urgb_u32(wheel_pos, 255 - wheel_pos, 0);
+    temp.r = wheel_pos;
+    temp.g = 255 - wheel_pos;
+    temp.b = 0;
+    return temp;
   } else if (wheel_pos < 512) {
     wheel_pos -= 256;
-    return urgb_u32(255 - wheel_pos, 0, wheel_pos);
+    temp.r = 255 - wheel_pos;
+    temp.g = 0;
+    temp.b = wheel_pos;
+    return temp;
   } else {
     wheel_pos -= 512;
-    return urgb_u32(0, wheel_pos, 255 - wheel_pos);
+    temp.r = 0;
+    temp.g = wheel_pos;
+    temp.b = 255 - wheel_pos;
+    return temp;
+  }
+}
+
+/**
+ * Color rainbow effect
+ **/
+void ws2812b_color_rainbow(uint32_t counter) {
+  for (int i = (SW_GPIO_SIZE - 2) * 2; i < WS2812B_LED_SIZE; i++) {
+    ws2812b_data[i] = color_wheel(
+        (counter + i * (int)(768 / (WS2812B_LED_SIZE - SW_GPIO_SIZE * 2))) %
+        768);
   }
 }
 
@@ -84,61 +103,76 @@ uint32_t color_wheel(uint16_t wheel_pos) {
  * Color cycle effect
  **/
 void ws2812b_color_cycle(uint32_t counter) {
-  for (int i = 0; i < WS2812B_LED_SIZE; ++i) {
-    put_pixel(color_wheel((counter + i * (int)(768 / WS2812B_LED_SIZE)) % 768));
+  for (int i = (SW_GPIO_SIZE - 2) * 2; i < WS2812B_LED_SIZE; i++) {
+    ws2812b_data[i] = color_wheel(counter % 768);
   }
 }
 
 /**
- * WS2812B Lighting
+ * HID/Reactive Button Lights
  * @param counter Current number of WS2812B cycles
  **/
-void ws2812b_update(uint32_t counter) {
-  if (time_us_64() - reactive_timeout_timestamp >= REACTIVE_TIMEOUT_MAX) {
-    ws2812b_color_cycle(counter);
-  } else {
-    for (int i = 0; i < WS2812B_LED_ZONES; i++) {
-      for (int j = 0; j < WS2812B_LEDS_PER_ZONE; j++) {
-        put_pixel(urgb_u32(lights_report.lights.rgb[i].r,
-                           lights_report.lights.rgb[i].g,
-                           lights_report.lights.rgb[i].b));
-      }
-    }
-  }
-}
-
-/**
- * HID/Reactive Lights
- **/
-void update_lights() {
-  for (int i = 0; i < LED_GPIO_SIZE - 1; i++) {
+void update_button_lights() {
+  /* Switches */
+  for (int i = 0; i < SW_GPIO_SIZE - 3; i++) {
     if (time_us_64() - reactive_timeout_timestamp >= REACTIVE_TIMEOUT_MAX) {
       if (!gpio_get(SW_GPIO[i])) {
-        gpio_put(LED_GPIO[i], 1);
+        ws2812b_data[2 * i + 2] = SW_COLORS[i + 1];
       } else {
-        gpio_put(LED_GPIO[i], 0);
+        ws2812b_data[2 * i + 2] = COLOR_BLACK;
       }
     } else {
       if (lights_report.lights.buttons[i] == 0) {
-        gpio_put(LED_GPIO[i], 0);
+        ws2812b_data[2 * i + 2] = COLOR_BLACK;
       } else {
-        gpio_put(LED_GPIO[i], 1);
+        ws2812b_data[2 * i + 2] = SW_COLORS[i + 1];
       }
     }
-    /* start button sw_val index is offset by two with respect to LED_GPIO */
-    if (time_us_64() - reactive_timeout_timestamp >= REACTIVE_TIMEOUT_MAX) {
-      if (!gpio_get(SW_GPIO[LED_GPIO_SIZE + 1])) {
-        gpio_put(LED_GPIO[LED_GPIO_SIZE - 1], 1);
-      } else {
-        gpio_put(LED_GPIO[LED_GPIO_SIZE - 1], 0);
-      }
+  }
+  /* start button sw_val index is offset by two with respect to LED_GPIO */
+  if (time_us_64() - reactive_timeout_timestamp >= REACTIVE_TIMEOUT_MAX) {
+    if (!gpio_get(SW_GPIO[SW_GPIO_SIZE - 1])) {
+      ws2812b_data[0] = SW_COLORS[0];
     } else {
-      if (lights_report.lights.buttons[LED_GPIO_SIZE - 1] == 0) {
-        gpio_put(LED_GPIO[LED_GPIO_SIZE - 1], 0);
-      } else {
-        gpio_put(LED_GPIO[LED_GPIO_SIZE - 1], 1);
-      }
+      ws2812b_data[0] = COLOR_BLACK;
     }
+  } else {
+    if (lights_report.lights.buttons[SW_GPIO_SIZE - 1] == 0) {
+      ws2812b_data[0] = COLOR_BLACK;
+    } else {
+      ws2812b_data[0] = SW_COLORS[0];
+    }
+  }
+  /* Switch Labels */
+  for (int i = 0; i < SW_GPIO_SIZE - 2; i++) {
+    ws2812b_data[2 * i + 1] = SW_LABEL_COLORS[i];
+  }
+}
+
+/**
+ * HID/Reactive Peripheral Lights
+ * @param counter Current RGB color
+ **/
+void update_peripheral_lights(uint32_t counter) {
+  /* Peripheral RGB */
+  if (time_us_64() - reactive_timeout_timestamp >= REACTIVE_TIMEOUT_MAX) {
+    ws2812b_color_cycle(counter);
+  } else {
+    for (int i = SW_GPIO_SIZE * 2; i < WS2812B_LED_SIZE; i++) {
+      ws2812b_data[i].r = lights_report.lights.rgb[i].r;
+      ws2812b_data[i].g = lights_report.lights.rgb[i].g;
+      ws2812b_data[i].b = lights_report.lights.rgb[i].b;
+    }
+  }
+}
+
+/**
+ * WS2812B Lighting Updated from ws2812b_data
+ **/
+void ws2812b_update() {
+  for (int i = 0; i < WS2812B_LED_SIZE; i++) {
+    put_pixel(
+        urgb_u32(ws2812b_data[i].r, ws2812b_data[i].g, ws2812b_data[i].b));
   }
 }
 
@@ -259,9 +293,13 @@ void dma_handler() {
  **/
 void core1_entry() {
   uint32_t counter = 0;
+  uint32_t rgb_idx = 0;
   while (1) {
-    ws2812b_update(++counter);
-    sleep_ms(5);
+    counter++;
+    if (counter % 10 == 0) update_peripheral_lights(++rgb_idx);
+    update_button_lights();
+    ws2812b_update();
+    sleep_ms(1);
   }
 }
 
@@ -317,12 +355,6 @@ void init() {
     gpio_pull_up(SW_GPIO[i]);
   }
 
-  // Setup LED GPIO
-  for (int i = 0; i < LED_GPIO_SIZE; i++) {
-    gpio_init(LED_GPIO[i]);
-    gpio_set_dir(LED_GPIO[i], GPIO_OUT);
-  }
-
   // Set listener bools
   kbm_report = false;
 
@@ -353,7 +385,6 @@ int main(void) {
     tud_task();  // tinyusb device task
     update_inputs();
     loop_mode();
-    update_lights();
   }
 
   return 0;
