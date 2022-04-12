@@ -171,8 +171,9 @@ void update_peripheral_lights(uint32_t counter) {
  **/
 void ws2812b_update() {
   for (int i = 0; i < WS2812B_LED_SIZE; i++) {
-    put_pixel(
-        urgb_u32(ws2812b_data[i].r, ws2812b_data[i].g, ws2812b_data[i].b));
+    put_pixel(urgb_u32(ws2812b_data[i].r * WS2812B_BRIGHTNESS,
+                       ws2812b_data[i].g * WS2812B_BRIGHTNESS,
+                       ws2812b_data[i].b * WS2812B_BRIGHTNESS));
   }
 }
 

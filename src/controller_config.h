@@ -11,6 +11,7 @@
 #define REACTIVE_TIMEOUT_MAX 1000000  // HID to reactive timeout in us
 #define WS2812B_LED_SIZE 32           // Number of WS2812B LEDs
 #define WS2812B_LED_ZONES 1           // Number of WS2812B LED Zones
+#define WS2812B_BRIGHTNESS 0.5        // Brightness adjustment
 
 #ifdef PICO_GAME_CONTROLLER_C
 

@@ -1,4 +1,5 @@
 # Pico-Game-Controller
+NOTE: PICO_XOSC_STARTUP_DELAY_MULTIPLIER MUST BE CHANGED FROM 1 TO 64 in pico-sdk/src/rp2_common/hardware_xosc/include/hardware/xosc.h
 
 This branch was developed with SDVX in mind. Capable of handling 7 LEDs, 1 WS2812B RGB strip, and 2 encoders.
 
