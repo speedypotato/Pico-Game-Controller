@@ -137,7 +137,7 @@ void update_button_lights() {
       ws2812b_data[0] = COLOR_BLACK;
     }
   } else {
-    if (lights_report.lights.buttons[SW_GPIO_SIZE - 1] == 0) {
+    if (lights_report.lights.buttons[SW_GPIO_SIZE - 3] == 0) {
       ws2812b_data[0] = COLOR_BLACK;
     } else {
       ws2812b_data[0] = SW_COLORS[0];
