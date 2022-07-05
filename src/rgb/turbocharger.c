@@ -30,7 +30,6 @@
  * By strategically positioning led 0 at the top, this avoids lighting areas
  * from suddenly appeaering.
  **/
-extern uint32_t enc_val[ENC_GPIO_SIZE];
 
 #define TURBO_LIGHTS_CLAMP 0.1f
 #define TURBO_LIGHTS_THRESHOLD 0.05f

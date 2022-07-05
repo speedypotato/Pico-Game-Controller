@@ -17,9 +17,11 @@
 #include "hardware/pio.h"
 #include "pico/multicore.h"
 #include "pico/stdlib.h"
-#include "rgb/rgb_include.h"
 #include "tusb.h"
 #include "usb_descriptors.h"
+
+#include "rgb/rgb_include.h"
+#include "debounce/debounce_include.h"
 
 PIO pio, pio_1;
 uint32_t enc_val[ENC_GPIO_SIZE];
@@ -35,6 +37,7 @@ uint64_t reactive_timeout_timestamp;
 
 void (*ws2812b_mode)();
 void (*loop_mode)();
+uint16_t (*debounce_mode)();
 bool joy_mode_check = true;
 
 union {
@@ -95,18 +98,6 @@ struct report {
  **/
 void joy_mode() {
   if (tud_hid_ready()) {
-    uint16_t translate_buttons = 0;
-    for (int i = SW_GPIO_SIZE - 1; i >= 0; i--) {
-      if (!gpio_get(SW_GPIO[i]) &&
-          time_us_64() - sw_timestamp[i] >= SW_DEBOUNCE_TIME_US) {
-        translate_buttons =
-            (translate_buttons << 1) | (!gpio_get(SW_GPIO[i]) ? 1 : 0);
-      } else {
-        translate_buttons <<= 1;
-      }
-    }
-    report.buttons = translate_buttons;
-
     // find the delta between previous and current enc_val
     for (int i = 0; i < ENC_GPIO_SIZE; i++) {
       cur_enc_val[i] +=
@@ -133,8 +124,7 @@ void key_mode() {
     /*------------- Keyboard -------------*/
     uint8_t nkro_report[32] = {0};
     for (int i = 0; i < SW_GPIO_SIZE; i++) {
-      if (!gpio_get(SW_GPIO[i]) &&
-          time_us_64() - sw_timestamp[i] >= SW_DEBOUNCE_TIME_US) {
+      if ((report.buttons >> i) % 2 == 1) {
         uint8_t bit = SW_KEYCODE[i] % 8;
         uint8_t byte = (SW_KEYCODE[i] / 8) + 1;
         if (SW_KEYCODE[i] >= 240 && SW_KEYCODE[i] <= 247) {
@@ -284,6 +274,9 @@ void init() {
     ws2812b_mode = &ws2812b_color_cycle;
   }
 
+  // Debouncing Mode
+  debounce_mode = &minimum_hold;
+
   // Disable RGB
   if (gpio_get(SW_GPIO[8])) {
     multicore_launch_core1(core1_entry);
@@ -301,6 +294,7 @@ int main(void) {
   while (1) {
     tud_task();  // tinyusb device task
     update_inputs();
+    report.buttons = debounce_mode();
     loop_mode();
     update_lights();
   }
