@@ -19,7 +19,9 @@
 #include "pico/stdlib.h"
 #include "tusb.h"
 #include "usb_descriptors.h"
-#include "ws2812.pio.h"
+
+#include "rgb/rgb_include.h"
+#include "debounce/debounce_include.h"
 
 PIO pio, pio_1;
 uint32_t enc_val[ENC_GPIO_SIZE];
@@ -33,12 +35,10 @@ bool kbm_report;
 
 uint64_t reactive_timeout_timestamp;
 
+void (*ws2812b_mode)();
 void (*loop_mode)();
+uint16_t (*debounce_mode)();
 bool joy_mode_check = true;
-
-typedef struct {
-  uint8_t r, g, b;
-} RGB_t;
 
 union {
   struct {
@@ -49,53 +49,12 @@ union {
 } lights_report;
 
 /**
- * WS2812B RGB Assignment
- * @param pixel_grb The pixel color to set
- **/
-static inline void put_pixel(uint32_t pixel_grb) {
-  pio_sm_put_blocking(pio1, ENC_GPIO_SIZE, pixel_grb << 8u);
-}
-
-/**
- * WS2812B RGB Format Helper
- **/
-static inline uint32_t urgb_u32(uint8_t r, uint8_t g, uint8_t b) {
-  return ((uint32_t)(r) << 8) | ((uint32_t)(g) << 16) | (uint32_t)(b);
-}
-
-/**
- * 768 Color Wheel Picker
- * @param wheel_pos Color value, r->g->b->r...
- **/
-uint32_t color_wheel(uint16_t wheel_pos) {
-  wheel_pos %= 768;
-  if (wheel_pos < 256) {
-    return urgb_u32(wheel_pos, 255 - wheel_pos, 0);
-  } else if (wheel_pos < 512) {
-    wheel_pos -= 256;
-    return urgb_u32(255 - wheel_pos, 0, wheel_pos);
-  } else {
-    wheel_pos -= 512;
-    return urgb_u32(0, wheel_pos, 255 - wheel_pos);
-  }
-}
-
-/**
- * Color cycle effect
- **/
-void ws2812b_color_cycle(uint32_t counter) {
-  for (int i = 0; i < WS2812B_LED_SIZE; ++i) {
-    put_pixel(color_wheel((counter + i * (int)(768 / WS2812B_LED_SIZE)) % 768));
-  }
-}
-
-/**
  * WS2812B Lighting
  * @param counter Current number of WS2812B cycles
  **/
 void ws2812b_update(uint32_t counter) {
   if (time_us_64() - reactive_timeout_timestamp >= REACTIVE_TIMEOUT_MAX) {
-    ws2812b_color_cycle(counter);
+    ws2812b_mode(counter);
   } else {
     for (int i = 0; i < WS2812B_LED_ZONES; i++) {
       for (int j = 0; j < WS2812B_LEDS_PER_ZONE; j++) {
@@ -139,18 +98,6 @@ struct report {
  **/
 void joy_mode() {
   if (tud_hid_ready()) {
-    uint16_t translate_buttons = 0;
-    for (int i = SW_GPIO_SIZE - 1; i >= 0; i--) {
-      if (!gpio_get(SW_GPIO[i]) &&
-          time_us_64() - sw_timestamp[i] >= SW_DEBOUNCE_TIME_US) {
-        translate_buttons =
-            (translate_buttons << 1) | (!gpio_get(SW_GPIO[i]) ? 1 : 0);
-      } else {
-        translate_buttons <<= 1;
-      }
-    }
-    report.buttons = translate_buttons;
-
     // find the delta between previous and current enc_val
     for (int i = 0; i < ENC_GPIO_SIZE; i++) {
       cur_enc_val[i] +=
@@ -177,8 +124,7 @@ void key_mode() {
     /*------------- Keyboard -------------*/
     uint8_t nkro_report[32] = {0};
     for (int i = 0; i < SW_GPIO_SIZE; i++) {
-      if (!gpio_get(SW_GPIO[i]) &&
-          time_us_64() - sw_timestamp[i] >= SW_DEBOUNCE_TIME_US) {
+      if ((report.buttons >> i) % 2 == 1) {
         uint8_t bit = SW_KEYCODE[i] % 8;
         uint8_t byte = (SW_KEYCODE[i] / 8) + 1;
         if (SW_KEYCODE[i] >= 240 && SW_KEYCODE[i] <= 247) {
@@ -275,7 +221,7 @@ void init() {
     channel_config_set_dreq(&c, pio_get_dreq(pio, i, false));
 
     dma_channel_configure(i, &c,
-                          &enc_val[i],   // Destinatinon pointer
+                          &enc_val[i],   // Destination pointer
                           &pio->rxf[i],  // Source pointer
                           0x10,          // Number of transfers
                           true           // Start immediately
@@ -321,6 +267,16 @@ void init() {
     joy_mode_check = true;
   }
 
+  // RGB Mode Switching
+  if (!gpio_get(SW_GPIO[1])) {
+    ws2812b_mode = &turbocharger_color_cycle;
+  } else {
+    ws2812b_mode = &ws2812b_color_cycle;
+  }
+
+  // Debouncing Mode
+  debounce_mode = &minimum_hold;
+
   // Disable RGB
   if (gpio_get(SW_GPIO[8])) {
     multicore_launch_core1(core1_entry);
@@ -338,6 +294,7 @@ int main(void) {
   while (1) {
     tud_task();  // tinyusb device task
     update_inputs();
+    report.buttons = debounce_mode();
     loop_mode();
     update_lights();
   }
