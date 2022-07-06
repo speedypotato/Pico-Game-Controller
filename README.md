@@ -20,12 +20,13 @@ Currently working/fixed:
 - Switch and LED pins are now staggered for easier wiring
 - Fix 0-~71% encoder rollover in gamepad mode, uint32 max val isn't divisible evenly by ppr\*4 for joystick - thanks friends
 - HID LEDs now have labels, thanks CrazyRedMachine
+- refactor ws2812b into a seperate file for cleaner code & implement more RGB modes (added turbocharger mode) - hold second button (gpio 6) to swap to turbocharger mode; hold 9th button (gpio 20) to turn off RGB
+- refactor debouncing algorithms into separate files for cleaner code
 
 TODO:
 
-- refactor ws2812b into a seperate file for cleaner code & implement more RGB modes
-- store configuration settings in a text file? consider implementing littlefs https://github.com/littlefs-project/littlefs https://www.raspberrypi.org/forums/viewtopic.php?t=313009 https://www.raspberrypi.org/forums/viewtopic.php?p=1894014#p1894014
 - Store last mode in flash memory (probably implement into above TODO if possible) https://www.raspberrypi.org/forums/viewtopic.php?t=305570
+- store configuration settings in a text file? consider implementing littlefs https://github.com/littlefs-project/littlefs https://www.raspberrypi.org/forums/viewtopic.php?t=313009 https://www.raspberrypi.org/forums/viewtopic.php?p=1894014#p1894014
 
 How to Use:
 
@@ -46,3 +47,5 @@ Thanks to:
 - https://github.com/veroxzik/arduino-konami-spoof for konami spoof usb descriptor info.
 - https://github.com/veroxzik/roxy-firmware for nkro descriptor and logic info.
 - KyubiFox for bringing clkdiv to my attention for encoder debouncing
+- 4yn for turbocharger lighting
+- SushiRemover for alternate debounce mode
