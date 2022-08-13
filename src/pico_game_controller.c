@@ -121,21 +121,20 @@ void joy_mode() {
 void key_mode() {
   if (tud_hid_ready()) {  // Wait for ready, updating mouse too fast hampers
                           // movement
-    /*------------- Keyboard -------------*/
-    uint8_t nkro_report[32] = {0};
-    for (int i = 0; i < SW_GPIO_SIZE; i++) {
-      if ((report.buttons >> i) % 2 == 1) {
-        uint8_t bit = SW_KEYCODE[i] % 8;
-        uint8_t byte = (SW_KEYCODE[i] / 8) + 1;
-        if (SW_KEYCODE[i] >= 240 && SW_KEYCODE[i] <= 247) {
-          nkro_report[0] |= (1 << bit);
-        } else if (byte > 0 && byte <= 31) {
-          nkro_report[byte] |= (1 << bit);
+    if (kbm_report) {
+      /*------------- Keyboard -------------*/
+      uint8_t nkro_report[32] = {0};
+      for (int i = 0; i < SW_GPIO_SIZE; i++) {
+        if ((report.buttons >> i) % 2 == 1) {
+          uint8_t bit = SW_KEYCODE[i] % 8;
+          uint8_t byte = (SW_KEYCODE[i] / 8) + 1;
+          if (SW_KEYCODE[i] >= 240 && SW_KEYCODE[i] <= 247) {
+            nkro_report[0] |= (1 << bit);
+          } else if (byte > 0 && byte <= 31) {
+            nkro_report[byte] |= (1 << bit);
+          }
         }
       }
-    }
-
-    if (kbm_report) {
       tud_hid_n_report(0x00, REPORT_ID_KEYBOARD, &nkro_report,
                        sizeof(nkro_report));
     } else {
