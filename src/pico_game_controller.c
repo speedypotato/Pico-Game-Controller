@@ -135,18 +135,18 @@ void key_mode() {
       }
     }
 
-    /*------------- Mouse -------------*/
-    // find the delta between previous and current enc_val
-    int delta[ENC_GPIO_SIZE] = {0};
-    for (int i = 0; i < ENC_GPIO_SIZE; i++) {
-      delta[i] = (enc_val[i] - prev_enc_val[i]) * (ENC_REV[i] ? 1 : -1);
-      prev_enc_val[i] = enc_val[i];
-    }
-
     if (kbm_report) {
       tud_hid_n_report(0x00, REPORT_ID_KEYBOARD, &nkro_report,
                        sizeof(nkro_report));
     } else {
+      /*------------- Mouse -------------*/
+      // find the delta between previous and current enc_val
+      int delta[ENC_GPIO_SIZE] = {0};
+      for (int i = 0; i < ENC_GPIO_SIZE; i++) {
+        delta[i] = (enc_val[i] - prev_enc_val[i]) * (ENC_REV[i] ? 1 : -1);
+        prev_enc_val[i] = enc_val[i];
+      }
+
       tud_hid_mouse_report(REPORT_ID_MOUSE, 0x00, delta[0] * MOUSE_SENS,
                            delta[1] * MOUSE_SENS, 0, 0);
     }
