@@ -19,9 +19,10 @@
 #include "pico/stdlib.h"
 #include "tusb.h"
 #include "usb_descriptors.h"
-
-#include "rgb/rgb_include.h"
+// clang-format off
 #include "debounce/debounce_include.h"
+#include "rgb/rgb_include.h"
+// clang-format on
 
 PIO pio, pio_1;
 uint32_t enc_val[ENC_GPIO_SIZE];
@@ -274,7 +275,7 @@ void init() {
   }
 
   // Debouncing Mode
-  debounce_mode = &minimum_hold;
+  debounce_mode = &debounce_eager;
 
   // Disable RGB
   if (gpio_get(SW_GPIO[8])) {
