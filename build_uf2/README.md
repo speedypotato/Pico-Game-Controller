@@ -1,6 +1,6 @@
 # Pico-Game-Controller
 
-Manually copied built uf2 file for quick flashing.
+Built uf2 file for quick flashing. CMake should copy to here upon build.
 
 Quick how-to flash:
 

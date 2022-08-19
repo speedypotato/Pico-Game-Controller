@@ -18,3 +18,8 @@ target_link_libraries(Pico_Game_Controller PRIVATE
         hardware_irq)
 
 pico_add_extra_outputs(Pico_Game_Controller)
+
+add_custom_command(TARGET Pico_Game_Controller
+        POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy ${PROJECT_BINARY_DIR}/src/Pico_Game_Controller.uf2 ${PROJECT_SOURCE_DIR}/build_uf2/Pico_Game_Controller.uf2
+)
