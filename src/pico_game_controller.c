@@ -8,8 +8,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+// clang-format off
 #include "bsp/board.h"
 #include "controller_config.h"
+#include "types.h"
 #include "encoders.pio.h"
 #include "hardware/clocks.h"
 #include "hardware/dma.h"
@@ -19,7 +21,6 @@
 #include "pico/stdlib.h"
 #include "tusb.h"
 #include "usb_descriptors.h"
-// clang-format off
 #include "debounce/debounce_include.h"
 #include "rgb/rgb_include.h"
 // clang-format on
@@ -41,72 +42,8 @@ void (*loop_mode)();
 uint16_t (*debounce_mode)();
 bool joy_mode_check = true;
 
-union {
-  struct {
-    uint8_t buttons[LED_GPIO_SIZE];
-    RGB_t rgb[WS2812B_LED_ZONES];
-  } lights;
-  uint8_t raw[LED_GPIO_SIZE + WS2812B_LED_ZONES * 3];
-} lights_report;
-
-/**
- * WS2812B Lighting
- * @param counter Current number of WS2812B cycles
- **/
-void ws2812b_update(uint32_t counter) {
-  if (time_us_64() - reactive_timeout_timestamp >= REACTIVE_TIMEOUT_MAX) {
-    ws2812b_mode(counter);
-  } else {
-    for (int i = 0; i < WS2812B_LED_ZONES; i++) {
-      for (int j = 0; j < WS2812B_LEDS_PER_ZONE; j++) {
-        put_pixel(urgb_u32(lights_report.lights.rgb[i].r,
-                           lights_report.lights.rgb[i].g,
-                           lights_report.lights.rgb[i].b));
-      }
-    }
-  }
-}
-
-/**
- * HID/Reactive Lights
- **/
-void update_lights() {
-  for (int i = 0; i < LED_GPIO_SIZE - 1; i++) {
-    if (time_us_64() - reactive_timeout_timestamp >= REACTIVE_TIMEOUT_MAX) {
-      if (!gpio_get(SW_GPIO[i])) {
-        gpio_put(LED_GPIO[i], 1);
-      } else {
-        gpio_put(LED_GPIO[i], 0);
-      }
-    } else {
-      if (lights_report.lights.buttons[i] == 0) {
-        gpio_put(LED_GPIO[i], 0);
-      } else {
-        gpio_put(LED_GPIO[i], 1);
-      }
-    }
-    /* start button sw_val index is offset by two with respect to LED_GPIO */
-    if (time_us_64() - reactive_timeout_timestamp >= REACTIVE_TIMEOUT_MAX) {
-      if (!gpio_get(SW_GPIO[LED_GPIO_SIZE + 1])) {
-        gpio_put(LED_GPIO[LED_GPIO_SIZE - 1], 1);
-      } else {
-        gpio_put(LED_GPIO[LED_GPIO_SIZE - 1], 0);
-      }
-    } else {
-      if (lights_report.lights.buttons[LED_GPIO_SIZE - 1] == 0) {
-        gpio_put(LED_GPIO[LED_GPIO_SIZE - 1], 0);
-      } else {
-        gpio_put(LED_GPIO[LED_GPIO_SIZE - 1], 1);
-      }
-    }
-  }
-}
-
-struct report {
-  uint16_t buttons;
-  uint8_t joy0;
-  uint8_t joy1;
-} report;
+lights_report_t lights_report;
+report_t report;
 
 /**
  * Gamepad Mode
@@ -205,9 +142,11 @@ void dma_handler() {
  **/
 void core1_entry() {
   uint32_t counter = 0;
+  uint32_t rgb_idx = 0;
   while (1) {
-    ws2812b_update(++counter);
-    sleep_ms(5);
+    counter++;
+    if (counter % 32 == 0) ws2812b_mode(++rgb_idx);
+    sleep_ms(1);
   }
 }
 
@@ -263,12 +202,6 @@ void init() {
     gpio_pull_up(SW_GPIO[i]);
   }
 
-  // Setup LED GPIO
-  for (int i = 0; i < LED_GPIO_SIZE; i++) {
-    gpio_init(LED_GPIO[i]);
-    gpio_set_dir(LED_GPIO[i], GPIO_OUT);
-  }
-
   // Set listener bools
   kbm_report = false;
 
@@ -282,11 +215,7 @@ void init() {
   }
 
   // RGB Mode Switching
-  if (!gpio_get(SW_GPIO[1])) {
-    ws2812b_mode = &turbocharger_color_cycle;
-  } else {
-    ws2812b_mode = &ws2812b_color_cycle;
-  }
+  ws2812b_mode = &ws2812b_color_cycle_v5;
 
   // Debouncing Mode
   debounce_mode = &debounce_eager;
@@ -310,7 +239,6 @@ int main(void) {
     update_inputs();
     report.buttons = debounce_mode();
     loop_mode();
-    update_lights();
   }
 
   return 0;

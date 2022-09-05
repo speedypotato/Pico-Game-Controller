@@ -10,8 +10,8 @@
 #define SW_DEBOUNCE_TIME_US 4000      // Switch debounce delay in us
 #define ENC_PULSE (ENC_PPR * 4)       // 4 pulses per PPR
 #define REACTIVE_TIMEOUT_MAX 1000000  // HID to reactive timeout in us
-#define WS2812B_LED_SIZE 10           // Number of WS2812B LEDs
-#define WS2812B_LED_ZONES 2           // Number of WS2812B LED Zones
+#define WS2812B_LED_SIZE 32           // Number of WS2812B LEDs
+#define WS2812B_LED_ZONES 1           // Number of WS2812B LED Zones
 #define WS2812B_LEDS_PER_ZONE \
   WS2812B_LED_SIZE / WS2812B_LED_ZONES  // Number of LEDs per zone
 
@@ -23,14 +23,12 @@ const uint8_t SW_KEYCODE[] = {
     HID_KEY_M, HID_KEY_A, HID_KEY_B, HID_KEY_1,
 };
 const uint8_t SW_GPIO[] = {
-    4, 6, 8, 10, 12, 14, 27, 18, 20,
+    29, 3, 4, 5, 17, 12, 0, 8, 1,
 };
-const uint8_t LED_GPIO[] = {
-    5, 7, 9, 11, 13, 15, 21,
-};
-const uint8_t ENC_GPIO[] = {0, 2};      // L_ENC(0, 1); R_ENC(2, 3)
+const uint8_t LED_GPIO[] = {21};
+const uint8_t ENC_GPIO[] = {27, 6};     // L_ENC(0, 1); R_ENC(2, 3)
 const bool ENC_REV[] = {false, false};  // Reverse Encoders
-const uint8_t WS2812B_GPIO = 28;
+const uint8_t WS2812B_GPIO = 2;
 
 #endif
 

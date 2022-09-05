@@ -162,12 +162,9 @@ char const* string_desc_arr[] = {
     "FX-L",
     "FX-R",
     "Start",
-    "Left R",
-    "Left G",
-    "Left B",
-    "Right R",
-    "Right G",
-    "Right B",
+    "Controller R",
+    "Controller G",
+    "Controller B",
 };
 
 static uint16_t _desc_str[64];
