@@ -146,7 +146,10 @@ void core1_entry() {
   uint32_t rgb_idx = 0;
   while (1) {
     counter++;
-    if (counter % 32 == 0) ws2812b_mode(++rgb_idx);
+    if (counter % 32 == 0) {
+      rgb_idx = ++rgb_idx % 768;
+      ws2812b_mode(rgb_idx);
+    }
     sleep_ms(1);
   }
 }
