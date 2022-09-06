@@ -144,7 +144,7 @@ void core1_entry() {
   uint32_t counter = 0;
   uint32_t rgb_idx = 0;
   while (1) {
-    counter++;
+    counter = ++counter % 768;
     if (counter % 32 == 0) ws2812b_mode(++rgb_idx);
     sleep_ms(1);
   }
