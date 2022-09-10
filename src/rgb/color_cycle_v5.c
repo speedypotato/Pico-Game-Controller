@@ -3,7 +3,7 @@
  * @author SpeedyPotato
  **/
 const uint64_t timeout_us = 600000000;  // 600000000us = 10min
-const double WS2812B_BRIGHTNESS = 0.5;
+const double WS2812B_BRIGHTNESS = 0.2;
 const RGB_t COLOR_BLACK = {0, 0, 0};
 const RGB_t SW_LABEL_COLORS[] = {
     {255, 255, 255},  // START
@@ -35,6 +35,9 @@ void ws2812b_color_cycle_v5(uint32_t counter) {
     for (int i = 0; i < WS2812B_LED_SIZE; i++) ws2812b_data[i] = COLOR_BLACK;
   } else {
     RGB_t base_color = color_wheel_rgbt(counter);
+    base_color.r *= WS2812B_BRIGHTNESS;
+    base_color.g *= WS2812B_BRIGHTNESS;
+    base_color.b *= WS2812B_BRIGHTNESS;
     /* Peripheral RGB */
     for (int i = (SW_GPIO_SIZE - 2) * 2; i < WS2812B_LED_SIZE; i++) {
       if (time_us_64() - reactive_timeout_timestamp >= REACTIVE_TIMEOUT_MAX) {
@@ -81,8 +84,7 @@ void ws2812b_color_cycle_v5(uint32_t counter) {
     }
   }
   for (int i = 0; i < WS2812B_LED_SIZE; ++i) {
-    put_pixel(urgb_u32(ws2812b_data[i].r * WS2812B_BRIGHTNESS,
-                       ws2812b_data[i].g * WS2812B_BRIGHTNESS,
-                       ws2812b_data[i].b * WS2812B_BRIGHTNESS));
+    put_pixel(
+        urgb_u32(ws2812b_data[i].r, ws2812b_data[i].g, ws2812b_data[i].b));
   }
 }
