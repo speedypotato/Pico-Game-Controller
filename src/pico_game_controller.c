@@ -110,7 +110,9 @@ void joy_mode() {
     }
 
     report.joy0 = ((double)cur_enc_val[0] / ENC_PULSE) * (UINT8_MAX + 1);
-    report.joy1 = ((double)cur_enc_val[1] / ENC_PULSE) * (UINT8_MAX + 1);
+    if (ENC_GPIO_SIZE > 1) {
+      report.joy1 = ((double)cur_enc_val[1] / ENC_PULSE) * (UINT8_MAX + 1);
+    }
 
     tud_hid_n_report(0x00, REPORT_ID_JOYSTICK, &report, sizeof(report));
   }
@@ -148,7 +150,7 @@ void key_mode() {
       }
 
       tud_hid_mouse_report(REPORT_ID_MOUSE, 0x00, delta[0] * MOUSE_SENS,
-                           delta[1] * MOUSE_SENS, 0, 0);
+                           ENC_GPIO_SIZE>1 ? delta[1] * MOUSE_SENS:0, 0, 0);
     }
     // Alternate reports
     kbm_report = !kbm_report;
