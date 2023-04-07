@@ -6,6 +6,8 @@ Demo of this firmware running on Pocket SDVX Pico v4, purchasable at https://dis
 
 ![Pocket SDVX Pico](demo.gif)
 
+Important!!  Please edit pico-sdk\src\rp2_common\hardware_xosc\include\hardware\xosc.h in your pico-sdk folder and set #define PICO_XOSC_STARTUP_DELAY_MULTIPLIER 64
+
 Currently working/fixed:
 
 - Gamepad mode - default boot mode
