@@ -220,7 +220,13 @@ void init() {
   }
 
   // RGB Mode Switching
-  ws2812b_mode = &ws2812b_color_cycle_v5;
+  // default to color cycle mode unless BT-B pressed when plugging in
+  // (turbocharger mode)
+  if (gpio_get(SW_GPIO[1])) {
+    ws2812b_mode = &ws2812b_color_cycle_v5;
+  } else {
+    ws2812b_mode = &turbocharger_color_cycle;
+  }
 
   // Debouncing Mode
   debounce_mode = &debounce_eager;
