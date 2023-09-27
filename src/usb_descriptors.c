@@ -48,7 +48,7 @@ tusb_desc_device_t const desc_device_joy = {
     .bMaxPacketSize0 = CFG_TUD_ENDPOINT0_SIZE,
 
     .idVendor = 0x1ccf,
-    .idProduct = 0x101c,
+    .idProduct = 0x8048,
     .bcdDevice = 0x0100,
 
     .iManufacturer = 0x01,
@@ -67,7 +67,7 @@ tusb_desc_device_t const desc_device_key = {
     .bMaxPacketSize0 = CFG_TUD_ENDPOINT0_SIZE,
 
     .idVendor = 0x1ccf,
-    .idProduct = 0x101c,
+    .idProduct = 0x8048,
     .bcdDevice = 0x0100,
 
     .iManufacturer = 0x01,
@@ -153,18 +153,23 @@ uint8_t const* tud_descriptor_configuration_cb(uint8_t index) {
 char const* string_desc_arr[] = {
     (const char[]){0x09, 0x04},  // 0: is supported language is English (0x0409)
     "Konami Amusement",          // 1: Manufacturer
-    "SOUND VOLTEX controller",   // 2: Product
-    "123456",                    // 3: Serials, should use chip ID
-    "BT-A",
-    "BT-B",
-    "BT-C",
-    "BT-D",
-    "FX-L",
-    "FX-R",
-    "Start",
-    "Controller R",
-    "Controller G",
-    "Controller B",
+    "beatmania IIDX controller premium model",  // 2: Product
+    "123456",  // 3: Serials, should use chip ID
+    "Key 1",
+    "Key 2",
+    "Key 3",
+    "Key 4",
+    "Key 5",
+    "Key 6",
+    "Key 7",
+    "UNUSED GPIO 27",
+    "Key E1",
+    "Key E2",
+    "Key E3",
+    "Key E4",
+    "Red 1",
+    "Green 1",
+    "Blue 1",
 };
 
 static uint16_t _desc_str[64];

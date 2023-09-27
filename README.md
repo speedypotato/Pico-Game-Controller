@@ -1,12 +1,12 @@
 # Pico-Game-Controller
 
-This branch was developed with SDVX in mind. Capable of handling 7 LEDs, 1 WS2812B RGB strip, and 2 encoders.
+This branch was developed with Speedy Lab's custom pocket IIDX in mind. Capable of handling 11 buttons, 11 LEDs, 1 WS2812B RGB strip, and 1 encoder. Note: 12 buttons/LEDs are reported but B8 should probably not be used (https://github.com/veroxzik/arduino-konami-spoof)
 
 Demo of this firmware running on Pocket SDVX Pico v4, purchasable at https://discord.gg/MmuKd73XbY
 
 ![Pocket SDVX Pico](demo.gif)
 
-Important!!  Please edit pico-sdk\src\rp2_common\hardware_xosc\include\hardware\xosc.h in your pico-sdk folder and set #define PICO_XOSC_STARTUP_DELAY_MULTIPLIER 64
+Important!! Please edit pico-sdk\src\rp2_common\hardware_xosc\include\hardware\xosc.h in your pico-sdk folder and set #define PICO_XOSC_STARTUP_DELAY_MULTIPLIER 64
 
 Currently working/fixed:
 

@@ -14,5 +14,4 @@ extern uint64_t sw_timestamp[SW_GPIO_SIZE];
 
 #include "ws2812b_util.c"
 #include "color_cycle.c"
-#include "color_cycle_v5.c"
-#include "turbocharger.c"
+#include "color_cycle_iidx.c"

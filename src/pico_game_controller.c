@@ -61,7 +61,6 @@ void joy_mode() {
     }
 
     report.joy0 = ((double)cur_enc_val[0] / ENC_PULSE) * (UINT8_MAX + 1);
-    report.joy1 = ((double)cur_enc_val[1] / ENC_PULSE) * (UINT8_MAX + 1);
 
     tud_hid_n_report(0x00, REPORT_ID_JOYSTICK, &report, sizeof(report));
   }
@@ -98,8 +97,8 @@ void key_mode() {
         prev_enc_val[i] = enc_val[i];
       }
 
-      tud_hid_mouse_report(REPORT_ID_MOUSE, 0x00, delta[0] * MOUSE_SENS,
-                           delta[1] * MOUSE_SENS, 0, 0);
+      tud_hid_mouse_report(REPORT_ID_MOUSE, 0x00, delta[0] * MOUSE_SENS, 0, 0,
+                           0);
     }
     // Alternate reports
     kbm_report = !kbm_report;
@@ -141,15 +140,11 @@ void dma_handler() {
  * Second Core Runnable
  **/
 void core1_entry() {
-  uint32_t counter = 0;
   uint32_t rgb_idx = 0;
   while (1) {
-    counter++;
-    if (counter % 32 == 0) {
-      rgb_idx = ++rgb_idx % 768;
-      ws2812b_mode(rgb_idx);
-    }
-    sleep_ms(1);
+    rgb_idx = ++rgb_idx % 768;
+    ws2812b_mode(rgb_idx);
+    sleep_ms(10);
   }
 }
 
@@ -217,14 +212,8 @@ void init() {
     joy_mode_check = true;
   }
 
-  // RGB Mode Switching
-  // default to color cycle mode unless BT-B pressed when plugging in
-  // (turbocharger mode)
-  if (gpio_get(SW_GPIO[1])) {
-    ws2812b_mode = &ws2812b_color_cycle_v5;
-  } else {
-    ws2812b_mode = &turbocharger_color_cycle;
-  }
+  // RGB Mode
+  ws2812b_mode = &ws2812b_color_cycle_iidx;
 
   // Debouncing Mode
   debounce_mode = &debounce_eager;
