@@ -18,9 +18,10 @@
 #ifdef PICO_GAME_CONTROLLER_C
 
 // MODIFY KEYBINDS HERE, MAKE SURE LENGTHS MATCH SW_GPIO_SIZE
-const uint8_t SW_KEYCODE[] = {HID_KEY_D, HID_KEY_F, HID_KEY_J, HID_KEY_K,
-                              HID_KEY_C, HID_KEY_M, HID_KEY_A, HID_KEY_B,
-                              HID_KEY_1, HID_KEY_E, HID_KEY_G};
+const uint8_t SW_KEYCODE[] = {
+    HID_KEY_A,        HID_KEY_B,        HID_KEY_C,        HID_KEY_D,
+    HID_KEY_E,        HID_KEY_F,        HID_KEY_G,        HID_KEY_H,
+    HID_KEY_KEYPAD_1, HID_KEY_KEYPAD_2, HID_KEY_KEYPAD_3, HID_KEY_KEYPAD_4};
 const uint8_t SW_GPIO[] = {
     7, 8, 9, 10, 11, 12, 13, 14, 3, 4, 5, 6,  // 14 unused
 };
