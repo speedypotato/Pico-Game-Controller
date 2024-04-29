@@ -35,7 +35,7 @@ enum {
       HID_USAGE_PAGE(HID_USAGE_PAGE_DESKTOP), HID_LOGICAL_MIN(0x00),           \
       HID_LOGICAL_MAX_N(0x00ff, 2),                                            \
       HID_USAGE(HID_USAGE_DESKTOP_X), /*Joystick*/                             \
-      HID_REPORT_COUNT(2), HID_REPORT_SIZE(8), \
+      HID_USAGE(HID_USAGE_DESKTOP_Y), HID_REPORT_COUNT(2), HID_REPORT_SIZE(8), \
       HID_INPUT(HID_DATA | HID_VARIABLE | HID_ABSOLUTE), HID_COLLECTION_END
 
 // Light Map

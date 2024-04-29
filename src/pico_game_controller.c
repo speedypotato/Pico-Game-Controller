@@ -91,6 +91,7 @@ void update_lights() {
 struct report {
   uint16_t buttons;
   uint8_t joy0;
+  uint8_t joy1;
 } report;
 
 /**
@@ -109,6 +110,7 @@ void joy_mode() {
     }
 
     report.joy0 = ((double)cur_enc_val[0] / ENC_PULSE) * (UINT8_MAX + 1);
+    report.joy1 = 127;
 
     tud_hid_n_report(0x00, REPORT_ID_JOYSTICK, &report, sizeof(report));
   }
