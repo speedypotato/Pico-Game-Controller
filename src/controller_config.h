@@ -25,7 +25,7 @@ const uint8_t SW_GPIO[] = {
     2, 4, 6, 8, 10, 12, 14, 26, 16, 18, 20, 22,
 };
 const uint8_t LED_GPIO[] = {
-    3, 5, 7, 9, 11, 13, 15, 27, 17, 19, 21, 26,
+    3, 5, 7, 9, 11, 13, 15, 27, 17, 19, 21, 27,
 };
 const uint8_t ENC_GPIO[] = {0};  // TT(0, 1)
 const bool ENC_REV[] = {false};  // Reverse Encoders
