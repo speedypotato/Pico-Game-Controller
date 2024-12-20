@@ -213,7 +213,7 @@ void init() {
 
   // Setup Encoders
   for (int i = 0; i < ENC_GPIO_SIZE; i++) {
-    enc_val[i], prev_enc_val[i], cur_enc_val[i] = 0;
+    enc_val[i] = prev_enc_val[i] = cur_enc_val[i] = 0;
     encoders_program_init(pio, i, offset, ENC_GPIO[i], ENC_DEBOUNCE);
 
     dma_channel_config c = dma_channel_get_default_config(i);
