@@ -4,15 +4,16 @@
  * @author SpeedyPotato
  **/
 
-uint16_t debounce_deferred() {
-  uint16_t translate_buttons = 0;
+void debounce_deferred() {
   for (int i = SW_GPIO_SIZE - 1; i >= 0; i--) {
-    if (!gpio_get(SW_GPIO[i]) &&
+    bool sw_raw_val = !gpio_get(SW_GPIO[i]);
+
+    if (sw_raw_val != sw_prev_raw_val[i]) {
+      sw_timestamp[i] = time_us_64();
+    } else if (sw_timestamp[i] != 0 && 
         time_us_64() - sw_timestamp[i] >= SW_DEBOUNCE_TIME_US) {
-      translate_buttons = (translate_buttons << 1) | 1;
-    } else {
-      translate_buttons <<= 1;
+      sw_cooked_val[i] = sw_raw_val;
+      sw_timestamp[i] = 0;
     }
   }
-  return translate_buttons;
 }

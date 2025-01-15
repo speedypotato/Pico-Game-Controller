@@ -29,7 +29,8 @@ uint32_t enc_val[ENC_GPIO_SIZE];
 uint32_t prev_enc_val[ENC_GPIO_SIZE];
 int cur_enc_val[ENC_GPIO_SIZE];
 
-bool prev_sw_val[SW_GPIO_SIZE];
+bool sw_prev_raw_val[SW_GPIO_SIZE];
+bool sw_cooked_val[SW_GPIO_SIZE];
 uint64_t sw_timestamp[SW_GPIO_SIZE];
 
 bool kbm_report;
@@ -38,7 +39,7 @@ uint64_t reactive_timeout_timestamp;
 
 void (*ws2812b_mode)();
 void (*loop_mode)();
-uint16_t (*debounce_mode)();
+void (*debounce_mode)();
 bool joy_mode_check = true;
 
 union {
@@ -156,16 +157,16 @@ void key_mode() {
 }
 
 /**
- * Update Input States
+ * Updates input states and stores true state into report.buttons.
  * Note: Switches are pull up, negate value
  **/
 void update_inputs() {
-  for (int i = 0; i < SW_GPIO_SIZE; i++) {
-    // If switch gets pressed, record timestamp
-    if (prev_sw_val[i] == false && !gpio_get(SW_GPIO[i]) == true) {
-      sw_timestamp[i] = time_us_64();
-    }
-    prev_sw_val[i] = !gpio_get(SW_GPIO[i]);
+  report.buttons = 0;
+  for (int i = SW_GPIO_SIZE - 1; i >= 0; i--) {
+    sw_prev_raw_val[i] = !gpio_get(SW_GPIO[i]);
+
+    report.buttons <<= 1;
+    report.buttons |= sw_cooked_val[i];
   }
 }
 
@@ -212,7 +213,7 @@ void init() {
 
   // Setup Encoders
   for (int i = 0; i < ENC_GPIO_SIZE; i++) {
-    enc_val[i], prev_enc_val[i], cur_enc_val[i] = 0;
+    enc_val[i] = prev_enc_val[i] = cur_enc_val[i] = 0;
     encoders_program_init(pio, i, offset, ENC_GPIO[i], ENC_DEBOUNCE);
 
     dma_channel_config c = dma_channel_get_default_config(i);
@@ -241,7 +242,8 @@ void init() {
 
   // Setup Button GPIO
   for (int i = 0; i < SW_GPIO_SIZE; i++) {
-    prev_sw_val[i] = false;
+    sw_prev_raw_val[i] = false;
+    sw_cooked_val[i] = false;
     sw_timestamp[i] = 0;
     gpio_init(SW_GPIO[i]);
     gpio_set_function(SW_GPIO[i], GPIO_FUNC_SIO);
@@ -293,8 +295,8 @@ int main(void) {
 
   while (1) {
     tud_task();  // tinyusb device task
+    debounce_mode();
     update_inputs();
-    report.buttons = debounce_mode();
     loop_mode();
     update_lights();
   }
