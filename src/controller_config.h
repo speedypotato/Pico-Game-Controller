@@ -22,10 +22,10 @@ const uint8_t SW_KEYCODE[] = {HID_KEY_D, HID_KEY_F, HID_KEY_J, HID_KEY_K,
                               HID_KEY_C, HID_KEY_M, HID_KEY_A, HID_KEY_B,
                               HID_KEY_1, HID_KEY_E, HID_KEY_G};
 const uint8_t SW_GPIO[] = {
-    2, 4, 6, 8, 10, 12, 14, 26, 16, 18, 20, 22,
+    2, 4, 6, 8, 10, 12, 14, 27, 16, 18, 20, 22,
 };
 const uint8_t LED_GPIO[] = {
-    3, 5, 7, 9, 11, 13, 15, 27, 17, 19, 21, 26,
+    3, 5, 7, 9, 11, 13, 15, 25, 17, 19, 21, 26,
 };
 const uint8_t ENC_GPIO[] = {0};  // TT(0, 1)
 const bool ENC_REV[] = {false};  // Reverse Encoders
