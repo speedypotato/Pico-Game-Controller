@@ -32,7 +32,11 @@ void ws2812b_color_cycle_v5(uint32_t counter) {
   for (int i = 1; i < SW_GPIO_SIZE; i++)
     if (latest_switch_ts < sw_timestamp[i]) latest_switch_ts = sw_timestamp[i];
   if (time_us_64() > latest_switch_ts + timeout_us) {  // timed out
-    for (int i = 0; i < WS2812B_LED_SIZE; i++) ws2812b_data[i] = COLOR_BLACK;
+    for (int i = 0; i < WS2812B_LED_SIZE; i++) {
+      ws2812b_data[i].r *= 0.9;
+      ws2812b_data[i].g *= 0.9;
+      ws2812b_data[i].b *= 0.9;
+    }
   } else {
     RGB_t base_color = color_wheel_rgbt(counter);
     base_color.r *= WS2812B_BRIGHTNESS;

@@ -121,7 +121,11 @@ void turbocharger_color_cycle(uint32_t unused) {
   for (int i = 1; i < SW_GPIO_SIZE; i++)
     if (latest_switch_ts < sw_timestamp[i]) latest_switch_ts = sw_timestamp[i];
   if (time_us_64() > latest_switch_ts + timeout_us) {  // timed out
-    for (int i = 0; i < WS2812B_LED_SIZE; i++) ws2812b_data[i] = COLOR_BLACK;
+    for (int i = 0; i < WS2812B_LED_SIZE; i++) {
+      ws2812b_data[i].r *= 0.9;
+      ws2812b_data[i].g *= 0.9;
+      ws2812b_data[i].b *= 0.9;
+    }
   } else {
     /* Switches */
     for (int i = 0; i < SW_GPIO_SIZE - 3; i++) {
