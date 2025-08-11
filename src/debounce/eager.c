@@ -4,14 +4,20 @@
  * @author SpeedyPotato
  **/
 
-void debounce_eager() {
-  for (int i = 0; i < SW_GPIO_SIZE; i++) {
-    bool sw_raw_val = !gpio_get(SW_GPIO[i]);
-
-    if (time_us_64() - sw_timestamp[i] >= SW_DEBOUNCE_TIME_US &&
-        sw_cooked_val[i] != sw_raw_val) {
-      sw_cooked_val[i] = sw_raw_val;
-      sw_timestamp[i] = time_us_64();
+uint16_t debounce_eager()
+{
+  uint16_t translate_buttons = 0;
+  for (int i = SW_GPIO_SIZE - 1; i >= 0; i--)
+  {
+    if (time_us_64() - sw_timestamp[i] <= SW_DEBOUNCE_TIME_US ||
+        !gpio_get(SW_GPIO[i]))
+    {
+      translate_buttons = (translate_buttons << 1) | 1;
+    }
+    else
+    {
+      translate_buttons <<= 1;
     }
   }
+  return translate_buttons;
 }

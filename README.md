@@ -1,51 +1,127 @@
-# Pico-Game-Controller
+# Pico Game Controller (RP2040)
 
-Code for a keyboard or game controller using a Raspberry Pi Pico. Capable of handling 11 buttons, 10 LEDs, 1 WS2812B RGB strip, and 2 encoders. Developed with SDVX and IIDX in mind - see branches release/pocket-sdvx-pico and release/pocket-iidx for preconfigured versions.
+Raspberry Pi Pico firmware that can act as a joystick (gamepad) or NKRO keyboard/mouse, designed for rhythm controllers (SDVX/IIDX). It supports:
 
-Demo of this firmware running on Pocket SDVX Pico, purchasable at https://discord.gg/MmuKd73XbY
+- 11 switches (with debouncing)
+- 10 discrete LEDs for the switches
+- 1 WS2812B addressable LED strip
+- 2 rotary encoders
+
+Pre-configured builds for Pocket SDVX Pico / Pocket IIDX are in branches `release/pocket-sdvx-pico` and `release/pocket-iidx`.
 
 ![Pocket SDVX Pico](demo.gif)
 
-Currently working/fixed:
+## Features
 
-- Gamepad mode - default boot mode
-- NKRO Keyboard & Mouse Mode - hold first button(gpio4) to enter kb mode
-- HID LEDs with Reactive LED fallback
-- ws2812b rgb on second core
-- 2 ws2812b hid descriptor zones
-- sdvx/iidx spoof - Tested on EAC - checkout branches release/pocket-sdvx-pico or release/pocket-iidx
-- 1000hz polling
-- Reversable Encoders with debouncing
-- Switch debouncing
-- Switch and LED pins are now staggered for easier wiring
-- Fix 0-~71% encoder rollover in gamepad mode, uint32 max val isn't divisible evenly by ppr\*4 for joystick - thanks friends
-- HID LEDs now have labels, thanks CrazyRedMachine
-- refactor ws2812b into a seperate file for cleaner code & implement more RGB modes (added turbocharger mode) - hold second button (gpio 6) to swap to turbocharger mode; hold 9th button (gpio 20) to turn off RGB
-- refactor debouncing algorithms into separate files for cleaner code
+- Gamepad mode (default) with 1000 Hz polling
+- NKRO Keyboard + Mouse mode (hold first button at boot)
+- HID-controlled switch LEDs with reactive fallback
+- WS2812B RGB effects rendered on core 1 (optional)
+- Two encoder inputs with direction reversal and debouncing
+- Tunable behavior via a simple HID Config Tool (Python GUI)
 
-TODO:
+## Boot-time options (hold a button while plugging in)
 
-- Store last mode in flash memory (probably implement into above TODO if possible) https://www.raspberrypi.org/forums/viewtopic.php?t=305570
-- store configuration settings in a text file? consider implementing littlefs https://github.com/littlefs-project/littlefs https://www.raspberrypi.org/forums/viewtopic.php?t=313009 https://www.raspberrypi.org/forums/viewtopic.php?p=1894014#p1894014
+- Hold SW_GPIO[0] (first switch) → start in NKRO Keyboard/Mouse mode
+- Hold SW_GPIO[1] (second switch) → start with Turbocharger RGB effect
+- Hold SW_GPIO[8] (ninth switch) → disable RGB (don’t launch core 1)
 
-How to Use:
+Pin maps and sizes live in `src/controller_config.h`.
 
-- For basic flashing, see README in build_uf2
-- Otherwise, setup the C++ environment for the Pi Pico as per https://datasheets.raspberrypi.org/pico/getting-started-with-pico.pdf
-- Build pico-examples directory once to ensure all the tinyusb and other libraries are there. You might have to move the pico-sdk folder into pico-examples/build for it to play nice.
-- Move pico-sdk back outside to the same level directory as Pico-Game-Controller.
-- Open Pico-Game-Controller in VSCode(assuming this is setup for the Pi Pico) and see if everything builds.
-- Tweakable parameters are in controller_config.h
+## Runtime configuration (over HID Feature report)
 
-Thanks to:
+Use the Python GUI at `tools/effect_selector.py` to view and set:
 
-- Everyone in the Cons & Stuff Discord for providing near instant support to questions.
-- https://github.com/hathach/tinyusb/tree/master/examples/device/hid_composite
-- https://github.com/mdxtinkernick/pico_encoders for encoders which performed better than both interrupts and polling.
-- My SE buddies who helped come up with a solution for the encoder rollover edge case scenario.
-- https://github.com/Drewol/rp2040-gamecon for usb gamepad descriptor info.
-- https://github.com/veroxzik/arduino-konami-spoof for konami spoof usb descriptor info.
-- https://github.com/veroxzik/roxy-firmware for nkro descriptor and logic info.
-- KyubiFox for bringing clkdiv to my attention for encoder debouncing
-- 4yn for turbocharger lighting
+- RGB Effect (multiple effects available) and Brightness (0–255)
+- Encoder PPR (1–4000)
+- Mouse sensitivity (1–50)
+- Encoder debouncing (on/off; applied on next boot)
+- WS2812B LED count and zones (persisted; applied on reboot)
+
+Notes:
+
+- LED count is enforced at output time up to the compiled buffer size.
+- Zones are part of the USB descriptor and take effect after reboot; they are persisted for the next session/firmware.
+
+## Build and flash (VS Code tasks on Windows)
+
+Prereqs: Raspberry Pi Pico SDK installed and VS Code Pico extension. This repo already contains tasks.
+
+- Build: run the “Compile Project” task. Artifacts are generated in `build/src/` and a UF2 is copied to `build_uf2/`.
+- Run (picotool RAM load): use the “Run Project” task.
+- Flash (OpenOCD, SWD probe): use the “Flash” task.
+- Rescue reset tasks available for recovery.
+
+You can also use `flash.ps1` which builds and copies the UF2 to the `RPI-RP2` drive automatically when the Pico is in BOOTSEL mode.
+
+## HID Config Tool (Python)
+
+The GUI is in `tools/effect_selector.py`.
+
+- Requirements: `pip install -r tools/requirements.txt` (needs `hidapi`).
+- Run with `python tools/effect_selector.py` (or use `run_config_tool.ps1`).
+- Use “Refresh” to read current settings; “Apply” writes changes to the device.
+- “Reboot to BOOTSEL” tells the device to jump into UF2 bootloader (for flashing).
+
+Troubleshooting:
+
+- If it shows “Not connected”, check the device is enumerated (use “Debug HID”).
+- If RGB zones/size don’t appear to change instantly, reboot the device—those are applied on startup.
+
+## HID Config Tool (compiled EXE)
+
+You can build a standalone Windows executable using PyInstaller.
+
+- Build with:
+  - PowerShell: `./tools/build_config_tool.ps1`
+  - Output: `dist/PicoGameConfig.exe` (single file). The launcher `run_config_tool.ps1` will prefer this EXE if present.
+- First run will create a local `.venv` and install `hidapi` and `pyinstaller` automatically.
+
+Note: The compiled EXE uses the same VID/PID and HID feature reports as the Python script; no functional differences.
+
+## Firmware architecture overview
+
+- Core 0: USB HID + input scanning + mode/LED logic. See `src/pico_game_controller.c`.
+- Core 1: WS2812B RGB rendering (every ~5 ms), launched only if RGB isn’t disabled at boot.
+- PIO/DMA:
+  - `encoders.pio` via DMA updates encoder values.
+  - `ws2812.pio` drives the LED strip.
+
+HID Report IDs (see `src/usb_descriptors.h`):
+
+- 1: Joystick (gamepad)
+- 2: Lights (switch LEDs + HID RGB color zones)
+- 3: NKRO Keyboard
+- 4: Mouse
+- 5: Config (vendor-specific Feature report)
+
+Config Feature Report (Report ID 5): 8-byte payload `[cmd, arg0..arg6]`
+
+- 0x00 (GET basic): returns `[status, effect_id, brightness, ...]`
+- 0x20 (GET extended): returns `[status, enc_ppr(lo,hi), mouse_sens, enc_debounce, ws_size(lo,hi), ws_zones]`
+- 0x01 (SET_EFFECT), 0x02 (SET_BRIGHTNESS)
+- 0x10 (SET_ENCODER_PPR), 0x11 (SET_MOUSE_SENS), 0x12 (SET_ENC_DEBOUNCE)
+- 0x13 (SET_WS_PARAMS: size LE16, zones)
+- 0x03 (REBOOT_TO_BOOTSEL)
+
+## Pins and sizes (defaults)
+
+All sizes and GPIOs are defined in `src/controller_config.h`. Defaults include:
+
+- SW_GPIO_SIZE = 11, LED_GPIO_SIZE = 10, ENC_GPIO_SIZE = 2
+- ENC_PPR = 600, MOUSE_SENS = 1, ENC_DEBOUNCE = false
+- WS2812B_LED_SIZE = 10, WS2812B_LED_ZONES = 2
+
+At runtime, the device uses persisted values stored in flash (effect, brightness, encoder/mouse, debounce flag, and WS2812B parameters). Some settings apply immediately; others require reboot (see Runtime configuration).
+
+## Thanks
+
+- Cons & Stuff Discord for constant help
+- TinyUSB examples: https://github.com/hathach/tinyusb/tree/master/examples/device/hid_composite
+- Encoders: https://github.com/mdxtinkernick/pico_encoders
+- USB descriptors: https://github.com/Drewol/rp2040-gamecon
+- Konami spoof info: https://github.com/veroxzik/arduino-konami-spoof
+- NKRO details: https://github.com/veroxzik/roxy-firmware
+- KyubiFox for clkdiv/debounce insights
+- 4yn for Turbocharger lighting
 - SushiRemover for alternate debounce mode
